@@ -6,7 +6,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
-import logo from './img/ff.jpeg';
+import logo from '../img/ff.jpeg';
 
 export default function TitlebarImageList() {
   return (

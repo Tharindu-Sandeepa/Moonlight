@@ -18,7 +18,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import SendIcon from '@mui/icons-material/Send';
 import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
-import logo from './img/logo.png';
+import logo from '../img/logo.png';
 
 export default function ColorInversionFooter() {
   const color = '#FAAC9B'; // Set the color to #FAAC9B
