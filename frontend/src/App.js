@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import TitlebarImageList from './TitlebarImageList'; 
+import TitlebarImageList from './homepage/TitlebarImageList'; 
 import './App.css';
 
 
 
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navbar from './homepage/Navbar';
+import Footer from './homepage/Footer';
 
 
 function App() {
