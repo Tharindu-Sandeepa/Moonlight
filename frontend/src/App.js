@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import TitlebarImageList from './homepage/TitlebarImageList'; 
+import TitlebarImageList from './components/TitlebarImageList'; 
 import './App.css';
-
-
-
-import Navbar from './homepage/Navbar';
-import Footer from './homepage/Footer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Slider from './components/Slider'
+import Home from './pages/Home'
+import {BrowserRouter as Router , Switch ,Route } from 'react-router-dom'
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <TitlebarImageList />
+      <Home/>
      
 <Footer/>
       

@@ -21,7 +21,7 @@ import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 import logo from '../img/logo.png';
 
 export default function ColorInversionFooter() {
-  const color = '#FAAC9B'; // Set the color to #FAAC9B
+  const color = 'white'; // Set the color to #FAAC9B
 
   return (
     <Sheet
