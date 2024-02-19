@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Button, IconButton, Badge, useScrollTrigger } from '@m
 import { ShoppingCart } from '@mui/icons-material';
 import AccountMenu from './AccountMenu';
 import logo from '../img/logo.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,9 +34,11 @@ const Navbar = () => {
 
         {/* Navigation Buttons */}
         <div className="navbar" style={{ marginRight: '50%' }}>
+          <Link to="/">
           <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
             Home
           </Button>
+          </Link>
 
           <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
             Gems
@@ -53,16 +56,16 @@ const Navbar = () => {
         </div>
 
         {/* Sign In, Sign Out Buttons */}
-        <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginRight: '10px' }}>
-          Sign In
-        </Button>
-        <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginRight: '10px' }}>
-          Sign Out
-        </Button>
+        <Link to="/signup" >
+            <Button color="inherit" sx={{ color: 'black',fontWeight: 'bold', marginRight: '10px' }}>
+              Sign Up
+            </Button>
+          </Link>
+        
 
         {/* Cart Icon */}
         <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={1} color="error">
             <ShoppingCart />
           </Badge>
         </IconButton>

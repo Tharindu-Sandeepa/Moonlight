@@ -1,29 +1,28 @@
 import { useNavigate } from 'react-router-dom';
-import TitlebarImageList from './components/TitlebarImageList'; 
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Slider from './components/Slider'
+import SignUp from './components/SignUp';
 import Home from './pages/Home'
-import {BrowserRouter as Router , Switch ,Route } from 'react-router-dom'
 
 
-function App() {
 
-  const navigate = useNavigate();
 
+
+
+const App = () => {
   return (
-    <div className="App">
+    <div>
       <Navbar />
-      <Home/>
-     
-<Footer/>
-      
-        
-     
-      
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Update Route declaration */}
+        <Route path="/signup" element={<SignUp />} /> {/* Update Route declaration */}
+      </Routes>
+      <Footer/>
     </div>
   );
-}
+};
 
 export default App;

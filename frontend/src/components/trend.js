@@ -3,7 +3,7 @@ import { Grid, Card, CardActionArea, CardMedia, CardContent, Typography } from '
 import item from '../img/item.jpeg'
 
 const TrendPage = () => {
-  // Sample jewelry items data
+ //sample data
   const jewelryItems = [
     { id: 1, name: 'Diamond Necklace', imageUrl: item, price: '$500' },
     { id: 2, name: 'Gold Earrings', imageUrl: item, price: '$200' },
@@ -13,7 +13,7 @@ const TrendPage = () => {
     { id: 3, name: 'Silver Bracelet', imageUrl: item, price: '$100' },
     { id: 1, name: 'Diamond Necklace', imageUrl: item, price: '$500' },
     { id: 2, name: 'Gold Earrings', imageUrl: item, price: '$200' }
-    // Add more jewelry items as needed
+    
   ];
 
   return (
