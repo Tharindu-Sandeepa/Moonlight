@@ -6,7 +6,7 @@ import logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false); //setting nav bar invisble when scroll to top
 
   const trigger = useScrollTrigger({
     target: window,
