@@ -18,7 +18,7 @@ const TrendPage = () => {
 
   return (
     <div>
-      <h2>Trending Jewelry Items</h2>
+      <h2 >Trending Jewelry Items</h2>
       <Grid container spacing={2}>
         {jewelryItems.map(item => (
           <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>

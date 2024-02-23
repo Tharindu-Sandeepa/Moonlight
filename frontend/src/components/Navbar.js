@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Button, IconButton, Badge, useScrollTrigger } from '@mui/material';
-import { ShoppingCart } from '@mui/icons-material';
+import { AppBar, Toolbar, Button, IconButton, Badge, useScrollTrigger, Hidden, Menu, MenuItem } from '@mui/material';
+import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
 import AccountMenu from './AccountMenu';
 import logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false); //setting nav bar invisble when scroll to top
+  const [isScrolled, setIsScrolled] = useState(false); //setting nav bar invisible when scroll to top
+  const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
 
   const trigger = useScrollTrigger({
     target: window,
@@ -17,6 +18,14 @@ const Navbar = () => {
   React.useEffect(() => {
     setIsScrolled(trigger);
   }, [trigger]);
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMenuAnchor(event.currentTarget);
+  };
+
+  const handleMobileMenuClose = () => {
+    setMobileMenuAnchor(null);
+  };
 
   return (
     <AppBar 
@@ -32,36 +41,73 @@ const Navbar = () => {
         {/* Company Logo */}
         <img src={logo} alt="Company Logo" style={{ height: '60px', marginRight: 'auto' }} />
 
-        {/* Navigation Buttons */}
-        <div className="navbar" style={{ marginRight: '50%' }}>
-          <Link to="/">
-          <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
-            Home
-          </Button>
-          </Link>
+        {/* Navigation Buttons - Visible on Desktop */}
+        <Hidden mdDown>
+          <div className="navbar" style={{ marginRight: '50%' }}>
+            <Link to="/">
+              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
+                Home
+              </Button>
+            </Link>
 
-          <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
-            Gems
-          </Button>
+            <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
+              Gems
+            </Button>
 
-          <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
-            Jewelry
-          </Button>
+            <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
+              Jewelry
+            </Button>
 
-          <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
-            About us
-          </Button>
+            <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
+              About us
+            </Button>
+          </div>
+        </Hidden>
 
-          
-        </div>
+        {/* Menu Icon - Visible on Mobile */}
+        <Hidden lgUp>
+          <IconButton
+            color="black"
+            onClick={handleMobileMenuOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            anchorEl={mobileMenuAnchor}
+            open={Boolean(mobileMenuAnchor)}
+            onClose={handleMobileMenuClose}
+          >
+            <MenuItem onClick={handleMobileMenuClose}>
+              <Link to="/">
+                <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
+                  Home
+                </Button>
+              </Link>
+            </MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
+              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
+                Gems
+              </Button>
+            </MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
+              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
+                Jewelry
+              </Button>
+            </MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}>
+              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
+                About us
+              </Button>
+            </MenuItem>
+          </Menu>
+        </Hidden>
 
         {/* Sign In, Sign Out Buttons */}
         <Link to="/signup" >
-            <Button color="inherit" sx={{ color: 'black',fontWeight: 'bold', marginRight: '10px' }}>
-              Sign Up
-            </Button>
-          </Link>
-        
+          <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold', marginRight: '10px' }}>
+            Sign Up
+          </Button>
+        </Link>
 
         {/* Cart Icon */}
         <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>

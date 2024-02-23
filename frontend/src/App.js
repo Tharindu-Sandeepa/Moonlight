@@ -1,25 +1,34 @@
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import SignUp from './components/SignUp';
-import Home from './pages/Home'
-
-
+import Home from './pages/Home';
+import Dashboard from './pages/Admin/AdminDashboard';
 
 const App = () => {
+
+  const openDashboardInNewWindow = () => {
+    window.open('/admin', '_blank');
+  };
+
   return (
     <div>
-      <Navbar />
+     
       <Routes>
-        <Route path="/" element={<Home />} /> {/* Update Route declaration */}
-        <Route path="/signup" element={<SignUp />} /> {/* Update Route declaration */}
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/admin" element={<Dashboard />} />
       </Routes>
-      <Footer/>
+     
+     
+    
     </div>
   );
 };
+
+
+
 
 export default App;
