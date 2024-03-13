@@ -5,7 +5,7 @@ import AccountMenu from './AccountMenu';
 import logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ loggedIn, username, onLogout, token }) => {
   const [isScrolled, setIsScrolled] = useState(false); //setting nav bar invisible when scroll to top
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
 
@@ -103,11 +103,26 @@ const Navbar = () => {
         </Hidden>
 
         {/* Sign In, Sign Out Buttons */}
-        <Link to="/signup" >
-          <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold', marginRight: '10px' }}>
-            Sign Up
-          </Button>
-        </Link>
+        {loggedIn ? (
+          <>
+            <p>Welcome, {username}!</p>
+            <li><a href="/myaccount">My Account</a></li>
+            <button onClick={onLogout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
+                Login
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
+                Register
+              </Button>
+            </Link>
+          </>
+        )}
 
         {/* Cart Icon */}
         <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
