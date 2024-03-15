@@ -1,3 +1,4 @@
+//components/Navbar.js
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, IconButton, Badge, useScrollTrigger, Hidden, Menu, MenuItem } from '@mui/material';
 import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
@@ -111,16 +112,8 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
           </>
         ) : (
           <>
-            <Link to="/login">
-              <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
-                Login
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
-                Register
-              </Button>
-            </Link>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
           </>
         )}
 
