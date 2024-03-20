@@ -103,20 +103,23 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
           </Menu>
         </Hidden>
 
-        {/* Sign In, Sign Out Buttons */}
+      
+      <ul>
+       
         {loggedIn ? (
           <>
-            <p>Welcome, {username}!</p>
+            <p style={{ color: 'black' }}>Welcome, {username}!</p>
             <li><a href="/myaccount">My Account</a></li>
             <button onClick={onLogout}>Logout</button>
           </>
         ) : (
           <>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+           <Button component={Link} to="/login" style={{ color: 'black' }}>Login</Button>
+<Button component={Link} to="/register" style={{ color: 'black' }}>Register</Button>
           </>
         )}
-
+      </ul>
+  
         {/* Cart Icon */}
         <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
           <Badge badgeContent={1} color="error">

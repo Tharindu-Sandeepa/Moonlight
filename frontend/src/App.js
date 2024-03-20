@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import SignUp from './components/SignUp';
+import Navbar from './components/Navbar'
 import Home from './pages/Home';
 import Dashboard from './pages/Admin/AdminDashboard';
 import Login from './components/Login';
@@ -32,11 +32,11 @@ const App = () => {
 
   return (
     <div>
-     
+     <Navbar loggedIn={loggedIn} username={username} onLogout={handleLogout} token={token} />
       <Routes>
-        
-        <Route path="/" element={<Home />} loggedIn={loggedIn} username={username} onLogout={handleLogout} token={token}  />
-        <Route path="/signup" element={<SignUp />} />
+      
+        <Route path="/" element={<Home />}   />
+      
         <Route path="/login" element={<Login onLogin={handleLogin} setUsername={setUsername} />} />
          <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<Dashboard />} />
