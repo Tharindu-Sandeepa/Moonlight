@@ -39,10 +39,10 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
       }}
     >
       <Toolbar>
-        {/* Company Logo */}
+       
         <img src={logo} alt="Company Logo" style={{ height: '60px', marginRight: 'auto' }} />
 
-        {/* Navigation Buttons - Visible on Desktop */}
+        {/* Visible on Desktop */}
         <Hidden mdDown>
           <div className="navbar" style={{ marginRight: '50%' }}>
             <Link to="/">
@@ -65,7 +65,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
           </div>
         </Hidden>
 
-        {/* Menu Icon - Visible on Mobile */}
+        {/* Visible on Mobile */}
         <Hidden lgUp>
           <IconButton
             color="black"

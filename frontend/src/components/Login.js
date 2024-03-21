@@ -1,4 +1,4 @@
-//components/Login.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -142,11 +142,11 @@ const Login = ({ onLogin }) => {
       mb: 2,
       color:"black",
       fontStyle:'bold',
-      borderRadius: '40px', // Rounded corners
-      width: '30%', // Low width
-      backgroundColor: '#B2BFFF', // Blue color
+      borderRadius: '40px', 
+      width: '30%', 
+      backgroundColor: '#B2BFFF', 
       '&:hover': {
-        backgroundColor: '#0d47a1', // Darker blue color on hover
+        backgroundColor: '#0d47a1', 
       },
     }}
   >

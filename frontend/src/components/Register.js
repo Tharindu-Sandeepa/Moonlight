@@ -1,4 +1,4 @@
-//components/register.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -29,11 +29,11 @@ const navigate = useNavigate();
       const userData = { email, password, username };
       const response = await axios.post('http://localhost:5002/api/register', userData);
       console.log('Registration successful:', response.data);
-      // Handle successful registration, e.g., redirect to login page
+      
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
-      setError(error.response.data.message); // Set error message from server response
+      setError(error.response.data.message); 
     }
   };
 
@@ -152,17 +152,17 @@ const navigate = useNavigate();
       mb: 2,
       color:"black",
       fontStyle:'bold',
-      borderRadius: '40px', // Rounded corners
-      width: '30%', // Low width
-      backgroundColor: '#B2BFFF', // Blue color
+      borderRadius: '40px', 
+      width: '30%', 
+      backgroundColor: '#B2BFFF', 
       '&:hover': {
-        backgroundColor: '#0d47a1', // Darker blue color on hover
+        backgroundColor: '#0d47a1', 
       },
     }}
   >
     Register
   </Button>
-      {error && <p>{error}</p>} {/* Display error message if exists */}
+      {error && <p>{error}</p>} 
 </Box>
 
                   <Grid container justifyContent="center">
