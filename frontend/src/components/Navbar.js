@@ -96,7 +96,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
               </Button>
             </MenuItem>
             <MenuItem onClick={handleMobileMenuClose}>
-              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
+              <Button  color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
                 About us
               </Button>
             </MenuItem>
@@ -115,7 +115,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
         ) : (
           <>
            <Button component={Link} to="/login" style={{ color: 'black' }}>Login</Button>
-<Button component={Link} to="/register" style={{ color: 'black' }}>Register</Button>
+<Button  component={Link} to="/register" style={{ color: 'black' }}>Register</Button>
           </>
         )}
       </ul>
