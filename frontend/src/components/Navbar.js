@@ -6,7 +6,7 @@ import logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ loggedIn, username, onLogout, token }) => {
-  const [isScrolled, setIsScrolled] = useState(false); //setting nav bar invisible when scroll to top
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState(null);
 
   const trigger = useScrollTrigger({
@@ -37,103 +37,52 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
         boxShadow: isScrolled ? '0 2px 4px rgba(0, 0, 0, 0.2)' : 'none'
       }}
     >
-      <Toolbar>
-        {/* Company Logo */}
-        <img src={logo} alt="Company Logo" style={{ height: '60px', marginRight: 'auto' }} />
+      <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img src={logo} alt="Company Logo" style={{ height: '60px' }} />
+          {/* Visible on Desktop */}
+          <Hidden mdDown>
+            <div className="navbar" style={{ marginLeft: '20px', display: 'flex', alignItems: 'center' }}>
+              <Link to="/">
+                <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>Home</Button>
+              </Link>
+              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Gems</Button>
+              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Jewelry</Button>
+              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>About us</Button>
+            </div>
+          </Hidden>
+        </div>
 
-        {/* Navigation Buttons - Visible on Desktop */}
-        <Hidden mdDown>
-          <div className="navbar" style={{ marginRight: '50%' }}>
-            <Link to="/">
-              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
-                Home
-              </Button>
-            </Link>
-
-            <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
-              Gems
-            </Button>
-
-            <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>
-              Jewelry
-            </Button>
-
-            <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
-              About us
-            </Button>
-          </div>
-        </Hidden>
-
-        {/* Menu Icon - Visible on Mobile */}
+        {/* Visible on Mobile */}
         <Hidden lgUp>
-          <IconButton
-            color="black"
-            onClick={handleMobileMenuOpen}
-          >
+          <IconButton color="black" onClick={handleMobileMenuOpen}>
             <MenuIcon />
           </IconButton>
-          <Menu
-            anchorEl={mobileMenuAnchor}
-            open={Boolean(mobileMenuAnchor)}
-            onClose={handleMobileMenuClose}
-          >
-            <MenuItem onClick={handleMobileMenuClose}>
-              <Link to="/">
-                <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
-                  Home
-                </Button>
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleMobileMenuClose}>
-              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
-                Gems
-              </Button>
-            </MenuItem>
-            <MenuItem onClick={handleMobileMenuClose}>
-              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
-                Jewelry
-              </Button>
-            </MenuItem>
-            <MenuItem onClick={handleMobileMenuClose}>
-              <Button color="inherit" href="#" style={{ color: 'black', fontWeight: 'bold' }}>
-                About us
-              </Button>
-            </MenuItem>
+          <Menu anchorEl={mobileMenuAnchor} open={Boolean(mobileMenuAnchor)} onClose={handleMobileMenuClose}>
+            <MenuItem onClick={handleMobileMenuClose}><Link to="/"><Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>Home</Button></Link></MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}><Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>Gems</Button></MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}><Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>Jewelry</Button></MenuItem>
+            <MenuItem onClick={handleMobileMenuClose}><Button  color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>About us</Button></MenuItem>
           </Menu>
         </Hidden>
 
-        {/* Sign In, Sign Out Buttons */}
-        {loggedIn ? (
-          <>
-            <p>Welcome, {username}!</p>
-            <li><a href="/myaccount">My Account</a></li>
-            <button onClick={onLogout}>Logout</button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">
-              <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
-                Login
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>
-                Register
-              </Button>
-            </Link>
-          </>
-        )}
-
-        {/* Cart Icon */}
-        <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
-          <Badge badgeContent={1} color="error">
-            <ShoppingCart />
-          </Badge>
-        </IconButton>
-
-        {/* AccountMenu - Positioned to the right */}
-        <div className="sublog">
-          <AccountMenu />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {loggedIn ? (
+            <>
+              <Button onClick={onLogout}>Logout</Button>
+              <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
+                <Badge badgeContent={1} color="error">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+              <AccountMenu />
+            </>
+          ) : (
+            <>
+              <Button component={Link} to="/login" style={{ color: 'black' }}>Login</Button>
+              <Button component={Link} to="/register" style={{ color: 'black' }}>Register</Button>
+            </>
+          )}
         </div>
       </Toolbar>
     </AppBar>

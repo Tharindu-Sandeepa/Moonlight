@@ -9,64 +9,80 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { Link } from 'react-router-dom';
 
 export const mainListItems = (
-  <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
+  <React.Fragment >
+    <ListItemButton > 
+      <ListItemIcon sx={{padding:'12%'}}>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
+
+    <Link to="/users">
+    <ListItemButton >
+
+    <ListItemIcon sx={{padding:'12%'}}>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Users" />
+    </ListItemButton>  
+    </Link>
+    
+    <ListItemButton >
+    <ListItemIcon sx={{padding:'12%'}}>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
+    
+    <ListItemButton > 
+    <ListItemIcon sx={{padding:'12%'}}>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Gems" />
+    </ListItemButton>
+
+    <ListItemButton >
+    <Link to="/users">
+    <ListItemIcon sx={{padding:'12%'}}>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+      </Link>
+      <Link to="/users">
+      <ListItemText primary="Jewellery" />
+      </Link>
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
+
+    <ListItemButton >
+    <ListItemIcon  sx={{padding:'12%'}}>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <ListItemText primary="Inventory" />
     </ListItemButton>
+
     <ListItemButton>
-      <ListItemIcon>
+      <ListItemIcon sx={{padding:'12%'}}>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Suppliers" />
+    </ListItemButton>
+
+    <ListItemButton >
+      <ListItemIcon sx={{padding:'12%'}}>
+        <LayersIcon />
+      </ListItemIcon>
+      <ListItemText primary="Employees" />
+    </ListItemButton>
+
+    <ListItemButton >
+      <ListItemIcon sx={{padding:'12%'}}>
+        <LayersIcon />
+      </ListItemIcon>
+      <ListItemText primary="Customer Service" />
     </ListItemButton>
   </React.Fragment>
 );
 
-export const secondaryListItems = (
-  <React.Fragment>
-    <ListSubheader component="div" inset>
-      Saved reports
-    </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton>
-  </React.Fragment>
-);
+

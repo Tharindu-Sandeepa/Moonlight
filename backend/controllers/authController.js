@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name, username, email, tp, password } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -13,11 +13,16 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    user = new User({
-      username,
-      email,
-      password,
-    });
+     user = new User({
+       
+      name: name,
+      username: username,
+      email: email,
+      tp: tp,
+      password: password
+      
+  });
+
 
     await user.save();
     
@@ -60,6 +65,7 @@ exports.login = async (req, res) => {
     res.json({
       token,
       username: user.username,
+      type: user.type
     });
   } catch (error) {
     console.error('Login failed:', error);
@@ -75,4 +81,29 @@ exports.logout = (req, res) => {
     // Simply respond with a success message
     res.status(200).json({ message: 'Logout successful' });
   };
+  
+  // Get user details
+
+
+  // Get user details
+  
+
+// Get user details
+exports.getUserDetails = async (req, res) => {
+  try {
+   
+    const user = await User.findById(req.user.userId).select('-password');
+    
+    
+    if (!user) {
+      return res.status(404).json({ success: user, message: 'User not fokkkund' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+
   
