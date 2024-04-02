@@ -17,10 +17,11 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 
 import Deposits from './Deposits';
 import Orders from './Orders';
+import Users from './Users';
 
 
 
@@ -60,13 +61,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
       boxSizing: 'border-box',
       ...(!open && {
         overflowX: 'hidden',
+       
         transition: theme.transitions.create('width', {
           easing: theme.transitions.easing.sharp,
+          
           duration: theme.transitions.duration.leavingScreen,
         }),
         width: theme.spacing(7),
+       padding:'12%',
+       position: 'relative',
         [theme.breakpoints.up('sm')]: {
           width: theme.spacing(9),
+          
         },
       }),
     },
@@ -78,18 +84,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex'}}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
+              
               pr: '24px', // keep right padding when drawer closed
             }}
           >
@@ -100,6 +107,7 @@ export default function Dashboard() {
               onClick={toggleDrawer}
               sx={{
                 marginRight: '36px',
+               
                 ...(open && { display: 'none' }),
               }}
             >
@@ -121,9 +129,10 @@ export default function Dashboard() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} >
           <Toolbar
             sx={{
+             
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
@@ -133,12 +142,11 @@ export default function Dashboard() {
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
-          </Toolbar>
+          </Toolbar >
+
           <Divider />
-          <List component="nav">
+          <List component="nav" >
             {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
           </List>
         </Drawer>
         <Box
@@ -161,6 +169,7 @@ export default function Dashboard() {
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
+                    alignItems:'center',
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
@@ -168,14 +177,118 @@ export default function Dashboard() {
                   }}
                 >
                   <Deposits />
+                 
+                  
                 </Paper>
+               
               </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
                 </Paper>
+               
+              </Grid> <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
+                </Paper>
+               
+              </Grid> <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
+                </Paper>
+               
+              </Grid> <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
+                </Paper>
+               
+              </Grid> <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
+                </Paper>
+               
+              </Grid> <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
+                </Paper>
+               
+              </Grid> <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    alignItems:'center',
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                 
+                  
+                </Paper>
+               
               </Grid>
+             
             </Grid>
             
           </Container>

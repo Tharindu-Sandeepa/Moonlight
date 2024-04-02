@@ -32,10 +32,14 @@ const Login = ({ onLogin }) => {
       };
   
       const response = await axios.post('http://localhost:5002/api/login', userData);
-      const { username, token } = response.data;
+      const { username, token ,type} = response.data;
   
-      onLogin({ username, token }); // Pass username and token to the onLogin function
-      navigate('/'); // Redirect user to home page
+      onLogin({ username, token  }); // Pass username and token to the onLogin function
+      if (type === 'admin') {
+        navigate('/admin/users'); // Redirect admin user to '/users' route
+      } else {
+        navigate('/'); // Redirect non-admin user to home page
+      } // Redirect user to home page
     } catch (error) {
       console.error('Login failed:', error);
       setError('Invalid email or password');
