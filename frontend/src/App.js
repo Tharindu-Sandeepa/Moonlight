@@ -12,6 +12,8 @@ import MyAccount from './components/MyAccount';
 
 import Userinfotest from './components/UserInfotest';
 import Usermanage from './pages/Admin/Usermanage';
+import Ordermanage from './pages/Admin/Ordermanage';
+
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -74,6 +76,7 @@ const App = () => {
         
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/users" element={<Usermanage />} />
+        <Route path="/admin/Orders" element={<Ordermanage />} />
       </Routes>
     </div>
   );
