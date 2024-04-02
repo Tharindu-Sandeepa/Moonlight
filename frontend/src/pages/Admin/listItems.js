@@ -13,14 +13,17 @@ import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <React.Fragment >
+
+<Link to="/admin">
     <ListItemButton > 
       <ListItemIcon sx={{padding:'12%'}}>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItemButton>
+    </Link>
 
-    <Link to="/users">
+    <Link to="/admin/users">
     <ListItemButton >
 
     <ListItemIcon sx={{padding:'12%'}}>
@@ -30,12 +33,15 @@ export const mainListItems = (
     </ListItemButton>  
     </Link>
     
+
+    <Link to="/admin/Orders">
     <ListItemButton >
     <ListItemIcon sx={{padding:'12%'}}>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItemButton>
+    </Link>
     
     <ListItemButton > 
     <ListItemIcon sx={{padding:'12%'}}>

@@ -20,7 +20,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems} from './listItems';
 
 import Deposits from './Deposits';
-import Orders from './Orders';
+
 import Users from './Users/Users';
 
 
@@ -156,8 +156,8 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-             
-              {/* Recent Deposits */}
+            {/* 
+              
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -167,13 +167,14 @@ export default function Dashboard() {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Deposits /> show Users.js file  
                 </Paper>
-              </Grid>
-              {/* Recent Orders */}
+              </Grid>*/}
+              
+              {/* users */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Users />
+                  <Users />   {/* show Users.js file  */}
                 </Paper>
               </Grid>
             </Grid>
