@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, IconButton, Badge, useScrollTrigger, Hidden, Menu, MenuItem } from '@mui/material';
-import { ShoppingCart, Menu as MenuIcon } from '@mui/icons-material';
+import { ShoppingCart, Menu as MenuIcon, ForkLeft } from '@mui/icons-material';
 import AccountMenu from './AccountMenu';
 import logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
@@ -32,7 +32,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
       position="fixed" 
       style={{ 
         backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.8)' : 'transparent', 
-        backdropFilter: isScrolled ? 'blur(8px)' : 'none', 
+        backdropFilter: isScrolled ? 'blur(0.5px)' : 'none', 
         transition: 'background-color 0.3s ease-out',
         boxShadow: isScrolled ? '0 2px 4px rgba(0, 0, 0, 0.2)' : 'none'
       }}
@@ -54,7 +54,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
         </div>
 
         {/* Visible on Mobile */}
-        <Hidden lgUp>
+        <Hidden lgUp >
           <IconButton color="black" onClick={handleMobileMenuOpen}>
             <MenuIcon />
           </IconButton>

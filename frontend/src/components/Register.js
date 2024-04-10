@@ -23,6 +23,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
+  const type = "User";
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -33,6 +34,7 @@ const Register = () => {
         username: username,
         email: email,
         tp: phone,
+        type : type,
         password: password,
       };
       const response = await axios.post('http://localhost:5002/api/register', payload);

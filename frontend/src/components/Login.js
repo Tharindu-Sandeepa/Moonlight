@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 
+import FormHelperText from '@mui/material/FormHelperText';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -18,31 +19,36 @@ import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const defaultTheme = createTheme();
-const Login = ({ onLogin }) => {
+
+function Login ({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      const userData = {
-        email: email,
-        password: password
-      };
-  
-      const response = await axios.post('http://localhost:5002/api/login', userData);
-      const { username, token ,type} = response.data;
-  
-      onLogin({ username, token  }); // Pass username and token to the onLogin function
-      if (type === 'admin') {
-        navigate('/admin/users'); // Redirect admin user to '/users' route
+      const response = await axios.post('http://localhost:5002/api/login', {
+        email,
+        password,
+      });
+
+      const { token, username, type } = response.data;
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('username', username);
+      localStorage.setItem('type', type);
+      
+      onLogin({ username, token  }); 
+      if (type === 'Admin') {
+        navigate('/admin/users'); 
       } else {
-        navigate('/'); // Redirect non-admin user to home page
-      } // Redirect user to home page
+        navigate('/'); 
+      } 
     } catch (error) {
-      console.error('Login failed:', error);
-      setError('Invalid email or password');
+      setError(error.response ? error.response.data.message : 'Server error');
     }
   };
 
@@ -75,7 +81,9 @@ const Login = ({ onLogin }) => {
     <Box>
       <Typography component="h1" variant="h5" align="center" sx={{marginBottom:10}}>
       Login to your Account
+
       </Typography>
+      
     </Box>
   </Grid>
 </Grid>
@@ -87,46 +95,38 @@ const Login = ({ onLogin }) => {
                 <Typography component="h1" variant="h7">
                   Sign In
                 </Typography>
-                <Box component="form" sx={{ mt: 3 }}>
+                <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                {error && <FormHelperText error>{error}</FormHelperText>}
                   <Grid container spacing={2} sx={{marginTop:10}}>
                     
                     <Grid item xs={12}>
                     
-                    <input
-  type="email"
-  placeholder="Email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  style={{
-    width: '100%',
-    padding: '12px 16px',
-    fontSize: '1.2rem',
-    borderRadius: '10px',
-    border: `1px solid #B2BFFF`,
-    outline: 'none',
-    boxSizing: 'border-box',
-  }}
-/>
+                    <TextField
+              label="Email"
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              fullWidth
+              margin="normal"
+              required
+            />
 
       
                     </Grid>
                     
                     <Grid item xs={12}>
-                    <input
-  type="password"
-  placeholder="Password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  style={{
-    width: '100%',
-    padding: '12px 16px',
-    fontSize: '1.2rem',
-    borderRadius: '10px',
-    border: `1px solid #B2BFFF`,
-    outline: 'none',
-    boxSizing: 'border-box',
-  }}
-/>
+                   
+            <TextField
+              label="Password"
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              fullWidth
+              margin="normal"
+              required
+            />
          </Grid>
                    
                     <Grid container justifyContent="center" sx={{marginTop:10}}>
@@ -138,8 +138,8 @@ const Login = ({ onLogin }) => {
                   </Grid>
                   </Grid>
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-  <Button onClick={handleLogin}
-    type="submit"
+  <Button type="submit" 
+   
     variant="contained"
     sx={{
       mt: 3,

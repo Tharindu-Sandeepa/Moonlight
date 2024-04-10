@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 exports.register = async (req, res) => {
-  const { name, username, email, tp, password } = req.body;
+  const { name, username, email, tp, password,type } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -19,6 +19,7 @@ exports.register = async (req, res) => {
       username: username,
       email: email,
       tp: tp,
+      type :type,
       password: password
       
   });
@@ -73,19 +74,16 @@ exports.login = async (req, res) => {
   }
 };
 
-// Logout route
-// authController.js
+
 
 exports.logout = (req, res) => {
-    // No need to manage sessions with JWT tokens
-    // Simply respond with a success message
+    
     res.status(200).json({ message: 'Logout successful' });
   };
   
-  // Get user details
+ 
 
-
-  // Get user details
+  
   
 
 // Get user details
@@ -96,7 +94,7 @@ exports.getUserDetails = async (req, res) => {
     
     
     if (!user) {
-      return res.status(404).json({ success: user, message: 'User not fokkkund' });
+      return res.status(404).json({ success: user, message: 'User not found' });
     }
 
     res.json(user);

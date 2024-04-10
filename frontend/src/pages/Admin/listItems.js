@@ -10,13 +10,19 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import DiamondIcon from '@mui/icons-material/Diamond';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
+import Groups2Icon from '@mui/icons-material/Groups2';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 export const mainListItems = (
   <React.Fragment >
 
 <Link to="/admin">
     <ListItemButton > 
-      <ListItemIcon sx={{padding:'12%'}}>
+      <ListItemIcon >
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
@@ -26,7 +32,7 @@ export const mainListItems = (
     <Link to="/admin/users">
     <ListItemButton >
 
-    <ListItemIcon sx={{padding:'12%'}}>
+    <ListItemIcon >
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Users" />
@@ -36,7 +42,7 @@ export const mainListItems = (
 
     <Link to="/admin/Orders">
     <ListItemButton >
-    <ListItemIcon sx={{padding:'12%'}}>
+    <ListItemIcon >
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="Orders" />
@@ -44,47 +50,47 @@ export const mainListItems = (
     </Link>
     
     <ListItemButton > 
-    <ListItemIcon sx={{padding:'12%'}}>
-        <ShoppingCartIcon />
+    <ListItemIcon >
+        <AutoAwesomeIcon />
       </ListItemIcon>
-      <ListItemText primary="Gems" />
-    </ListItemButton>
-
-    <ListItemButton >
-    <Link to="/users">
-    <ListItemIcon sx={{padding:'12%'}}>
-        <PeopleIcon />
-      </ListItemIcon>
-      </Link>
-      <Link to="/users">
       <ListItemText primary="Jewellery" />
+    </ListItemButton>
+
+    <ListItemButton >
+    <Link >
+    <ListItemIcon >
+        <DiamondIcon />
+      </ListItemIcon>
+      </Link>
+      <Link >
+      <ListItemText primary="Gems" />
       </Link>
     </ListItemButton>
 
     <ListItemButton >
-    <ListItemIcon  sx={{padding:'12%'}}>
-        <BarChartIcon />
+    <ListItemIcon  >
+        <WarehouseIcon />
       </ListItemIcon>
       <ListItemText primary="Inventory" />
     </ListItemButton>
 
     <ListItemButton>
-      <ListItemIcon sx={{padding:'12%'}}>
-        <LayersIcon />
+      <ListItemIcon >
+        <Groups2Icon />
       </ListItemIcon>
       <ListItemText primary="Suppliers" />
     </ListItemButton>
 
     <ListItemButton >
-      <ListItemIcon sx={{padding:'12%'}}>
-        <LayersIcon />
+      <ListItemIcon >
+        <EngineeringIcon />
       </ListItemIcon>
       <ListItemText primary="Employees" />
     </ListItemButton>
 
     <ListItemButton >
-      <ListItemIcon sx={{padding:'12%'}}>
-        <LayersIcon />
+      <ListItemIcon >
+        <SupportAgentIcon />
       </ListItemIcon>
       <ListItemText primary="Customer Service" />
     </ListItemButton>
