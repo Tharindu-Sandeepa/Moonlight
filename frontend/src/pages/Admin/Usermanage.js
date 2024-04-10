@@ -18,10 +18,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems} from './listItems';
-
+import Button from '@mui/material/Button';
 import Deposits from './Deposits';
 
 import Users from './Users/Users';
+
 
 
 
@@ -77,6 +78,48 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#1565c0', // Adjust the primary color
+    },
+    secondary: {
+      main: '#FF0000', // Adjust the secondary color
+    },
+  },
+ 
+typography: {
+  fontFamily: 'Tahoma, sans-serif', // Change the default font family
+  fontSize: 16, // Change the default font size
+  h1: {
+    fontSize: '2.5rem', // Adjust the font size for heading 1
+    fontWeight: 'bold', // Adjust the font weight for heading 1
+    lineHeight: 1.2, // Adjust the line height for heading 1
+  },
+  h2: {
+    fontSize: '2rem', // Adjust the font size for heading 2
+    fontWeight: 'bold', // Adjust the font weight for heading 2
+    lineHeight: 1.2, // Adjust the line height for heading 2
+  },
+  // Add more typography styles as needed for other heading levels
+},
+spacing: 8, // Adjust the spacing between elements, default is 8px
+breakpoints: {
+  values: {
+    xs: 0, // Extra small devices (phones, less than 600px)
+    sm: 600, // Small devices (tablets, 600px and up)
+    md: 960, // Medium devices (desktops, 960px and up)
+    lg: 1280, // Large devices (desktops, 1280px and up)
+    xl: 1920, // Extra large devices (large desktops, 1920px and up)
+  },
+},
+shape: {
+  borderRadius: 8, // Adjust the default border radius for components
+},
+overrides: {
+  // Add custom styles for specific components or elements
+},
+});
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(false);
@@ -85,7 +128,7 @@ export default function Dashboard() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={customTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -116,6 +159,10 @@ export default function Dashboard() {
               User Management
             </Typography>
             <IconButton color="inherit">
+
+            <Link href="/">
+    <Button sx={{color:'#B5E8FC'}}>Home</Button>
+  </Link>
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -171,11 +218,12 @@ export default function Dashboard() {
                 </Paper>
               </Grid>*/}
               
+
               {/* users */}
               <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                
                   <Users />   {/* show Users.js file  */}
-                </Paper>
+               
               </Grid>
             </Grid>
             

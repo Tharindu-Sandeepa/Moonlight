@@ -13,6 +13,8 @@
   height: 100%;
   opacity: 0;
   transition: all 0.4s ease-in-out;
+  background-size: cover; /* Adjust background size to cover the entire slide */
+  background-position: center; /* Center the background image */
 }
 .slide.current {
   display: inline;
@@ -95,30 +97,13 @@
   transform: translateY(970px);
   transition: all 0.7s ease-in-out 0.3s;
 }
-.next {
-  position: absolute;
-  opacity: 0.5;
-  top: 50%;
-  right: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-.prev {
-  position: absolute;
-  opacity: 0.5;
-  top: 50%;
-  left: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-.next:hover,
-.prev:hover {
-  opacity: 1;
-}
+
+
 /*background Images */
 .slide {
   width: 100%; /* Ensure each slide takes the full width */
   height: 100%; /* Ensure each slide takes the full height */
+  object-fit: cover; 
 }
 
 .slide:nth-child(1) {
@@ -135,4 +120,104 @@
 
 .slide:nth-child(4) {
   background-image: url("./img/img4.png");
+}
+
+
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.loading-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+.logo-container {
+   
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    opacity: 0.8; /* Increase opacity for shininess */
+    animation: fade-in 2s forwards;
+    position: relative;
+    z-index: 1; /* Ensure the logo is above the light */
+}
+
+.logo-container img {
+    max-width: 100%;
+    max-height: 100%;
+    
+}
+
+.light {
+    position: absolute;
+    width: 69px; /* Adjust the width of the light */
+    height: 69px; /* Adjust the height of the light */
+    top: 46%; /* Align to the vertical center */
+    left: 49.55%; /* Align to the horizontal center */
+    transform: translate(-50%, -50%); /* Center the light */
+    background-color: rgba(254, 254, 2, 0.934); /* Yellow color with opacity */
+    opacity: 0; /* Initially hidden */
+    border-radius: 50%; /* Ensure it's a circle */
+    animation: light-up 3s forwards; /* Animation to make it visible */
+    box-shadow: 0 0 20px 10px rgba(254, 254, 2, 0.9); /* Yellow shadow */
+}
+
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes light-up {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1; /* Adjust the opacity as needed */
+    }
+}
+
+.name-container {
+    margin-top: 20px;
+}
+
+.letter {
+    opacity: 0;
+    
+    animation: reveal 1s forwards;
+}
+
+/* Delay the animation for each letter */
+.letter:nth-child(1) { animation-delay: 700ms; }
+.letter:nth-child(2) { animation-delay: 1000ms; }
+.letter:nth-child(3) { animation-delay: 1300ms; }
+.letter:nth-child(4) { animation-delay: 1600ms; }
+.letter:nth-child(5) { animation-delay: 1900ms; }
+.letter:nth-child(6) { animation-delay: 2200ms; }
+.letter:nth-child(7) { animation-delay: 2500ms; }
+.letter:nth-child(8) { animation-delay: 2800ms; }
+.letter:nth-child(9) { animation-delay: 3100ms; }
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

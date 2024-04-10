@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, InputLabel,Paper, TextField, InputAdornment, Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const UserForm = ({ addUser, updateUser, submitted, data, isEdit }) => {
@@ -12,7 +12,6 @@ const UserForm = ({ addUser, updateUser, submitted, data, isEdit }) => {
 
     useEffect(() => {
         if (!submitted) {
-          
             setName('');
             setUsername('');
             setEmail('');
@@ -24,7 +23,7 @@ const UserForm = ({ addUser, updateUser, submitted, data, isEdit }) => {
 
     useEffect(() => {
         if (data) {
-            setId(data.id); //get id from table 
+            setId(data.id);
             setName(data.name || '');
             setUsername(data.username || '');
             setEmail(data.email || '');
@@ -35,67 +34,84 @@ const UserForm = ({ addUser, updateUser, submitted, data, isEdit }) => {
     }, [data]);
 
     return (
-        <Grid container spacing={2} sx={{ backgroundColor: '#ffffff', marginBottom: '30px', display: 'block' }}>
+        <Paper elevation={3} sx={{ borderRadius: '20px', padding: '20px', backgroundColor: '#ffffff', marginBottom: '30px',mb:30 }}>
+            
 
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        label="Name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Grid>
 
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        label="Username"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)}
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Grid>
 
-            <Grid item xs={12}>
-                <Typography component={'h1'} sx={{ color: '#000000' }}>User Form</Typography>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        label="Email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        label="Telephone"
+                        value={tp}
+                        onChange={e => setTp(e.target.value)}
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        type="password"
+                        label="Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        fullWidth
+                        variant="outlined"
+                    />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                    <InputLabel>Type</InputLabel>
+                    <Select
+                        value={type}
+                        onChange={e => setType(e.target.value)}
+                        fullWidth
+                        variant="outlined"
+                    >
+                        <MenuItem value="Admin">Admin</MenuItem>
+                        <MenuItem value="User">User</MenuItem>
+                        <MenuItem value="Supplier">Supplier</MenuItem>
+                    </Select>
+                </Grid>
             </Grid>
-
-            <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-                <Typography component={'label'} htmlFor="name">Name</Typography>
-                <input type="text" id='name' name="name" value={name} onChange={e => setName(e.target.value)} />
-            </Grid>
-
-            <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-                <Typography component={'label'} htmlFor="username">Username</Typography>
-                <input type="text" id='username' name="username" value={username} onChange={e => setUsername(e.target.value)} />
-            </Grid>
-
-            <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-                <Typography component={'label'} htmlFor="email">Email</Typography>
-                <input type="text" id='email' name="email" value={email} onChange={e => setEmail(e.target.value)} />
-            </Grid>
-
-            <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-                <Typography component={'label'} htmlFor="tp">Telephone</Typography>
-                <input type="text" id='tp' name="tp" value={tp} onChange={e => setTp(e.target.value)} />
-            </Grid>
-
-            <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-                <Typography component={'label'} htmlFor="password">Password</Typography>
-                <input type="password" id='password' name="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </Grid>
-
-            <Grid item xs={12} sm={6} sx={{ display: 'flex' }}>
-  <Typography component={'label'} htmlFor="type">Type</Typography>
-  <select id="type" name="type" value={type} onChange={e => setType(e.target.value)} style={{ marginLeft: '8px' }}>
-    <option value="Admin">Admin</option>
-    <option value="User">User</option>
-    <option value="Supplier">Supplier</option>
-  </select>
-</Grid>
-
 
             <Button
-                sx={{
-                    margin: 'auto',
-                    marginBottom: '20px',
-                    backgroundColor: '#00c6e6',
-                    color: '#000000',
-                    marginLeft: '15px',
-                    marginTop: '20px',
-                    '&:hover': {
-                        opacity: '0.7',
-                        backgroundColor: '#00c6e6'
-                    }
-                }}
-                onClick={() => isEdit ? updateUser({id, name, username, email, tp, password, type }) : addUser({ name, username, email, tp, password, type })}
+                variant="contained"
+                sx={{ marginTop: '20px', ml:'42%'}}
+                onClick={() => isEdit ? updateUser({ id, name, username, email, tp, password, type }) : addUser({ name, username, email, tp, password, type })}
             >
                 {isEdit ? 'Update' : 'Add'}
             </Button>
-        </Grid>
+        </Paper>
     );
 }
 
