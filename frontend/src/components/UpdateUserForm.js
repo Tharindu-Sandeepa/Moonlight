@@ -21,7 +21,7 @@ const UpdateUserForm = ({ user, updateUser }) => {
       <TextField name="email" label="Email" value={updatedUser.email} onChange={handleChange} sx={{ margin: '16px' }} />
       <TextField name="tp" label="Telephone" value={updatedUser.tp} onChange={handleChange} sx={{ margin: '16px' }} />
       <TextField name="username" label="Username" value={updatedUser.username} onChange={handleChange} sx={{ margin: '16px' }} />
-      <TextField name="password" label="Password" value={updatedUser.password} onChange={handleChange} sx={{ margin: '16px' }} />
+      <TextField name="password" type='password' label="Password" value={updatedUser.password} onChange={handleChange} sx={{ margin: '16px' }} />
       <IconButton 
   type="submit" 
   aria-label="update" 

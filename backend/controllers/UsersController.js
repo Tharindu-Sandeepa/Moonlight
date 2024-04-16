@@ -1,5 +1,5 @@
 const Users = require('../models/User');
-
+const bcrypt = require('bcrypt');
 //getUsers
 const getUsers = (req,res,next)=>{
     Users.find()
@@ -34,31 +34,34 @@ const addUser = (req, res, next) => {
         });
 };
 
-//update user
-const updateUser = (req, res, next) => {
-    const { id, name, email, tp, username,password,type } = req.body; // get multiple fields at once
+const updateUser = async (req, res, next) => {
+    const { id, name, email, tp, username, password, type } = req.body;
 
-    Users.updateOne(
-        { _id: id },
-        {
-            $set: {
-                name: name,
-                email: email,
-                tp: tp, 
-                username: username, 
-                password:password,
-                type:type
-               
-            },
-        }
-    )
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+
+        Users.updateOne(
+            { _id: id },
+            {
+                $set: {
+                    name: name,
+                    email: email,
+                    tp: tp, 
+                    username: username, 
+                    password: hashedPassword, 
+                    type: type
+                },
+            }
+        )
         .then(response => {
             res.json({ response });
         })
         .catch(error => {
-            res.json({ error: error });
+            res.status(500).json({ error: error.message });
         });
+   
 };
+
 
 
 // delete user

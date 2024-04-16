@@ -2,6 +2,8 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+// const nodemailer = require('nodemailer');
+// const randomstring = require('randomstring');
 
 exports.register = async (req, res) => {
   const { name, username, email, tp, password,type } = req.body;
@@ -90,7 +92,7 @@ exports.logout = (req, res) => {
 exports.getUserDetails = async (req, res) => {
   try {
    
-    const user = await User.findById(req.user.userId).select('-password');
+    const user = await User.findById(req.user.userId);
     
     
     if (!user) {
@@ -104,4 +106,56 @@ exports.getUserDetails = async (req, res) => {
   }
 };
 
+  //new 
+  // exports.sendVerificationCode = async (req, res) => {
+  //   const { email } = req.body;
   
+  //   try {
+  //     const user = await User.findOne({ email });
+  
+  //     if (!user) {
+  //       return res.status(404).json({ message: 'User not found' });
+  //     }
+  
+  //     // Generate random 4-digit code
+  //     const verificationCode = randomstring.generate({
+  //       length: 4,
+  //       charset: 'numeric'
+  //     });
+  
+  //     // Update user with verification code and expiration time
+  //     user.verificationCode = verificationCode;
+  //     user.verificationCodeExpires = Date.now() + 600000; // 10 minutes
+  
+  //     await user.save();
+  
+  //     // Send email with verification code
+  //     const transporter = nodemailer.createTransport({
+  //       service: 'gmail',
+  //       auth: {
+  //         user: 'katharindusandeepa@gmail.com',
+  //         pass: 'kathari1234'
+  //       }
+  //     });
+  
+  //     const mailOptions = {
+  //       from: 'katharindusandeepa@gmail.com',
+  //       to: email,
+  //       subject: 'Verification Code for Password Reset',
+  //       text: `Your verification code is: ${verificationCode}`
+  //     };
+  
+  //     transporter.sendMail(mailOptions, (error, info) => {
+  //       if (error) {
+  //         console.error('Email sending failed:', error);
+  //         return res.status(500).json({ message: 'Email sending failed' });
+  //       } else {
+  //         console.log('Email sent:', info.response);
+  //         res.status(200).json({ message: 'Verification code sent successfully' });
+  //       }
+  //     });
+  //   } catch (error) {
+  //     console.error('Error sending verification code:', error);
+  //     res.status(500).json({ message: 'Server Error' });
+  //   }
+  // };

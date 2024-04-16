@@ -24,9 +24,12 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // Routes
 app.use('/api', router);
+// app.use('/api/send-verification-code', router);
 app.use('/api/users', router2);
 
 app.use('/api/user', require('./routes/users'));
+
+
 
 
 const PORT = process.env.PORT || 5002;
