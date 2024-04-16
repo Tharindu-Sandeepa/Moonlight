@@ -21,13 +21,42 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
   const type = "User";
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const validatePassword = () => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const validatePhoneNumber = () => {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+  };
+
   const handleRegister = async () => {
+    // Validate password
+    if (!validatePassword()) {
+      setError('Password must be at least 8 characters long and include at least one letter and one number');
+      return;
+    }
+
+    // Validate phone number
+    if (!validatePhoneNumber()) {
+      setError('Phone number must be 10 digits long');
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     try {
       const payload = {
         name: name,
@@ -42,7 +71,11 @@ const Register = () => {
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
-      setError(error.response.data.message); 
+      if (error.response && error.response.status === 500) {
+        setError('That email is already in use');
+      } else {
+        setError(error.response.data.message || 'An unexpected error occurred');
+      }
     }
   };
 
@@ -119,6 +152,15 @@ const Register = () => {
                         label="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        type="password"
+                        label="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         fullWidth
                       />
                     </Grid>

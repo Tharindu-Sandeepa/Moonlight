@@ -4,6 +4,8 @@ import { ShoppingCart, Menu as MenuIcon, ForkLeft } from '@mui/icons-material';
 import AccountMenu from './AccountMenu';
 import logo from '../img/logo.png';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 
 const Navbar = ({ loggedIn, username, onLogout, token }) => {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from 'react';
-//this code is for get the user details from anyware. 
+import React from 'react';
+import { useAuth } from '../Auth/AuthContext';
+
 const UserInfo = () => {
-    const [username, setUsername] = useState('');
-    const [token, setToken] = useState('');
+  // Using the useAuth hook to access user data
+  const { user } = useAuth();
 
-    useEffect(() => {
-        // Retrieve username and token from local storage
-        const storedUsername = localStorage.getItem('username');
-        const storedToken = localStorage.getItem('token');
-        
-        // Update state with retrieved values
-        setUsername(storedUsername || 'No username found');
-        setToken(storedToken || 'No token found');
-    }, []);
-
-    return (
+  return (
+    <div>
+      <h2>User Details</h2>
+      {user ? ( // Check if user data exists before rendering
         <div>
-            <h2>User Information</h2>
-            <p>Username: {username}</p>
-            <p>Token: {token}</p>
+            <p>UserID: {user._id}</p>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+          <p>Name: {user.name}</p>
+          <p>TP: {user.tp}</p>
+          <p>Type: {user.type}</p>
         </div>
-    );
+      ) : (
+        <p>Loading user data...</p>
+      )}
+    </div>
+  );
 };
 
 export default UserInfo;

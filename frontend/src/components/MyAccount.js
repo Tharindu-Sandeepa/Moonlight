@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import Cookies from 'js-cookie';
 const defaultTheme = createTheme();
 
 const MyAccount = () => {
@@ -26,7 +26,7 @@ const MyAccount = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('token');
         const config = {
           headers: {
             'token': token
@@ -72,7 +72,7 @@ const MyAccount = () => {
 
     try {
       await axios.post('http://localhost:5002/api/users/deleteuser', payload);
-      localStorage.removeItem('token');
+      Cookies.remove('token');
       window.location.href = '/';
     } catch (error) {
       console.error('Error deleting user:', error);
@@ -146,6 +146,7 @@ const MyAccount = () => {
                       <Box sx={{ border: '2px solid #E2EAFA', borderRadius: '10px', padding: '5px', marginBottom: '10px' }}>
                         <p>Phone: {user.tp}</p>
                       </Box>
+                     
                       {!showForm &&  
                       <IconButton onClick={() => setShowForm(true)} sx={{
                         backgroundColor: '#B2EBF2',

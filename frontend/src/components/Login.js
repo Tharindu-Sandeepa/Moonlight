@@ -18,6 +18,8 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import Cookies from 'js-cookie';
+
 const defaultTheme = createTheme();
 
 function Login ({ onLogin }) {
@@ -37,11 +39,11 @@ function Login ({ onLogin }) {
 
       const { token, username, type } = response.data;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('username', username);
-      localStorage.setItem('type', type);
+      Cookies.set('token', token); // Set token as cookie
       
-      onLogin({ username, token  }); 
+      
+      onLogin({ token ,type }); 
+
       if (type === 'Admin') {
         navigate('/admin/users'); 
       } else {
