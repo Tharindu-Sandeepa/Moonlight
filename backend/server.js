@@ -7,6 +7,9 @@ const router = require('./routes/authRoutes');
 
 const router2 = require('./routes/usersRoutes');
 
+const jewlleryRoutes = require("./routes/jewlleryRoutes");
+
+
 
 dotenv.config();
 
@@ -28,6 +31,14 @@ app.use('/api', router);
 app.use('/api/users', router2);
 
 app.use('/api/user', require('./routes/users'));
+
+
+app.use("/", jewlleryRoutes);
+app.use("/get-images", jewlleryRoutes);
+app.use("/upload-image", jewlleryRoutes);
+app.use("/delete-image/:id", jewlleryRoutes);
+app.use("/update-image/:id", jewlleryRoutes);
+app.use("/get-item/:id", jewlleryRoutes);
 
 
 

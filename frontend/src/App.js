@@ -17,7 +17,13 @@ import Usermanage from './pages/Admin/Usermanage';
 import Ordermanage from './pages/Admin/Ordermanage';
 import LoadingScreen from './components/LoadingScreen';
 
-import Jewlary from './components/ImageGridPage';
+import CustomerCart from './components/Cart';
+
+import AddItem from "./AddItem";
+import ImageGridPage from "./ImageGridPage";
+import Itemlist from "./itemlist";
+import ItemPage from "./ItemPage"
+
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -85,8 +91,15 @@ const App = () => {
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/userinfotest" element={<Userinfotest />} />
             <Route path="/newLogin" element={<NewLogin onLogin={handleLogin}/>} />
-            <Route path="/Jewlary" element={<Jewlary/>} />
-            Jewlary
+            
+
+            <Route path="/jewllery-grid" element={<ImageGridPage />} />
+          <Route path="/add-jewllery" element={<AddItem />} />
+          <Route path="/itemlist" element={<Itemlist />} />
+          <Route path="/item/:itemId" element={<ItemPage/>} />
+
+          <Route path='cart' element={<CustomerCart />} />
+            
           
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/users" element={<Usermanage />} />
