@@ -48,8 +48,13 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
               <Link to="/">
                 <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>Home</Button>
               </Link>
+
+              
               <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Gems</Button>
+
+              <Link to="/jewllery-grid">
               <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Jewelry</Button>
+              </Link>
               <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>About us</Button>
             </div>
           </Hidden>
@@ -73,8 +78,12 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
             <>
               <Button onClick={onLogout}>Logout</Button>
               <IconButton color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>
+                
+                
                 <Badge badgeContent={1} color="error">
+                <Link to="/cart">
                   <ShoppingCart />
+                  </Link>
                 </Badge>
               </IconButton>
               <AccountMenu />

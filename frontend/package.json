@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.1",
+    "@mui/icons-material": "^5.15.15",
     "@mui/joy": "^5.0.0-beta.21",
     "@mui/material": "^5.15.9",
     "@mui/styled-engine-sc": "^6.0.0-alpha.11",
@@ -24,6 +24,7 @@
     "react-router-dom": "^6.22.1",
     "react-scripts": "5.0.1",
     "react-slideshow-image": "^4.3.0",
+    "react-toastify": "^10.0.5",
     "styled-components": "^6.1.6",
     "web-vitals": "^2.1.4"
   },
