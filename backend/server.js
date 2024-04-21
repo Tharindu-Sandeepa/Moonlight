@@ -4,8 +4,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const router = require('./routes/authRoutes');
-
 const router2 = require('./routes/usersRoutes');
+const router3 = require('./routes/ordersRoutes');
 
 const jewlleryRoutes = require("./routes/jewlleryRoutes");
 
@@ -29,6 +29,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/api', router);
 // app.use('/api/send-verification-code', router);
 app.use('/api/users', router2);
+app.use('/api/orders', router3);
 
 app.use('/api/user', require('./routes/users'));
 

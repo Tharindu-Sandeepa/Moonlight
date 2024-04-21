@@ -21,7 +21,7 @@ import { mainListItems} from './listItems';
 
 import Deposits from './Deposits';
 
-import Users from './Users/Users';
+import Orders from './Orders/Orders';
 
 
 
@@ -162,10 +162,7 @@ export default function Dashboard() {
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
 
-
-
-                    {/* methanata order table eka daanna one   */} 
-
+                  <Orders />   {/* show Orders.js file  */}
 
                 </Paper>
               </Grid>
