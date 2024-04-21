@@ -23,6 +23,7 @@ import AddItem from "./AddItem";
 import ImageGridPage from "./ImageGridPage";
 import Itemlist from "./itemlist";
 import ItemPage from "./ItemPage"
+import Checkout from './pages/Checkout/Checkout';
 
 
 const App = () => {
@@ -104,6 +105,9 @@ const App = () => {
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/users" element={<Usermanage />} />
             <Route path="/admin/Orders" element={<Ordermanage />} />
+
+            <Route path="/checkout" element={<Checkout />} />
+
           </Routes>
          </AuthProvider>
         </>
