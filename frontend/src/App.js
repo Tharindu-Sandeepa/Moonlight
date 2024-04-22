@@ -9,13 +9,13 @@ import Dashboard from './pages/Admin/AdminDashboard';
 
 import Newum from './pages/Admin/Users/Usermanage';
 
-import Login from './components/Login';
-import NewLogin from './components/NewLogin';
-import Cookies from 'js-cookie';
-import Register from './components/Register';
+import Login from './components/userComponents/Login';
 
-import MyAccount from './components/MyAccount';
-import Userinfotest from './components/UserInfotest';
+import Cookies from 'js-cookie';
+import Register from './components/userComponents/Register';
+
+import MyAccount from './components/userComponents/MyAccount';
+import Userinfotest from './components/userComponents/UserInfotest';
 import Usermanage from './pages/Admin/Usermanage';
 import Ordermanage from './pages/Admin/Ordermanage';
 import LoadingScreen from './components/LoadingScreen';
@@ -103,7 +103,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/userinfotest" element={<Userinfotest />} />
-            <Route path="/newLogin" element={<NewLogin onLogin={handleLogin}/>} />
+           
             
 
             <Route path="/jewllery-grid" element={<ImageGridPage />} />

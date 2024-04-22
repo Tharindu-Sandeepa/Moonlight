@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from '../components/Slider';
-import Trend from '../components/trend';
+
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import axios from 'axios';
@@ -18,8 +18,17 @@ import {
 } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import gem from '../img/gems.png';
-import gem2 from '../img/ff.jpeg';
-import gem3 from '../img/ff.jpeg';
+
+import Zircon from '../img/Zircon.png';
+import GreenSapphire from '../img/Green Sapphire.png';
+import PadparadschaSapphire from '../img/Padparadscha Sapphire.png';
+import PinkSapphire from '../img/Pink Sapphire.png';
+import Ruby from '../img/Rubyy.png';
+import YellowSapphire from '../img/Yellow Sapphire.png';
+
+
+
+
 import { Fade, Zoom ,Bounce, Slide,JackInTheBox} from 'react-awesome-reveal';
 import gemlot from '../img/gemm.png'
 const StyledHome = styled('div')(({ theme }) => ({
@@ -76,53 +85,53 @@ const Home = () => {
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
               <Slide direction="right" >
-                <img src={gem} alt="Gem Image" style={{ width: '100%' }} />
+                <img src={Zircon} alt="Gem Image" style={{ width: '50%' }} />
                 <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>
-                  Gemstone A
+                Zircon 
                 </Typography>
               </Slide>
             </Grid>
 
             <Grid item xs={12} md={4}>
               <Zoom >
-                <img src={gem} alt="Gem Image" style={{ width: '100%' }} />
+                <img src={GreenSapphire} alt="Gem Image" style={{ width: '50%' }} />
                 <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>
-                  Gemstone B
+                GreenSapphire 
                 </Typography>
               </Zoom>
             </Grid>
 
             <Grid item xs={12} md={4}>
               <Slide direction="left" >
-                <img src={gem} alt="Gem Image" style={{ width: '100%' }} />
+                <img src={PadparadschaSapphire} alt="Gem Image" style={{ width: '50%' }} />
                 <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>
-                  Gemstone C
+                PadparadschaSapphire 
                 </Typography>
               </Slide>
             </Grid>
             <Grid item xs={12} md={4}>
               <Slide direction="right" >
-                <img src={gem} alt="Gem Image" style={{ width: '100%' }} />
+                <img src={PinkSapphire} alt="Gem Image" style={{ width: '50%' }} />
                 <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>
-                  Gemstone A
+                Pink Sapphire
                 </Typography>
               </Slide>
             </Grid>
 
             <Grid item xs={12} md={4}>
               <Zoom >
-                <img src={gem} alt="Gem Image" style={{ width: '100%' }} />
+                <img src={Ruby} alt="Gem Image" style={{ width: '50%' }} />
                 <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>
-                  Gemstone B
+                Ruby
                 </Typography>
               </Zoom>
             </Grid>
 
             <Grid item xs={12} md={4}>
               <Slide direction="left" >
-                <img src={gem} alt="Gem Image" style={{ width: '100%' }} />
+                <img src={YellowSapphire} alt="Gem Image" style={{ width: '50%' }} />
                 <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>
-                  Gemstone C
+                Yellow Sapphire
                 </Typography>
               </Slide>
             </Grid>
