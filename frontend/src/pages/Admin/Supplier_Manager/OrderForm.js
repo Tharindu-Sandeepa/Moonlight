@@ -2,8 +2,8 @@ import { Box,Button } from "@mui/material";
 import SupOrderForm from "./SupOrderForm";
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import Sidenav from "../../component/Sidenav";
 import { useNavigate } from 'react-router-dom';
+import Dashboard from "../Dashboard";
 
 
 const OrderForm = () => {
@@ -20,7 +20,7 @@ const OrderForm = () => {
     }, []);
 
     const getOrders = () => {
-        Axios.get('http://localhost:3001/api/supOrders')
+        Axios.get('http://localhost:5002/api/supOrders')
             .then(response => {
                 setSupOrders(response.data?.response || []); 
             })
@@ -43,7 +43,7 @@ const OrderForm = () => {
             description: data.description,
             status: data.status,
         }
-        Axios.post('http://localhost:3001/api/createsupOrder', payload)
+        Axios.post('http://localhost:5002/api/createsupOrder', payload)
             .then(() => {
                 getOrders();
                 setSubmitted(false); 
@@ -69,7 +69,7 @@ const OrderForm = () => {
             status: data.status,
         }
     
-        Axios.post('http://localhost:3001/api/updatesupOrder', payload)
+        Axios.post('http://localhost:5002/api/updatesupOrder', payload)
             .then(() => {
                 
                 navigate('/edit-supply-order', { state: { selectedsupOrder: data } }); // Passing selectedsupOrder as state
@@ -83,7 +83,8 @@ const OrderForm = () => {
     }
    
     return(
-        <Sidenav>
+    <Dashboard>
+       <Box>
         <Box
             sx={{
                 width: 'calc(100% - 100px)',
@@ -106,8 +107,10 @@ const OrderForm = () => {
                 Back
             </Button>
 
-        </Sidenav>
         
+    </Box>
+
+    </Dashboard>
     )
 
 }

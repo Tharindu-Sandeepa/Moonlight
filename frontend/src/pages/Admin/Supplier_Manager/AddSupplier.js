@@ -5,9 +5,9 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Sidenav from '../../component/Sidenav';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
+import Dashboard from '../Dashboard';
 
 
 const AddSupplier = () => {
@@ -28,7 +28,7 @@ const AddSupplier = () => {
   };
 
   const handleAddSupplier = () => {
-    axios.post('http://localhost:3001/api/createsupplier', newSupplier)
+    axios.post('http://localhost:5002/api/createsupplier', newSupplier)
       .then(response => {
         console.log(response.data);
         setTimeout(() => {
@@ -41,7 +41,7 @@ const AddSupplier = () => {
   };
 
   return (
-    <Sidenav>
+    <Dashboard>
       <Container maxWidth="lg">
 
       {showAlert &&
@@ -88,7 +88,7 @@ const AddSupplier = () => {
       <Button variant="contained" onClick={() => navigate('/suppliers')}>
         Back
       </Button>
-    </Sidenav>
+    </Dashboard>
   );
 };
 

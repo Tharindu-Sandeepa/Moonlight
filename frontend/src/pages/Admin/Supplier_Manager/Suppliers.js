@@ -7,16 +7,16 @@ import Paper from '@mui/material/Paper';
 import InputAdornment from '@mui/material/InputAdornment';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Button } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Sidenav from '../../component/Sidenav';
 import axios from 'axios';
 import SupplierForm from './SupplierForm';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
+import Dashboard from '../Dashboard';
 
 const SupplierBox = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -61,7 +61,7 @@ function SupplierPage() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/api/supList')
+      .get('http://localhost:5002/api/supList')
       .then((response) => {
         setSuppliers(response.data.response);
         setFilteredSuppliers(response.data.response);
@@ -100,7 +100,7 @@ function SupplierPage() {
 
   const handleRemoveConfirm = () => {
     axios
-      .post('http://localhost:3001/api/deleteSupplier', { _id: supplierToRemove })
+      .post('http://localhost:5002/api/deleteSupplier', { _id: supplierToRemove })
       .then((response) => {
         console.log(response.data);
         setSuppliers((prevSuppliers) => prevSuppliers.filter((supplier) => supplier._id !== supplierToRemove));
@@ -121,7 +121,7 @@ function SupplierPage() {
   };
 
   return (
-    <Sidenav>
+    <Dashboard>
       <Container maxWidth="lg">
         <Grid container justifyContent="center" alignItems="center" spacing={3}>
           <Grid item xs={12}>
@@ -268,7 +268,7 @@ function SupplierPage() {
 >        Back
       </Button>
       </div>
-    </Sidenav>
+    </Dashboard>
   );
 }
 

@@ -4,8 +4,8 @@ import SupOrderTable from "./SupOrderTable";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import Sidenav from "../../component/Sidenav";
 import { Contacts, ShoppingBasket, Assignment, Add } from '@mui/icons-material';
+import Dashboard from "../Dashboard";
 
 const SupplyOrder = () => {
     const [supOrders, setsupOrders] = useState([]);
@@ -16,7 +16,7 @@ const SupplyOrder = () => {
     }, []);
 
     const getOrders = () => {
-        Axios.get('http://localhost:3001/api/supOrders')
+        Axios.get('http://localhost:5002/api/supOrders')
             .then(response => {
                 setsupOrders(response.data?.response || []);
             })
@@ -26,7 +26,7 @@ const SupplyOrder = () => {
     }
 
     const deletesupOrder = (data) => {
-        Axios.post('http://localhost:3001/api/deletesupOrder', data)
+        Axios.post('http://localhost:5002/api/deletesupOrder', data)
             .then(() => {
                 getOrders();
             })
@@ -56,7 +56,7 @@ const SupplyOrder = () => {
     };
 
     return (
-        <Sidenav>
+        <Dashboard>
             <Grid container spacing={2} justifyContent="center">
                 <Grid item xs={8} sm={4} md={3}>
                     <Card
@@ -146,7 +146,7 @@ const SupplyOrder = () => {
                 rows={supOrders}
                 deletesupOrder={data => window.confirm('Are you sure??') && deletesupOrder(data)}
             />
-        </Sidenav>
+        </Dashboard>
     )
 }
 

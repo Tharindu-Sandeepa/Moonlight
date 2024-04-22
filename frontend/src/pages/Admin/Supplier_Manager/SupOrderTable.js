@@ -81,7 +81,7 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                                     <TableCell sx={{ textAlign: 'center' }}>
                                         <Button
                                             sx={{
-                                                borderRadius: '20px',
+                                                borderRadius: '30px',
                                                 backgroundColor: '#FFD700', // Yellow color
                                                 color: '#000', // Black text color
                                                 '&:hover': {
@@ -94,8 +94,7 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                                         </Button>
                                         <Button
                                             sx={{
-                                                ml:2,
-                                                borderRadius: '20px',
+                                                borderRadius: '30px',
                                                 backgroundColor: '#FF0000', // Red color
                                                 color: '#FFF', // White text color
                                                 '&:hover': {
