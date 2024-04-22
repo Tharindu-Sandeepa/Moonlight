@@ -20,14 +20,7 @@ export default function Review() {
   return (
     <Stack spacing={2}>
       <List disablePadding>
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Products" secondary="4 selected" />
-          <Typography variant="body2">$134.98</Typography>
-        </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Shipping" secondary="Plus taxes" />
-          <Typography variant="body2">$9.99</Typography>
-        </ListItem>
+        
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
@@ -42,15 +35,7 @@ export default function Review() {
         spacing={2}
         sx={{ my: 2 }}
       >
-        <div>
-          <Typography variant="subtitle2" gutterBottom>
-            Shipment details
-          </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography color="text.secondary" gutterBottom>
-            {addresses.join(', ')}
-          </Typography>
-        </div>
+      
         <div>
           <Typography variant="subtitle2" gutterBottom>
             Payment details

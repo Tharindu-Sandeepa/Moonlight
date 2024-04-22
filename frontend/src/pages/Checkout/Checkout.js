@@ -22,7 +22,7 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 
-import AddressForm from './AddressForm';
+//import AddressForm from './AddressForm';
 import getCheckoutTheme from './getCheckoutTheme';
 import Info from './Info';
 import InfoMobile from './InfoMobile';
@@ -71,7 +71,7 @@ ToggleCustomTheme.propTypes = {
   toggleCustomTheme: PropTypes.func.isRequired,
 };
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Payment details', 'Review your order'];
 
 const logoStyle = {
   width: '140px',
@@ -83,7 +83,7 @@ const logoStyle = {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      //return <AddressForm />;
     case 1:
       return <PaymentForm />;
     case 2:
@@ -151,13 +151,13 @@ export default function Checkout() {
               sx={{ ml: '-8px' }}
             >
               Back to
-              <img
+              {/* <img
                 src={
                   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                 }
                 style={logoStyle}
                 alt="Sitemark's logo"
-              />
+              /> */}
             </Button>
           </Box>
           <Box
@@ -213,13 +213,13 @@ export default function Checkout() {
                 sx={{ alignSelf: 'start' }}
               >
                 Back to
-                <img
+                {/* <img
                   src={
                     'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
                   }
                   style={logoStyle}
                   alt="Sitemark's logo"
-                />
+                /> */}
               </Button>
             </Box>
             <Box
@@ -393,10 +393,10 @@ export default function Checkout() {
           </Box>
         </Grid>
       </Grid>
-      <ToggleCustomTheme
+      {/* <ToggleCustomTheme
         toggleCustomTheme={toggleCustomTheme}
         showCustomTheme={showCustomTheme}
-      />
+      /> */}
     </ThemeProvider>
   );
 }

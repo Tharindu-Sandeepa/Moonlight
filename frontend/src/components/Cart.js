@@ -13,26 +13,27 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { user, cart, addItemToCart, removeItemFromCart, addQty, removeQty } = useAuth();
+  const navigate = useNavigate();
 
   const total = cart.reduce((total, item) => total + item.price * item.qty, 0);
 
   // Function to handle checkout button click
   const handleCheckout = () => {
-    // Log item names, quantities, and total
-     
+    const userId = user._id;
 
-     const userId = user._id;
-    console.log({userId});
-    console.log('Checkout clicked');
-    console.log('Cart Items:');
-    cart.forEach((item) => {
-      console.log(`Item: ${item.name}, Quantity: ${item.qty}`);
-    });
-    console.log(`Total: Rs. ${total}`);
-    // Navigate to checkout page
+    // Prepare data to be sent to the checkout page
+    const checkoutData = {
+      userId,
+      cart,
+      total,
+    };
+
+    // Navigate to the checkout page and pass the data using the state option
+    navigate('/checkout', { state: checkoutData });
   };
 
   return (

@@ -28,34 +28,27 @@ const FormGrid = styled('div')(() => ({
 
 export default function PaymentForm() {
   const [paymentType, setPaymentType] = React.useState('creditCard');
-  const [cardNumber, setCardNumber] = React.useState('');
-  const [cvv, setCvv] = React.useState('');
-  const [expirationDate, setExpirationDate] = React.useState('');
+  const [amount, setAmount] = React.useState('');
+  const [paymentDate, setPaymentDate] = React.useState('');
+  const [slip, setSlip] = React.useState(null);
 
   const handlePaymentTypeChange = (event) => {
     setPaymentType(event.target.value);
   };
 
-  const handleCardNumberChange = (event) => {
+  const handleamountChange = (event) => {
     const value = event.target.value.replace(/\D/g, '');
     const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 ');
     if (value.length <= 16) {
-      setCardNumber(formattedValue);
+      setAmount(formattedValue);
     }
   };
 
-  const handleCvvChange = (event) => {
-    const value = event.target.value.replace(/\D/g, '');
-    if (value.length <= 3) {
-      setCvv(value);
-    }
-  };
-
-  const handleExpirationDateChange = (event) => {
+  const handlepaymentDateChange = (event) => {
     const value = event.target.value.replace(/\D/g, '');
     const formattedValue = value.replace(/(\d{2})(?=\d{2})/, '$1/');
     if (value.length <= 4) {
-      setExpirationDate(formattedValue);
+      setPaymentDate(formattedValue);
     }
   };
 
@@ -87,7 +80,7 @@ export default function PaymentForm() {
             <CardActionArea onClick={() => setPaymentType('creditCard')}>
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <CreditCardRoundedIcon color="primary" fontSize="small" />
-                <Typography fontWeight="medium">Card</Typography>
+                <Typography fontWeight="medium">Payment Details</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -136,7 +129,7 @@ export default function PaymentForm() {
             }}
           >
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="subtitle2">Credit card</Typography>
+              <Typography variant="subtitle2">Payment Details</Typography>
               <CreditCardRoundedIcon sx={{ color: 'text.secondary' }} />
             </Box>
             <SimCardRoundedIcon
@@ -155,63 +148,47 @@ export default function PaymentForm() {
               }}
             >
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel htmlFor="card-number" required>
-                  Card number
+                <FormLabel htmlFor="amount" required>
+                  Advanced Amount
                 </FormLabel>
                 <OutlinedInput
-                  id="card-number"
-                  autoComplete="card-number"
-                  placeholder="0000 0000 0000 0000"
+                  id="amount"
+                  autoComplete="amount"
+                  placeholder="Rs.00.00"
                   required
-                  value={cardNumber}
-                  onChange={handleCardNumberChange}
+                  value={amount}
+                  onChange={e => setAmount(e.target.value)}
                 />
               </FormGrid>
-              <FormGrid sx={{ maxWidth: '20%' }}>
-                <FormLabel htmlFor="cvv" required>
-                  CVV
-                </FormLabel>
-                <OutlinedInput
-                  id="cvv"
-                  autoComplete="CVV"
-                  placeholder="123"
-                  required
-                  value={cvv}
-                  onChange={handleCvvChange}
-                />
-              </FormGrid>
+            
             </Box>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel htmlFor="card-name" required>
-                  Name
+                <FormLabel htmlFor="slip" required>
+                  Upload payment Slip
                 </FormLabel>
                 <OutlinedInput
-                  id="card-name"
-                  autoComplete="card-name"
-                  placeholder="John Smith"
+                  type = "file"
+                  id="slip"
                   required
                 />
               </FormGrid>
               <FormGrid sx={{ flexGrow: 1 }}>
-                <FormLabel htmlFor="card-expiration" required>
-                  Expiration date
+                <FormLabel htmlFor="date" required>
+                  Payment date
                 </FormLabel>
                 <OutlinedInput
-                  id="card-expiration"
-                  autoComplete="card-expiration"
+                  id="date"
+                  autoComplete="date"
                   placeholder="MM/YY"
                   required
-                  value={expirationDate}
-                  onChange={handleExpirationDateChange}
+                  value={paymentDate}
+                  onChange={e => setPaymentDate(e.target.value)}
                 />
               </FormGrid>
             </Box>
           </Box>
-          <FormControlLabel
-            control={<Checkbox name="saveCard" />}
-            label="Remember credit card details for next time"
-          />
+          
         </Box>
       )}
 
@@ -224,7 +201,7 @@ export default function PaymentForm() {
           }}
         >
           <Alert severity="warning" icon={<WarningRoundedIcon />}>
-            Your order will be processed once we receive the funds.
+            Your order will be processed once we receive the Items.
           </Alert>
           <Typography variant="subtitle1" fontWeight="medium">
             Bank account

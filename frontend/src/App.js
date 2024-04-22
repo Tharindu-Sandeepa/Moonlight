@@ -23,7 +23,8 @@ import AddItem from "./AddItem";
 import ImageGridPage from "./ImageGridPage";
 import Itemlist from "./itemlist";
 import ItemPage from "./ItemPage"
-import Checkout from './pages/Checkout/Checkout';
+import Checkout from './components/Checkout';
+
 
 
 const App = () => {
