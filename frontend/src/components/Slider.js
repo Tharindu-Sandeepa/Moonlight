@@ -1,7 +1,7 @@
 import {React,useEffect,useState}  from 'react'
 //import {IoIosArrowForward,IoIosArrowBack} from 'react-icons/all'
 import { Link } from 'react-router-dom';
-import ShopNowBtn from './ShopNowBtn'
+
 const Slider = () => {
      const SliderData = [
       {
@@ -55,7 +55,9 @@ const Slider = () => {
                     <div key = {index} className={index === current ? 'slide current' : 'slide'}>
                     <h1 className = 'titleslider'>{slide.title}</h1>
                     <h3 className = 'subtitleslider'>{slide.subtitle}</h3>
-                    <div className = 'content'> <Link to= '/Shop'> <ShopNowBtn /></Link>  </div>
+                    <div className = 'content'> <Link to= '/jewllery-grid'> <button className="ShopNow">
+                SHOP NOW
+                </button></Link>  </div>
                     </div>
                 );
  

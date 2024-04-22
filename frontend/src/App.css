@@ -48,15 +48,7 @@
   content: "";
   transition: all ease 0.5s;
 }
-.ShopNow:hover::before {
-  transition: 0.5s all ease;
-  border-radius: 30px;
-  left: 0;
-  right: 0;
-  opacity: 1;
-  z-index: -1;
-  box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.5);
-}
+
 /*btns */
 .slide .content {
   opacity: 0;
@@ -107,7 +99,7 @@
 }
 
 .slide:nth-child(1) {
-  background-image: url("./img/img1.png");
+  background-image: url("./img/img4.png");
 }
 
 .slide:nth-child(2) {
@@ -115,11 +107,11 @@
 }
 
 .slide:nth-child(3) {
-  background-image: url("./img/img3.png");
+  background-image: url("./img/img4.png");
 }
 
 .slide:nth-child(4) {
-  background-image: url("./img/img4.png");
+  background-image: url("./img/img2.jpg");
 }
 
 

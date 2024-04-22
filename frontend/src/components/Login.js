@@ -17,7 +17,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 
 const defaultTheme = createTheme();
@@ -45,8 +46,27 @@ function Login ({ onLogin }) {
       onLogin({ token ,type }); 
 
       if (type === 'Admin') {
-        navigate('/admin/users'); 
+
+        toast.success('Welcome Manager', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+        navigate('/newum'); 
       } else {
+        toast.success('Welcome Customer', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
         navigate('/'); 
       } 
     } catch (error) {

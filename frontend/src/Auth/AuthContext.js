@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Create the context
 const AuthContext = createContext();
@@ -17,6 +20,8 @@ export const AuthProvider = ({ children }) => {
   const [type, setType] = useState('');
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
+
+  const navigate = useNavigate();
 
   // useEffect to retrieve user details from cookies when the component mounts
   useEffect(() => {
@@ -50,10 +55,34 @@ export const AuthProvider = ({ children }) => {
 
   // Functions to manage the cart
   const addItemToCart = (item) => {
-    setCart((prev) => [...prev, { ...item, qty: 1 }]);
-    toast.success('Item added');
-    console.log(cart);
-  };
+    if (!user) {
+        // If user is not logged in, show an error toast message and redirect to the login page
+        toast.error('You must be logged in to add items to the cart!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        navigate('/login');
+    } else {
+        // If user is logged in, add the item to the cart and show a success toast message
+        setCart((prev) => [...prev, { ...item, qty: 1 }]);
+        toast.success('Item added to cart!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        navigate('/cart');
+    }
+};
+
 
   const removeItemFromCart = (item) => {
     setCart((prev) => prev.filter((it) => it._id !== item._id));
