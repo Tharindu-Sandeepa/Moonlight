@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './Auth/AuthContext';
-
+import { ToastContainer } from 'react-toastify';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Admin/AdminDashboard';
+
+import Newum from './pages/Admin/Users/Usermanage';
+
 import Login from './components/Login';
 import NewLogin from './components/NewLogin';
 import Cookies from 'js-cookie';
@@ -19,11 +22,11 @@ import LoadingScreen from './components/LoadingScreen';
 
 import CustomerCart from './components/Cart';
 
-import AddItem from "./AddItem";
+import AddItem from "./pages/Admin/Jewellry/AddItem";
 import ImageGridPage from "./ImageGridPage";
-import Itemlist from "./itemlist";
+import Itemlist from "./pages/Admin/Jewellry/jewellryManage";
 import ItemPage from "./ItemPage"
-
+import Footer from './components/Footer';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -78,6 +81,7 @@ const App = () => {
 
   return (
     <div>
+      <ToastContainer />
       {loading ? ( // Render LoadingScreen if loading state is true
         <LoadingScreen />
       ) : (
@@ -104,10 +108,13 @@ const App = () => {
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/users" element={<Usermanage />} />
             <Route path="/admin/Orders" element={<Ordermanage />} />
+            <Route path="/Newum" element={<Newum />} />
+           
           </Routes>
-         </AuthProvider>
+         </AuthProvider><Footer/>
         </>
       )}
+       
     </div>
   );
 };

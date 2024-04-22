@@ -14,7 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const defaultTheme = createTheme();
 
 const Register = () => {
@@ -68,6 +69,16 @@ const Register = () => {
       };
       const response = await axios.post('http://localhost:5002/api/register', payload);
       console.log('Registration successful:', response.data);
+
+      toast.success('Registerd', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);

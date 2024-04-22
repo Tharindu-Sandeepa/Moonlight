@@ -15,45 +15,48 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SendIcon from '@mui/icons-material/Send';
-import ColorLensRoundedIcon from '@mui/icons-material/ColorLensRounded';
 
 import logo from '../img/logo.png';
 
 export default function ColorInversionFooter() {
-  const color = 'white'; // Set the color to #FAAC9B
+  const backgroundColor = '#F0F4F8'; // Light background color
+  const primaryColor = '#1976D2'; // Primary color for blue theme
+  const textColor = '#333'; // Text color for contrast
 
   return (
     <Sheet
       variant="solid"
       sx={{
-        bgcolor: color,
-        flexGrow: 1,
-        p: 2,
+        mt:10,
+        backgroundColor: backgroundColor,
+        color: textColor,
+        padding: 2,
         borderRadius: { xs: 0, sm: 'sm' },
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+        mt:20
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-       
-        <Divider orientation="vertical" />
-        <IconButton variant="plain">
+        <Typography level="h5" sx={{ flexGrow: 1 }}>
+          MoonLight
+        </Typography>
+        <Divider orientation="vertical" sx={{ height: 24 }} />
+        <IconButton color="primary">
           <FacebookRoundedIcon />
         </IconButton>
-        <IconButton variant="plain">
+        <IconButton color="primary">
+          <TwitterIcon />
+        </IconButton>
+        <IconButton color="primary">
+          <LinkedInIcon />
+        </IconButton>
+        <IconButton color="primary">
           <GitHubIcon />
         </IconButton>
-        <Input
-          variant="soft"
-          placeholder="Search.."
-          type="text"
-          name="search"
-          endDecorator={
-            <IconButton variant="soft" aria-label="subscribe">
-              <SendIcon />
-            </IconButton>
-          }
-          sx={{ ml: 'auto', display: { xs: 'none', md: 'flex' } }}
-        />
+       
       </Box>
       <Divider sx={{ my: 2 }} />
       <Box
@@ -70,40 +73,57 @@ export default function ColorInversionFooter() {
           variant="soft"
           size="sm"
           sx={{
+            display: 'flex',
             flexDirection: { xs: 'row', md: 'column' },
             minWidth: { xs: '100%', md: 'auto' },
             gap: 1,
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+            borderRadius: '8px',
           }}
         >
           <AspectRatio
             ratio="21/9"
             minHeight={80}
-            sx={{ flexBasis: { xs: 200, md: 'initial' } }}
+            sx={{
+              flexBasis: { xs: 200, md: 'initial' },
+              borderRadius: '8px',
+              overflow: 'hidden',
+              alignContent:'center'
+            }}
           >
-             <img src={logo} height={10} width={10}/>
+            <img src={logo} alt="MoonLight logo" style={{ width: '80%' }} />
           </AspectRatio>
           <CardContent>
-            <Typography level="body-sm">MoonLight</Typography>
-            <Typography level="body-xs">Gems & Jewllary</Typography>
+            <Typography level="body-sm" sx={{ fontWeight: 'bold', color: primaryColor }}>
+              MoonLight
+            </Typography>
+            <Typography level="body-xs" sx={{ color: textColor }}>
+              Gems & Jewelry
+            </Typography>
           </CardContent>
         </Card>
         <List
           size="sm"
           orientation="horizontal"
           wrap
-          sx={{ flexGrow: 0, '--ListItem-radius': '8px', '--ListItem-gap': '0px' }}
+          sx={{
+            flexGrow: 0,
+            '--ListItem-radius': '8px',
+            '--ListItem-gap': '8px',
+            gap: '10px',
+          }}
         >
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader sx={{ fontWeight: 'xl' }}>Sitemap</ListSubheader>
             <List>
               <ListItem>
-                <ListItemButton>Services</ListItemButton>
+                <ListItemButton sx={{ color: primaryColor }}>Services</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>Blog</ListItemButton>
+                <ListItemButton sx={{ color: primaryColor }}>Blog</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>About</ListItemButton>
+                <ListItemButton sx={{ color: primaryColor }}>About</ListItemButton>
               </ListItem>
             </List>
           </ListItem>
@@ -111,13 +131,13 @@ export default function ColorInversionFooter() {
             <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
             <List sx={{ '--ListItemDecorator-size': '32px' }}>
               <ListItem>
-                <ListItemButton>Joy UI</ListItemButton>
+                <ListItemButton sx={{ color: primaryColor }}>Joy UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>Base UI</ListItemButton>
+                <ListItemButton sx={{ color: primaryColor }}>Base UI</ListItemButton>
               </ListItem>
               <ListItem>
-                <ListItemButton>Material UI</ListItemButton>
+                <ListItemButton sx={{ color: primaryColor }}>Material UI</ListItemButton>
               </ListItem>
             </List>
           </ListItem>

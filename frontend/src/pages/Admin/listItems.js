@@ -29,7 +29,7 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
 
-    <Link to="/admin/users">
+    <Link to="/newum">
     <ListItemButton >
 
     <ListItemIcon >
@@ -49,13 +49,14 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
     
+    <Link to ="/itemlist">
     <ListItemButton > 
     <ListItemIcon >
         <AutoAwesomeIcon />
       </ListItemIcon>
       <ListItemText primary="Jewellery" />
     </ListItemButton>
-
+    </Link>
     <ListItemButton >
     <Link >
     <ListItemIcon >
