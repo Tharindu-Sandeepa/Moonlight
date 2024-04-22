@@ -9,6 +9,9 @@ const router2 = require('./routes/usersRoutes');
 
 const jewlleryRoutes = require("./routes/jewlleryRoutes");
 
+const supListRoute = require('../backend/routes/supListRoute');
+const suproute = require('../backend/routes/suproute');
+
 
 
 dotenv.config();
@@ -39,6 +42,9 @@ app.use("/upload-image", jewlleryRoutes);
 app.use("/delete-image/:id", jewlleryRoutes);
 app.use("/update-image/:id", jewlleryRoutes);
 app.use("/get-item/:id", jewlleryRoutes);
+app.use('/api',suproute);
+app.use('/api',supListRoute);
+
 
 
 

@@ -22,11 +22,20 @@ import LoadingScreen from './components/LoadingScreen';
 
 import CustomerCart from './components/Cart';
 
+import SupplyOrder from './pages/Admin/Supplier_Manager/SupplyOrder';
+import OrderForm from './pages/Admin/Supplier_Manager/OrderForm';
+import EditSupplyOrderForm from './pages/Admin/Supplier_Manager/EditSupplyOrderForm';
+import Suppliers from './pages/Admin/Supplier_Manager/Suppliers';
+import AddSupplier from './pages/Admin/Supplier_Manager/AddSupplier';
+import SupplierForm from './pages/Admin/Supplier_Manager/SupplierForm';
+
 import AddItem from "./pages/Admin/Jewellry/AddItem";
 import ImageGridPage from "./ImageGridPage";
 import Itemlist from "./pages/Admin/Jewellry/jewellryManage";
 import ItemPage from "./ItemPage"
 import Footer from './components/Footer';
+
+
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -109,6 +118,15 @@ const App = () => {
             <Route path="/admin/users" element={<Usermanage />} />
             <Route path="/admin/Orders" element={<Ordermanage />} />
             <Route path="/Newum" element={<Newum />} />
+
+
+            
+            <Route path='/supplyorder' element={<SupplyOrder />} />
+            <Route path='/orderform' element={<OrderForm/>} />
+            <Route path='/edit-supply-order' element={<EditSupplyOrderForm/>} />
+            <Route path='/suppliers' element={<Suppliers/>} />
+            <Route path='/add-supplier' element={<AddSupplier/>}/>
+            <Route path='/update-supplier' element={<SupplierForm/>}/>
            
           </Routes>
          </AuthProvider><Footer/>
