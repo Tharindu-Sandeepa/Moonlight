@@ -91,12 +91,13 @@ export const mainListItems = (
       <ListItemText primary="Employees" />
     </ListItemButton>
 
+<Link to="/AdminFeedbackView">
     <ListItemButton >
       <ListItemIcon >
         <SupportAgentIcon />
       </ListItemIcon>
-      <ListItemText primary="Customer Service" />
-    </ListItemButton>
+      <ListItemText primary="Manage Feedback" />
+    </ListItemButton></Link>
   </React.Fragment>
 );
 

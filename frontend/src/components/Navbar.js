@@ -55,7 +55,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
               <Link to="/jewllery-grid">
               <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Jewelry</Button>
               </Link>
-              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold' }}>About us</Button>
+              <Button color="inherit" href="/feedback" sx={{ color: 'black', fontWeight: 'bold' }}>Feedbacks</Button>
             </div>
           </Hidden>
         </div>

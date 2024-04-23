@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Box,
@@ -8,6 +8,7 @@ import {
   ThemeProvider,
   createTheme,
 } from "@mui/material";
+import { Select, MenuItem } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -26,9 +27,47 @@ const AddItem = () => {
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  
+  const [errors, setErrors] = useState({}); // State for error messages
 
+  // Validate form fields
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!image) {
+      newErrors.image = "Please upload an image.";
+    }
+    
+    if (!name) {
+      newErrors.name = "Please enter a name.";
+    }
+    
+    if (!type) {
+      newErrors.type = "Please enter a type.";
+    }
+    
+    if (!price) {
+      newErrors.price = "Please enter a price.";
+    } else if (isNaN(price)) {
+      newErrors.price = "Price must be a number.";
+    }
+    
+    if (!description) {
+      newErrors.description = "Please enter a description.";
+    }
+    
+    return newErrors;
+  };
+
+  // Handle form submission
   const submitImage = async (e) => {
     e.preventDefault();
+
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
     const formData = new FormData();
     formData.append("image", image);
@@ -37,19 +76,33 @@ const AddItem = () => {
     formData.append("price", price);
     formData.append("description", description);
 
-    await axios.post("http://localhost:5002/upload-image", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    try {
+      await axios.post("http://localhost:5002/upload-image", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-    // Refresh the image list after submission
+      // Reset form fields and errors after successful submission
+      setImage(null);
+      setName("");
+      setType("");
+      setPrice("");
+      setDescription("");
+      setErrors({});
+      
+      // Refresh the image list after submission
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  // Handle input changes
   const onInputChange = (e) => {
-    if (e.target.name === "image") {
+    const { name, value } = e.target;
+
+    if (name === "image") {
       setImage(e.target.files[0]);
     } else {
-      const value = e.target.value;
-      switch (e.target.name) {
+      switch (name) {
         case "name":
           setName(value);
           break;
@@ -66,6 +119,10 @@ const AddItem = () => {
           break;
       }
     }
+
+    // Update errors as the user types
+    const newErrors = validateForm();
+    setErrors(newErrors);
   };
 
   return (
@@ -84,6 +141,8 @@ const AddItem = () => {
               variant="outlined"
               fullWidth
               InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.image)} // Show error state if there is an error
+              helperText={errors.image} // Display error message
             />
           </Box>
           <TextField
@@ -94,16 +153,30 @@ const AddItem = () => {
             variant="outlined"
             fullWidth
             sx={{ mb: 2 }}
+            error={Boolean(errors.name)} // Show error state if there is an error
+            helperText={errors.name} // Display error message
           />
-          <TextField
-            name="type"
-            label="Type"
-            value={type}
-            onChange={onInputChange}
-            variant="outlined"
-            fullWidth
-            sx={{ mb: 2 }}
-          />
+        <Select
+    name="type"
+    label="Type"
+    value={type}
+    onChange={onInputChange}
+    variant="outlined"
+    fullWidth
+    sx={{ mb: 2 }}
+    error={Boolean(errors.type)} // Show error state if there is an error
+    helperText={errors.type} // Display error message
+    displayEmpty
+>
+    <MenuItem value="">Select Type</MenuItem>
+    <MenuItem value="Necklace">Necklace</MenuItem>
+    <MenuItem value="Ring">Ring</MenuItem>
+    <MenuItem value="Earring">Earring</MenuItem>
+    <MenuItem value="Bracelet">Bracelet</MenuItem>
+    <MenuItem value="Anklet">Anklet</MenuItem>
+    <MenuItem value="Other">Other</MenuItem>
+</Select>
+
           <TextField
             name="price"
             label="Price"
@@ -112,6 +185,8 @@ const AddItem = () => {
             variant="outlined"
             fullWidth
             sx={{ mb: 2 }}
+            error={Boolean(errors.price)} // Show error state if there is an error
+            helperText={errors.price} // Display error message
           />
           <TextField
             name="description"
@@ -120,7 +195,11 @@ const AddItem = () => {
             onChange={onInputChange}
             variant="outlined"
             fullWidth
+            multiline
+            rows={3}
             sx={{ mb: 2 }}
+            error={Boolean(errors.description)} // Show error state if there is an error
+            helperText={errors.description} // Display error message
           />
           <Button
             type="submit"

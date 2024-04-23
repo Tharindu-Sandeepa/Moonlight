@@ -148,14 +148,26 @@ const ImageGridPage = () => {
               variant="outlined"
               margin="normal"
             />
-            <TextField
-              fullWidth
-              label="Type"
-              name="type"
-              defaultValue={updateData.type}
-              variant="outlined"
-              margin="normal"
-            />
+       
+
+
+<Select
+  fullWidth
+  label="Type"
+  name="type"
+  defaultValue={updateData.type}
+ 
+  variant="outlined"
+  margin="normal"
+>
+  <MenuItem value="Necklace">Necklace</MenuItem>
+  <MenuItem value="Ring">Ring</MenuItem>
+  <MenuItem value="Earring">Earring</MenuItem>
+  <MenuItem value="Bracelet">Bracelet</MenuItem>
+  <MenuItem value="Anklet">Anklet</MenuItem>
+  <MenuItem value="Other">Other</MenuItem>
+</Select>
+
             <TextField
               fullWidth
               label="Price"

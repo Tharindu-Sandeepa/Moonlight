@@ -39,6 +39,11 @@ import Checkout  from './components/orderComponents/Checkout';
 
 import Forgotpw from './components//userComponents/ForgotPassword';
 
+import OptionPage from './components/feedbackComponents/OptionPage';
+import AdminFeedbackView from './pages/Admin/Feedback/AdminFeedbackView';
+import ViewFeedback from './components/feedbackComponents/ViewFeedback';
+
+
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -131,6 +136,12 @@ const App = () => {
             <Route path='/suppliers' element={<Suppliers/>} />
             <Route path='/add-supplier' element={<AddSupplier/>}/>
             <Route path='/update-supplier' element={<SupplierForm/>}/>
+
+            <Route path='/feedback' element={<OptionPage/>}/>
+      <Route path='/AdminFeedbackView' element={<AdminFeedbackView/>}/>
+      <Route path='/ViewFeedback' element={<ViewFeedback/>}/>
+      
+    
 
           </Routes>
          </AuthProvider><Footer/>
