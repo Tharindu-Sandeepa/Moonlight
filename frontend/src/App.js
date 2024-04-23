@@ -20,7 +20,7 @@ import Usermanage from './pages/Admin/Usermanage';
 import Ordermanage from './pages/Admin/Ordermanage';
 import LoadingScreen from './components/LoadingScreen';
 
-import CustomerCart from './components/Cart';
+import CustomerCart from './components/orderComponents/Cart';
 
 import SupplyOrder from './pages/Admin/Supplier_Manager/SupplyOrder';
 import OrderForm from './pages/Admin/Supplier_Manager/OrderForm';
@@ -30,12 +30,12 @@ import AddSupplier from './pages/Admin/Supplier_Manager/AddSupplier';
 import SupplierForm from './pages/Admin/Supplier_Manager/SupplierForm';
 
 import AddItem from "./pages/Admin/Jewellry/AddItem";
-import ImageGridPage from "./ImageGridPage";
+import ImageGridPage from "./components/jewellryComponents/ImageGridPage";
 import Itemlist from "./pages/Admin/Jewellry/jewellryManage";
-import ItemPage from "./ItemPage"
+import ItemPage from "./components/jewellryComponents/ItemPage"
 import Footer from './components/Footer';
-
-
+import UpdateImageForm from './pages/Admin/Jewellry/UpdateImageForm';
+import Checkout  from './components/orderComponents/Checkout';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -103,9 +103,10 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/userinfotest" element={<Userinfotest />} />
-           
             
-
+            <Route path="/checkout" element={<Checkout />} />
+            
+            
             <Route path="/jewllery-grid" element={<ImageGridPage />} />
           <Route path="/add-jewllery" element={<AddItem />} />
           <Route path="/itemlist" element={<Itemlist />} />
@@ -118,16 +119,16 @@ const App = () => {
             <Route path="/admin/users" element={<Usermanage />} />
             <Route path="/admin/Orders" element={<Ordermanage />} />
             <Route path="/Newum" element={<Newum />} />
-
-
+            <Route path="/update-image/:id" element={<UpdateImageForm />} />
             
+          
             <Route path='/supplyorder' element={<SupplyOrder />} />
             <Route path='/orderform' element={<OrderForm/>} />
             <Route path='/edit-supply-order' element={<EditSupplyOrderForm/>} />
             <Route path='/suppliers' element={<Suppliers/>} />
             <Route path='/add-supplier' element={<AddSupplier/>}/>
             <Route path='/update-supplier' element={<SupplierForm/>}/>
-           
+
           </Routes>
          </AuthProvider><Footer/>
         </>
