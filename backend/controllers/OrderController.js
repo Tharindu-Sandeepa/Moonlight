@@ -37,7 +37,7 @@ const addOrder = (req, res, next) => {
 };
 
 const updateOrder = async (req, res, next) => {
-    const { userID, orderID, items, total, amount, date, slip, status } = req.body;
+    const { id, userID, orderID, items, total, amount, date, slip, status } = req.body;
 
         Orders.updateOne(
             { _id: id },

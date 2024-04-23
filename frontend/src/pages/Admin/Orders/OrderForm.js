@@ -1,6 +1,7 @@
 import { Button, Grid, Typography, InputLabel,Paper, TextField, InputAdornment, Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
     const [id, setId] = useState(0);
@@ -111,36 +112,26 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
 
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        type="date     "
-                        label="date"
+                        type="date"
                         value={date}
                         onChange={e => setDate(e.target.value)}
                         fullWidth
                         variant="outlined"
                     />
+                    
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
+                    <InputLabel>Upload Slip</InputLabel>
                     <TextField
-                        label="Upload Slip"
                         type="file"
-                        value={slip}
                         accept="slip/*"
                         onChange={handleChange}
                         fullWidth
                         variant="outlined"
                     />
-                </Grid>
 
-                <div className="">
-                    <img
-                        className=""
-                        width={200}
-                        height={200}
-                        src={slip}
-                        alt="Slip"
-                    />
-                </div>
+                </Grid>
 
                 <Grid item xs={12} sm={6}>
                     <InputLabel>status</InputLabel>

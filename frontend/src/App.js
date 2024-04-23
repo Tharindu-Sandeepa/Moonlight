@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { AuthProvider } from './Auth/AuthContext';
 
 import Navbar from './components/Navbar';

@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Paper,
-  Grid,
-  TextField,
-  Button,
-} from '@mui/material';
+import {Box,Typography,Paper,Grid,TextField,Button} from '@mui/material';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 const Checkout = () => {
@@ -18,49 +12,34 @@ const Checkout = () => {
   const { userId, cart, total } = location.state || {};
 
   // State variables to store payment details
-  const [cardNumber, setCardNumber] = useState('');
-  const [expirationDate, setExpirationDate] = useState('');
-  const [cvv, setCvv] = useState('');
-  const [billingAddress, setBillingAddress] = useState('');
+  const [amount, setAmount] = useState('');
+  const [slip, setSlip] = useState('');
+  const [paymentDate, setPaymentDate] = useState('');
+  const [paymentSubmitted, setPaymentSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Create an order object to store in the database
-    const order = {
-      userId,
-      cart,
-      total,
-      paymentDetails: {
-        cardNumber,
-        expirationDate,
-        cvv,
-        billingAddress,
-      },
-    };
 
     try {
-      // Send the order data to your backend API to store it in the database
-      // You can use fetch or axios to send the POST request
-      const response = await fetch('/api/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const payload = {
+        userId,
+        cart,
+        total,
+        paymentDetails: {
+          amount,
+          slip,
+          paymentDate,
         },
-        body: JSON.stringify(order),
-      });
-
-      if (response.ok) {
-        // If the order is successfully stored, navigate to a confirmation page or reset the form
-        navigate('/order-confirmation');
-      } else {
-        // Handle any errors
-        console.error('Error storing order:', response.statusText);
       }
+      const response = await axios.post('http://localhost:5002/api/orders/createorder', payload);
+      console.log('Checkout successful:', response.data);
+      navigate('/admin/Orders');
     } catch (error) {
-      console.error('Error storing order:', error);
+      console.error('Checkout failed:', error);
     }
+    
   };
 
   return (
@@ -102,61 +81,58 @@ const Checkout = () => {
             </Typography>
 
             <form onSubmit={handleSubmit}>
-              {/* Card Number Input */}
+              {/* Amount Input */}
               <TextField
                 fullWidth
-                label="Card Number"
+                label="Amount"
                 variant="outlined"
                 margin="normal"
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
                 required
               />
 
-              {/* Expiration Date Input */}
+              {/* Slip Input */}
               <TextField
                 fullWidth
-                label="Expiration Date (MM/YY)"
+                label="Slip"
                 variant="outlined"
                 margin="normal"
-                value={expirationDate}
-                onChange={(e) => setExpirationDate(e.target.value)}
+                value={slip}
+                onChange={(e) => setSlip(e.target.value)}
                 required
               />
 
-              {/* CVV Input */}
+              {/* Payment Date Input */}
               <TextField
                 fullWidth
-                label="CVV"
+                //label="Payment Date"
                 variant="outlined"
                 margin="normal"
-                value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
-                required
-                type="password"
-              />
-
-              {/* Billing Address Input */}
-              <TextField
-                fullWidth
-                label="Billing Address"
-                variant="outlined"
-                margin="normal"
-                value={billingAddress}
-                onChange={(e) => setBillingAddress(e.target.value)}
+                type="date"
+                value={paymentDate}
+                onChange={(e) => setPaymentDate(e.target.value)}
                 required
               />
 
               {/* Submit Button */}
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                fullWidth
-                sx={{ marginTop: '20px' }}
-              >
-                Place Order
-              </Button>
+            
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  fullWidth
+                  sx={{ marginTop: '20px' }}
+                >
+                  Place Order
+                </Button>
+              
+
+              {paymentSubmitted && (
+                <Typography variant="body1" sx={{ marginTop: '20px' }}>
+                  Payment Submitted Successfully!
+                </Typography>
+              )}
             </form>
           </Paper>
         </Grid>

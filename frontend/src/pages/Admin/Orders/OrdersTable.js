@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Typography, InputAdornment,Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Select, MenuItem } from "@mui/material";
+import { Button, Typography, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Select, MenuItem } from "@mui/material";
 import { CSVLink } from "react-csv";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { IconButton } from '@mui/material';
@@ -8,7 +8,7 @@ import PeopleAltIcon from '@mui/icons-material/AccountBox';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-const OrdersTable = ({ rows, selectOrder, deleteOrder }) => {
+const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [filterType, setFilterType] = useState("");
 
@@ -186,7 +186,14 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder }) => {
                         <TableCell>{row.total}</TableCell>
                         <TableCell>{row.amount}</TableCell>
                         <TableCell>{row.date}</TableCell>
-                        <TableCell>{row.slip}</TableCell>
+                        
+                        <TableCell>
+                            <img
+                                src={row.slip}
+                                alt={row.name}
+                                style={{ width: '90px', height: '80px' }}
+                            />
+                        </TableCell>
                         <TableCell>{row.status}</TableCell>
                         <TableCell>
                         <Button 
