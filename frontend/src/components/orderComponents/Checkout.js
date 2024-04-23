@@ -9,6 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import axios from 'axios';
 
 const Checkout = () => {
   const location = useLocation();
@@ -27,32 +28,23 @@ const Checkout = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    // Create an order object to store in the database
-    const order = {
-        username,
-      cart,
+    // Create an order object
+    const orderData = {
+      userID: username, // Assuming username is used as the userID
+      orderID: Date.now().toString(), // Generate a unique order ID
+      items: cart,
       total,
-      paymentDetails: {
-        cardNumber,
-        expirationDate,
-        cvv,
-        billingAddress,
-      },
+      date: new Date().toISOString(),
+      slip: '', // If you have slip data, you can add it here
+      status: 'Pending', // Assuming a default status for the order
     };
 
     try {
-      // Send the order data to your backend API to store it in the database
-      // You can use fetch or axios to send the POST request
-      const response = await fetch('/api/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(order),
-      });
+      // Send the order data to the backend API to store it in the database
+      const response = await axios.post('http://localhost:5002/api/orders/createorder', orderData);
 
-      if (response.ok) {
-        // If the order is successfully stored, navigate to a confirmation page or reset the form
+      if (response.status === 200) {
+        // If the order is successfully stored, navigate to a confirmation page
         navigate('/order-confirmation');
       } else {
         // Handle any errors

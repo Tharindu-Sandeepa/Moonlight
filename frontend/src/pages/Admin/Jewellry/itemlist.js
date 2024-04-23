@@ -10,22 +10,23 @@ import {
   Button,
   Box,
   TextField,
-  InputAdornment,
   Select,
-  MenuItem
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+  MenuItem,
+  Typography,
+  InputAdornment
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const ImageGridPage = () => {
   const [allImage, setAllImage] = useState([]);
   const [updateData, setUpdateData] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
-  
+
   useEffect(() => {
     getImage();
   }, []);
-  
+
   const getImage = async () => {
     try {
       const result = await axios.get("http://localhost:5002/get-images");
@@ -34,7 +35,7 @@ const ImageGridPage = () => {
       console.error(error);
     }
   };
-  
+
   const deleteImage = async (id) => {
     try {
       await axios.delete(`http://localhost:5002/delete-image/${id}`);
@@ -43,11 +44,11 @@ const ImageGridPage = () => {
       console.error(error);
     }
   };
-  
+
   const handleUpdate = (data) => {
     setUpdateData(data);
   };
-  
+
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -65,8 +66,7 @@ const ImageGridPage = () => {
       console.error(error);
     }
   };
-  
-  // Filter images by search query and type
+
   const filteredImages = allImage.filter(data => {
     const matchesSearch = data.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           data.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -74,7 +74,6 @@ const ImageGridPage = () => {
     return matchesSearch && matchesType;
   });
 
-  // Function to generate CSV report
   const generateCSVReport = () => {
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += "Name,Type,Description,Price\n";
@@ -93,15 +92,14 @@ const ImageGridPage = () => {
   return (
     <div>
       <Box sx={{ mt: 12, padding: 2, display: 'flex', justifyContent: 'center' }}>
-        {/* Search input field with icon */}
         <TextField
           label="Search"
           variant="outlined"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           sx={{
-            width: '40%', // Adjust the width as desired
-            borderRadius: '8px', // Rounded corners
+            width: '40%',
+            borderRadius: '8px',
           }}
           InputProps={{
             startAdornment: (
@@ -111,8 +109,7 @@ const ImageGridPage = () => {
             ),
           }}
         />
-
-        {/* Filter by type dropdown */}
+        
         <TextField
           select
           label="Type"
@@ -121,7 +118,6 @@ const ImageGridPage = () => {
           variant="outlined"
           sx={{ marginLeft: 2, width: '20%' }}
         >
-          {/* Add an option for each unique type */}
           <MenuItem value="">All Types</MenuItem>
           {[...new Set(allImage.map(data => data.type))].map(type => (
             <MenuItem key={type} value={type}>
@@ -130,7 +126,6 @@ const ImageGridPage = () => {
           ))}
         </TextField>
         
-        {/* Button to generate CSV report */}
         <Button
           variant="contained"
           color="primary"
@@ -142,14 +137,61 @@ const ImageGridPage = () => {
       </Box>
 
       {updateData ? (
-        <form onSubmit={handleUpdateSubmit}>
-          <input type="text" name="name" defaultValue={updateData.name} />
-          <input type="text" name="type" defaultValue={updateData.type} />
-          <input type="number" name="price" defaultValue={updateData.price} />
-          <input type="file" name="image" />
-          <textarea name="description" defaultValue={updateData.description}></textarea>
-          <button type="submit">Update</button>
-        </form>
+        <Box sx={{ mt: 4, padding: 2, borderRadius: 1, boxShadow: 3, maxWidth: 600, margin: '0 auto' }}>
+          <Typography variant="h6">Update Image</Typography>
+          <form onSubmit={handleUpdateSubmit}>
+            <TextField
+              fullWidth
+              label="Name"
+              name="name"
+              defaultValue={updateData.name}
+              variant="outlined"
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              label="Type"
+              name="type"
+              defaultValue={updateData.type}
+              variant="outlined"
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              label="Price"
+              name="price"
+              defaultValue={updateData.price}
+              type="number"
+              variant="outlined"
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              label="Description"
+              name="description"
+              defaultValue={updateData.description}
+              multiline
+              rows={4}
+              variant="outlined"
+              margin="normal"
+            />
+            <TextField
+              fullWidth
+              name="image"
+              type="file"
+              variant="outlined"
+              margin="normal"
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{ mt: 2 }}
+            >
+              Update
+            </Button>
+          </form>
+        </Box>
       ) : (
         <TableContainer sx={{ marginTop: 3 }}>
           <Table sx={{ border: '1px solid #ccc' }}>
@@ -170,7 +212,11 @@ const ImageGridPage = () => {
                   <TableCell sx={{ borderBottom: '1px solid #ccc' }}>{data.description}</TableCell>
                   <TableCell sx={{ borderBottom: '1px solid #ccc' }}>Rs {data.price}</TableCell>
                   <TableCell sx={{ borderBottom: '1px solid #ccc' }}>
-                    <Button variant="contained" color="error" onClick={() => deleteImage(data._id)}>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => deleteImage(data._id)}
+                    >
                       Delete
                     </Button>
                     <Button

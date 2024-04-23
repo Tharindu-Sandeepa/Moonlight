@@ -12,7 +12,7 @@ const jewlleryRoutes = require("./routes/jewlleryRoutes");
 const supListRoute = require('../backend/routes/supListRoute');
 const suproute = require('../backend/routes/suproute');
 
-
+const router3 = require('./routes/ordersRoutes');
 
 dotenv.config();
 
@@ -45,6 +45,7 @@ app.use("/get-item/:id", jewlleryRoutes);
 app.use('/api',suproute);
 app.use('/api',supListRoute);
 
+app.use('/api/orders', router3);
 
 
 

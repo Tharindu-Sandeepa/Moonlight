@@ -37,6 +37,8 @@ import Footer from './components/Footer';
 import UpdateImageForm from './pages/Admin/Jewellry/UpdateImageForm';
 import Checkout  from './components/orderComponents/Checkout';
 
+import Forgotpw from './components//userComponents/ForgotPassword';
+
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -103,7 +105,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/userinfotest" element={<Userinfotest />} />
-            
+            <Route path='/forgotpw' element={<Forgotpw />} />
             <Route path="/checkout" element={<Checkout />} />
             
             
@@ -121,7 +123,8 @@ const App = () => {
             <Route path="/Newum" element={<Newum />} />
             <Route path="/update-image/:id" element={<UpdateImageForm />} />
             
-          
+            <Route path="/admin/Orders" element={<Ordermanage />} />
+
             <Route path='/supplyorder' element={<SupplyOrder />} />
             <Route path='/orderform' element={<OrderForm/>} />
             <Route path='/edit-supply-order' element={<EditSupplyOrderForm/>} />

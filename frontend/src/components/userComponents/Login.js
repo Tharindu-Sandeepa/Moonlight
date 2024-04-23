@@ -153,7 +153,7 @@ function Login ({ onLogin }) {
                    
                     <Grid container justifyContent="center" sx={{marginTop:10}}>
                     <Grid item>
-                      <Link href="#" variant="body2">
+                      <Link href="/forgotpw" variant="body2">
                       Forgot Password ?
                       </Link>
                     </Grid>
@@ -182,7 +182,7 @@ function Login ({ onLogin }) {
 
                   <Grid container justifyContent="center">
                     <Grid item>
-                      <Link href="#" variant="body2">
+                      <Link href="/register" variant="body2">
                       If Doesn’t have an account ?  Register
                       </Link>
                     </Grid>
