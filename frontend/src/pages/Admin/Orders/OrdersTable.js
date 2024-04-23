@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Typography, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Select, MenuItem } from "@mui/material";
+import { Button, Typography, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Select, MenuItem, Divider } from "@mui/material";
 import { CSVLink } from "react-csv";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { IconButton } from '@mui/material';
@@ -10,7 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [filterType, setFilterType] = useState("");
+    const [filterStatus, setFilterStatus] = useState("");
 
     const headers = [
         { label: "UserID", key: "userID" },
@@ -28,7 +28,7 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
         rows.forEach(row => {
         counts[row.type] = (counts[row.type] || 0) + 1;
         });
-    return counts;
+        return counts;
     };
     const orderCounts = countOrdersByType();
 
@@ -43,10 +43,10 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
             field ? field.toString().toLowerCase().includes(searchQuery.toLowerCase()) : false
         )
     ).filter(row => {
-        if (filterType === "") {
+        if (filterStatus === "") {
             return true;
         } else {
-            return row.type === filterType;
+            return row.status === filterStatus;
         }
     });
 
@@ -119,11 +119,11 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
         </Button>
         </Paper>
         <Paper sx={{ p:3,mt:5,  display: 'flex', flexDirection: 'column' }}>
-        <Typography sx={{mt:2}} variant="h6">Type : 
+        <Typography sx={{mt:2}} variant="h6">Status : 
         <Select
-            value={filterType}
-            label="Type"
-            onChange={e => setFilterType(e.target.value)}
+            value={filterStatus}
+            label="Status"
+            onChange={e => setFilterStatus(e.target.value)}
             sx={{
                 width: '150px',
                 borderRadius: '20px',
@@ -177,47 +177,62 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
                 </TableHead>
                 <TableBody>
                 {filteredRows.length > 0 ? (
-                    filteredRows.map(row => (
-                    <TableRow key={row._id}>
-                        <TableCell><AccountCircleIcon sx={{fontSize:30,color:'#757575'}}/></TableCell>
-                        <TableCell>{row.userID}</TableCell>
-                        <TableCell>{row.orderID}</TableCell>
-                        <TableCell>{row.items}</TableCell>
-                        <TableCell>{row.total}</TableCell>
-                        <TableCell>{row.amount}</TableCell>
-                        <TableCell>{row.date}</TableCell>
-                        <TableCell>{row.slip}</TableCell>
-                        <TableCell>{row.status}</TableCell>
-                        <TableCell>
-                        <Button 
-                            onClick={() => selectOrder({ id: row._id, userID: row.userID, orderID: row.orderID, items: row.items, total: row.total, amount: row.amount, date: row.date, slip: row.slip, status: row.status })}
-                            sx={{
-                                borderRadius: '20px',
-                                backgroundColor: '#FFD700', // Yellow color
-                                color: '#000', // Black text color
-                                '&:hover': {
-                                backgroundColor: '#FFC107', // Darker yellow color on hover
-                                },
-                            }}
-                        >
-                            Update
-                        </Button>
-                        <Button 
-                            onClick={() => deleteOrder({ id: row._id })}
-                            sx={{
-                                ml:2,
-                                borderRadius: '20px',
-                                backgroundColor: '#FF0000', // Red color
-                                color: '#FFF', // White text color
-                                '&:hover': {
-                                backgroundColor: '#B71C1C', // Darker red color on hover
-                                },
-                            }}
-                        >
-                            Delete
-                        </Button>
-                        </TableCell>
-                    </TableRow>
+                    filteredRows.map((row, index) => (
+                    <React.Fragment key={row._id}>
+                        <TableRow>
+                            <TableCell><AccountCircleIcon sx={{fontSize:30,color:'#757575'}}/></TableCell>
+                            <TableCell>{row.userID}</TableCell>
+                            <TableCell>{row.orderID}</TableCell>
+                            <TableCell>{row.items}</TableCell>
+                            <TableCell>{row.total}</TableCell>
+                            <TableCell>{row.amount}</TableCell>
+                            <TableCell>{row.date}</TableCell>
+                            <TableCell>
+                                <img
+                                    src={row.slip}
+                                    alt={row.name}
+                                    style={{ width: '90px', height: '80px' }}
+                                />
+                            </TableCell>
+                            <TableCell>{row.status}</TableCell>
+                            <TableCell>
+                            <Button 
+                                onClick={() => selectOrder({ id: row._id, userID: row.userID, orderID: row.orderID, items: row.items, total: row.total, amount: row.amount, date: row.date, slip: row.slip, status: row.status })}
+                                sx={{
+                                    borderRadius: '20px',
+                                    backgroundColor: '#FFD700', // Yellow color
+                                    color: '#000', // Black text color
+                                    '&:hover': {
+                                    backgroundColor: '#FFC107', // Darker yellow color on hover
+                                    },
+                                }}
+                            >
+                                Update
+                            </Button>
+                            <Button 
+                                onClick={() => deleteOrder({ id: row._id })}
+                                sx={{
+                                    ml:2,
+                                    borderRadius: '20px',
+                                    backgroundColor: '#FF0000', // Red color
+                                    color: '#FFF', // White text color
+                                    '&:hover': {
+                                    backgroundColor: '#B71C1C', // Darker red color on hover
+                                    },
+                                }}
+                            >
+                                Delete
+                            </Button>
+                            </TableCell>
+                        </TableRow>
+                        {index !== filteredRows.length - 1 && (
+                            <TableRow>
+                                <TableCell colSpan={10}>
+                                    <Divider />
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </React.Fragment>
                 ))
                 ) : (
                 <TableRow>

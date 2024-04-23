@@ -120,9 +120,9 @@ const Orders = () => {
                             width: '50%', // Adjust button width for better proportion
                             backgroundColor: '#1565c0', // Change button color to a darker shade of blue
                             '&:hover': {
-                            backgroundColor: '#0d47a1', 
+                                backgroundColor: '#0d47a1', 
                             },
-                        }} 
+                        }}  
                     >
                         Add Order
                     </Button>

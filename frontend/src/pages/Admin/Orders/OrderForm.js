@@ -1,6 +1,7 @@
 import { Button, Grid, Typography, InputLabel,Paper, TextField, InputAdornment, Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
     const [id, setId] = useState(0);
@@ -15,18 +16,19 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
 
     const handleChange = (e) => {
         const file = e.target.files[0];
-
+    
         if (file) {
             const reader = new FileReader();
-
-        reader.onload = () => {
-            const base64String = reader.result;
-            setSlip(base64String);
-        };
-
+    
+            reader.onload = () => {
+                const base64String = reader.result;
+                setSlip(base64String);
+            };
+    
             reader.readAsDataURL(file);
         }
     };
+    
 
     useEffect(() => {
         if (!submitted) {
@@ -124,7 +126,6 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
                     <InputLabel>Upload Slip</InputLabel>
                     <TextField
                         type="file"
-                        value={slip}
                         accept="slip/*"
                         onChange={handleChange}
                         fullWidth
