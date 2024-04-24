@@ -3,13 +3,13 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 function SupplierForm({ supplier, onCancel, onUpdate }) {
   const [formData, setFormData] = useState({
     supName: supplier.supName,
     Items: supplier.Items.join(', '),
     description: supplier.description,
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,21 +17,48 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    let valid = true;
+    const validationErrors = {};
+  
+    if (!formData.supName.trim()) {
+      validationErrors.supName = 'Supplier name is required';
+      valid = false;
+    }
+  
+    if (!formData.Items.trim()) {
+      validationErrors.Items = 'Items are required';
+      valid = false;
+    }
+  
+    setErrors(validationErrors);
+  
+    if (!valid) {
+      toast.error('Form has errors', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+  
     const updatedSupplierData = {
       _id: supplier._id,
       supName: formData.supName,
-      Items: formData.Items.split(',').map(Items => Items.trim()),
+      Items: formData.Items.split(',').map((Items) => Items.trim()),
       description: formData.description,
     };
   
-    axios.post('http://localhost:5002/api/updatesupplier', updatedSupplierData)
-      .then(response => {
-        // Handle successful update
+    axios
+      .post('http://localhost:5002/api/updatesupplier', updatedSupplierData)
+      .then((response) => {
         console.log(response.data);
-        onUpdate(updatedSupplierData); // Notify the parent component about the update with the updated data
-        // Display toast notification
+        onUpdate(updatedSupplierData);
         toast.success('Supplier updated successfully', {
-          position: "top-right",
+          position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -40,16 +67,27 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
           progress: undefined,
         });
       })
-      .catch(error => {
-        console.error("Error updating supplier:", error);
+      .catch((error) => {
+        console.error('Error updating supplier:', error);
+        toast.error('Error updating supplier', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.formGroup}>
-          <label htmlFor="supName" style={styles.label}>Supplier Name:</label>
+          <label htmlFor="supName" style={styles.label}>
+            Supplier Name:
+          </label>
           <input
             type="text"
             id="supName"
@@ -59,9 +97,12 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
             style={styles.input}
             required
           />
+          {errors.supName && <span style={styles.error}>{errors.supName}</span>}
         </div>
         <div style={styles.formGroup}>
-          <label htmlFor="Items" style={styles.label}>Items:</label>
+          <label htmlFor="Items" style={styles.label}>
+            Items:
+          </label>
           <input
             type="text"
             id="Items"
@@ -71,9 +112,12 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
             style={styles.input}
             required
           />
+          {errors.Items && <span style={styles.error}>{errors.Items}</span>}
         </div>
         <div style={styles.formGroup}>
-          <label htmlFor="description" style={styles.label}>Description:</label>
+          <label htmlFor="description" style={styles.label}>
+            Description:
+          </label>
           <textarea
             id="description"
             name="description"
@@ -84,13 +128,15 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
           />
         </div>
         <div style={styles.buttonGroup}>
-          <button type="submit" style={styles.button}>Update Supplier</button>
-          <button type="button" onClick={onCancel} style={styles.button}>Cancel</button>
+          <button type="submit" style={styles.button}>
+            Update Supplier
+          </button>
+          <button type="button" onClick={onCancel} style={styles.button}>
+            Cancel
+          </button>
         </div>
       </form>
     </div>
-
-    
   );
 }
 
@@ -138,6 +184,10 @@ const styles = {
     backgroundColor: '#007bff',
     color: '#fff',
     fontWeight: 'bold',
+  },
+  error: {
+    color: 'red',
+    fontSize: '14px',
   },
 };
 
