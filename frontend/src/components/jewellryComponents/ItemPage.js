@@ -7,6 +7,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { useAuth } from '../../Auth/AuthContext';
 
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import { Link } from 'react-router-dom';
+
 const ItemPage = () => {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
@@ -77,7 +80,19 @@ const ItemPage = () => {
                       <FavoriteIcon />
                     </IconButton>
                     <IconButton color="primary">
-                      <ShareIcon />
+                    <Button
+      variant="contained"
+      color="primary"
+      startIcon={<FeedbackIcon />} // Add the Feedback icon to the start of the button
+      component={Link} // Use Link from react-router-dom to handle navigation
+      to="/feedback" // The route to navigate to
+      sx={{
+        padding: '8px 16px', // Padding for the button
+        borderRadius: '8px', // Rounded corners
+      }}
+    >
+      Add Feedback
+    </Button>
                     </IconButton>
                   </Box>
                 </Box>
