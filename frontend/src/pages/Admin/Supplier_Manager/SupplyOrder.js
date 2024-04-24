@@ -5,6 +5,8 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Contacts, ShoppingBasket, Assignment, Add } from '@mui/icons-material';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from "../Dashboard";
 
 const SupplyOrder = () => {
@@ -29,6 +31,15 @@ const SupplyOrder = () => {
         Axios.post('http://localhost:5002/api/deletesupOrder', data)
             .then(() => {
                 getOrders();
+                toast.success('Order Deleted', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .catch(error => {
                 console.error("Axios Error : ", error);

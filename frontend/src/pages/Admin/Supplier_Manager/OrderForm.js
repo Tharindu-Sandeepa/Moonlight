@@ -3,6 +3,8 @@ import SupOrderForm from "./SupOrderForm";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from "../Dashboard";
 
 
@@ -48,6 +50,15 @@ const OrderForm = () => {
                 getOrders();
                 setSubmitted(false); 
                 setIsEdit(false);
+                toast.success('Order Successfully Created', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .catch(error => {
                 console.error("Axios Error : ", error);
@@ -75,6 +86,15 @@ const OrderForm = () => {
                 navigate('/edit-supply-order', { state: { selectedsupOrder: data } }); // Passing selectedsupOrder as state
                 setSubmitted(false);
                 setIsEdit(false);
+                toast.success('Order Successfully Created', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 
             })
             .catch(error => {
