@@ -14,6 +14,10 @@ const suproute = require('../backend/routes/suproute');
 
 const router3 = require('./routes/ordersRoutes');
 const router4 = require('./routes/feedbackRouter');
+
+const router6 = require('./routes/materialRouter');
+const useRouter7 = require('./routes/useMaterialRouter')
+
 dotenv.config();
 
 const app = express();
@@ -49,6 +53,9 @@ app.use('/api/orders', router3);
 
 
 app.use('/api',router4);
+
+app.use('/api', router6);
+app.use('/api', useRouter7);
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

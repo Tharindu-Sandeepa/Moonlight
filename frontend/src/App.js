@@ -43,6 +43,10 @@ import OptionPage from './components/feedbackComponents/OptionPage';
 import AdminFeedbackView from './pages/Admin/Feedback/AdminFeedbackView';
 import ViewFeedback from './components/feedbackComponents/ViewFeedback';
 
+import Materials from './pages/Admin/Material/Materials';
+import UseMaterial from './pages/Admin/Material/useMaterial';
+import MManager from './pages/Admin/Material/MManager';
+
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -140,6 +144,16 @@ const App = () => {
             <Route path='/feedback' element={<OptionPage/>}/>
       <Route path='/AdminFeedbackView' element={<AdminFeedbackView/>}/>
       <Route path='/ViewFeedback' element={<ViewFeedback/>}/>
+
+
+      <Route path='/mManager' element={<MManager />}>
+              </Route>
+
+              <Route path='/Materials' element={<Materials />}>
+              </Route>
+
+              <Route path='/useMaterial' element={<UseMaterial />}>
+              </Route>
       
     
 
