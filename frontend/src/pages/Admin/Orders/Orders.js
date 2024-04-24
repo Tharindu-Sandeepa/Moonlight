@@ -4,6 +4,7 @@ import OrderForm from "./OrderForm";
 import OrdersTable from "./OrdersTable";
 import Axios from "axios";
 import GroupAddIcon from '@mui/icons-material/ContactEmergency';
+import Dashboard from '../Dashboard';
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -88,6 +89,17 @@ const Orders = () => {
     }
 
     return (
+
+
+        
+
+
+
+  
+      <Dashboard title="Order Management">
+       
+      
+
         <Box sx={{
             width: 'calc(100% - 100px)',
             margin: 'auto',
@@ -143,7 +155,7 @@ const Orders = () => {
                 selectOrder={(data) => { setSelectOrder(data); setEdit(true); setShowForm(true); }}
                 deleteOrder={(data) => { window.confirm("Are you sure?") && deleteOrder(data) }}
             />
-        </Box>
+        </Box></Dashboard>
     );
 }
 

@@ -14,6 +14,12 @@ const suproute = require('../backend/routes/suproute');
 
 const router3 = require('./routes/ordersRoutes');
 const router4 = require('./routes/feedbackRouter');
+
+const imageRoutes = require("./routes/imageRoutes");
+const inquiryRoute = require('./routes/inquiryRoute');
+const gemrouter = require('./routes/gemRoutes');
+
+
 dotenv.config();
 
 const app = express();
@@ -49,6 +55,17 @@ app.use('/api/orders', router3);
 
 
 app.use('/api',router4);
+
+//gem routes
+app.use("/", imageRoutes);
+app.use("/gemget-images", imageRoutes);
+app.use("/gemupload-image", imageRoutes);
+app.use("/gemdelete-image/:id", imageRoutes);
+app.use("/gemupdate-image/:id", imageRoutes);
+
+app.use('/api', gemrouter);
+app.use('/api', inquiryRoute);
+
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

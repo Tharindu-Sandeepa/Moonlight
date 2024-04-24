@@ -50,7 +50,7 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
               </Link>
 
               
-              <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Gems</Button>
+              <Button color="inherit" href="/GemHome" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Gems</Button>
 
               <Link to="/jewllery-grid">
               <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Jewelry</Button>

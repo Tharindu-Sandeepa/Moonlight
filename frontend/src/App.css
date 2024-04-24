@@ -195,15 +195,15 @@ html {
 }
 
 /* Delay the animation for each letter */
-.letter:nth-child(1) { animation-delay: 700ms; }
-.letter:nth-child(2) { animation-delay: 1000ms; }
-.letter:nth-child(3) { animation-delay: 1300ms; }
-.letter:nth-child(4) { animation-delay: 1600ms; }
-.letter:nth-child(5) { animation-delay: 1900ms; }
-.letter:nth-child(6) { animation-delay: 2200ms; }
-.letter:nth-child(7) { animation-delay: 2500ms; }
-.letter:nth-child(8) { animation-delay: 2800ms; }
-.letter:nth-child(9) { animation-delay: 3100ms; }
+.letter:nth-child(1) { animation-delay: 0ms; }
+.letter:nth-child(2) { animation-delay: 333ms; }
+.letter:nth-child(3) { animation-delay: 667ms; }
+.letter:nth-child(4) { animation-delay: 1000ms; }
+.letter:nth-child(5) { animation-delay: 1333ms; }
+.letter:nth-child(6) { animation-delay: 1667ms; }
+.letter:nth-child(7) { animation-delay: 2000ms; }
+.letter:nth-child(8) { animation-delay: 2333ms; }
+.letter:nth-child(9) { animation-delay: 2667ms; }
 
 @keyframes reveal {
     from {

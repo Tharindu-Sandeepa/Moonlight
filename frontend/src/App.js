@@ -17,7 +17,7 @@ import Register from './components/userComponents/Register';
 import MyAccount from './components/userComponents/MyAccount';
 import Userinfotest from './components/userComponents/UserInfotest';
 import Usermanage from './pages/Admin/Usermanage';
-import Ordermanage from './pages/Admin/Ordermanage';
+import Ordermanage from './pages/Admin/Orders/Orders';
 import LoadingScreen from './components/LoadingScreen';
 
 import CustomerCart from './components/orderComponents/Cart';
@@ -43,36 +43,52 @@ import OptionPage from './components/feedbackComponents/OptionPage';
 import AdminFeedbackView from './pages/Admin/Feedback/AdminFeedbackView';
 import ViewFeedback from './components/feedbackComponents/ViewFeedback';
 
+import GemImageGridPage from "./components/gemComponents/ImageGridPage";
+import AddItemGem from "./pages/Admin/Gemstone/AddItem";
+import GemItemlist from "./pages/Admin/Gemstone/itemlist";
+import GemDashboard from './pages/Admin/Gemstone/GDashboard';
+import HomePage from './components/gemComponents/HomeGem';
+import Gemtable from './pages/Admin/Gemstone/gemtable';
+import Gem from './pages/Admin/Gemstone/Gem';
+import Inquiry from './components/gemComponents/Inquiry';
+import AllInquiry from './pages/Admin/Gemstone/Allinquiry';
+import SapphireHomePage from './components/gemComponents/Sapphirepage';
+import Aquamarinepage from './components/gemComponents/Aquamarinepage';
+import SapphireProduct from './components/gemComponents/BlueSapphirePage';
+import BlueSapphireProduct from './components/gemComponents/BluesapphireProducts';
+import GemItem from './components/gemComponents/GemItemPage';
+
+
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
-  const [loading, setLoading] = useState(true); // State to control loading screen
+  const [loading, setLoading] = useState(true); 
   const location = useLocation();
   const navigate = useNavigate();
 
 
 
   useEffect(() => {
-    // Check if user is already logged in (e.g., by having a token in localStorage)
+    
     const storedToken = Cookies.get('token');
     
     if (storedToken) {
       setToken(storedToken);
       setLoggedIn(true);
     }
-    // Simulate loading for 3 seconds
+   
     setTimeout(() => {
       setLoading(false);
-    }, 4300);
+    }, 3000);
   }, []);
 
   const handleLogin = (userData) => {
    
     setToken(userData.token);
     setLoggedIn(true);
-    // Store token and username in cookie for persistent login
+    
     Cookies.set('token', userData.token);
    
   };
@@ -81,14 +97,14 @@ const App = () => {
   
     setToken('');
     setLoggedIn(false);
-    // Clear token and username from cookie
+    
     Cookies.remove('token');
     navigate('/');
   };
 
-  // Render Navbar conditionally based on current route
+  
   const renderNavbar = () => {
-    const adminRoutes = ['/admin', '/admin/users', '/admin/Orders']; //  admin routes
+    const adminRoutes = ['/admin', '/newum', '/admin/Orders','/itemlist','/GDashboard','/AdminFeedbackView','/supplyorder']; //  admin routes
     if (!adminRoutes.includes(location.pathname)) {
       return <Navbar loggedIn={loggedIn} username={username} onLogout={handleLogout} token={token} />;
     }
@@ -98,7 +114,7 @@ const App = () => {
   return (
     <div>
       <ToastContainer />
-      {loading ? ( // Render LoadingScreen if loading state is true
+      {loading ? ( // Render LoadingScreen 
         <LoadingScreen />
       ) : (
         <>
@@ -125,10 +141,12 @@ const App = () => {
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/users" element={<Usermanage />} />
             <Route path="/admin/Orders" element={<Ordermanage />} />
-            <Route path="/Newum" element={<Newum />} />
+
+            <Route path='/newum' element={<Newum />} />
+
             <Route path="/update-image/:id" element={<UpdateImageForm />} />
             
-            <Route path="/admin/Orders" element={<Ordermanage />} />
+           
 
             <Route path='/supplyorder' element={<SupplyOrder />} />
             <Route path='/orderform' element={<OrderForm/>} />
@@ -140,6 +158,24 @@ const App = () => {
             <Route path='/feedback' element={<OptionPage/>}/>
       <Route path='/AdminFeedbackView' element={<AdminFeedbackView/>}/>
       <Route path='/ViewFeedback' element={<ViewFeedback/>}/>
+
+
+     
+            <Route path="/GDashboard" element={< GemDashboard/>} /> 
+            <Route path="/gemtable" element={< Gemtable/>} />
+            <Route path="/Gem" element={<Gem />} />
+            <Route path="/Inquiry" element={<Inquiry />} />
+            <Route path="/Allinquiry" element={<AllInquiry />} />
+            <Route path="/AddGemItem" element={< AddItemGem/>} />
+            <Route path="/GemItemlist" element={<GemItemlist />} />
+
+            <Route path="/GemHome" element={< HomePage/>} />
+            <Route path="/image-grid" element={<GemImageGridPage />} />
+            <Route path="/components/Sapphirepage" element={< SapphireHomePage/>} />
+            <Route path="/components/Aquamarinepage" element={< Aquamarinepage/>} />
+            <Route path="/components/BluesapphirePage" element={< SapphireProduct/>} />
+            <Route path="/components/BluesapphireProducts" element={< BlueSapphireProduct/>} />
+            <Route path="/Gemitem/:itemId" element={< GemItem/>} />
       
     
 

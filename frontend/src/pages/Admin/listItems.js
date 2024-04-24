@@ -57,16 +57,19 @@ export const mainListItems = (
       <ListItemText primary="Jewellery" />
     </ListItemButton>
     </Link>
-    <ListItemButton >
-    <Link >
+
+    <Link to="/GDashboard" >
+ <ListItemButton >
+    
     <ListItemIcon >
         <DiamondIcon />
       </ListItemIcon>
-      </Link>
-      <Link >
+      
       <ListItemText primary="Gems" />
-      </Link>
+     
     </ListItemButton>
+    </Link>
+
 
     <ListItemButton >
     <ListItemIcon  >
