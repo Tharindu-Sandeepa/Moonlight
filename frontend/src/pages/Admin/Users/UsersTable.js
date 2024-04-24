@@ -58,7 +58,7 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
 
         // Add a title
         doc.setFontSize(16);
-        doc.text("User Report", 14, 20);
+        doc.text("User Details Report", 14, 20);
 
         // Create table data
         const tableData = filteredRows.map(row => [
@@ -118,14 +118,16 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
                 }}><AssessmentIcon sx={{ fontSize: 40, color: '#1565c0' }} />
                     <Button
                         sx={{
-                            mt: 3,
+                            mt: -1,
                             justifySelf: 'center',
                             alignSelf: 'center',
                             color: "white",
                             fontWeight: 'bold',
-                            fontSize: 14,
+                            fontSize: 12,
                             borderRadius: '40px',
                             width: '80%',
+                           
+                            height:'35%',
                             backgroundColor: '#1565c0',
                             '&:hover': {
                                 backgroundColor: '#0d47a1',
@@ -146,14 +148,17 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
                     {/* Button to generate PDF report */}
                     <Button
                         sx={{
-                            mt: 3,
+                            mt: 0.7,
                             justifySelf: 'center',
                             alignSelf: 'center',
                             color: "white",
+                            padding:-4,
                             fontWeight: 'bold',
-                            fontSize: 14,
+                            fontSize: 12,
                             borderRadius: '40px',
                             width: '80%',
+                            height:'35%',
+               
                             backgroundColor: '#1565c0',
                             '&:hover': {
                                 backgroundColor: '#0d47a1',
