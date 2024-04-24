@@ -70,13 +70,14 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
 
-
+<Link to="/mManager">
     <ListItemButton >
     <ListItemIcon  >
         <WarehouseIcon />
       </ListItemIcon>
-      <ListItemText primary="Inventory" />
+      <ListItemText primary="Materials" />
     </ListItemButton>
+    </Link>
 
     <Link to="/supplyorder">
     <ListItemButton>

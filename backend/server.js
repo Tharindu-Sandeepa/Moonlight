@@ -19,6 +19,9 @@ const imageRoutes = require("./routes/imageRoutes");
 const inquiryRoute = require('./routes/inquiryRoute');
 const gemrouter = require('./routes/gemRoutes');
 
+const router6 = require('./routes/materialRouter');
+const useRouter7 = require('./routes/useMaterialRouter')
+
 
 dotenv.config();
 
@@ -66,6 +69,8 @@ app.use("/gemupdate-image/:id", imageRoutes);
 app.use('/api', gemrouter);
 app.use('/api', inquiryRoute);
 
+app.use('/api', router6);
+app.use('/api', useRouter7);
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -58,7 +58,9 @@ import SapphireProduct from './components/gemComponents/BlueSapphirePage';
 import BlueSapphireProduct from './components/gemComponents/BluesapphireProducts';
 import GemItem from './components/gemComponents/GemItemPage';
 
-
+import Materials from './pages/Admin/Material/Materials';
+import UseMaterial from './pages/Admin/Material/useMaterial';
+import MManager from './pages/Admin/Material/MManager';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -104,7 +106,7 @@ const App = () => {
 
   
   const renderNavbar = () => {
-    const adminRoutes = ['/admin', '/newum', '/admin/Orders','/itemlist','/GDashboard','/AdminFeedbackView','/supplyorder']; //  admin routes
+    const adminRoutes = ['/admin', '/newum', '/admin/Orders','/itemlist','/GDashboard','/AdminFeedbackView','/supplyorder','/mManager','/Materials','/useMaterial']; //  admin routes
     if (!adminRoutes.includes(location.pathname)) {
       return <Navbar loggedIn={loggedIn} username={username} onLogout={handleLogout} token={token} />;
     }
@@ -177,7 +179,15 @@ const App = () => {
             <Route path="/components/BluesapphireProducts" element={< BlueSapphireProduct/>} />
             <Route path="/Gemitem/:itemId" element={< GemItem/>} />
       
-    
+            <Route path='/mManager' element={<MManager />}>
+              </Route>
+
+              <Route path='/Materials' element={<Materials />}>
+              </Route>
+
+              <Route path='/useMaterial' element={<UseMaterial />}>
+              </Route>
+      
 
           </Routes>
          </AuthProvider><Footer/>
