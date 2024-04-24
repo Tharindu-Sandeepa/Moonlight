@@ -3,6 +3,8 @@ import { Button, Box, Grid, Input, Typography, Radio, RadioGroup, FormControlLab
 import Axios from "axios";
 import { useLocation, useNavigate } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from '../Dashboard';
 
 const EditSupplyOrderForm = () => {
@@ -60,6 +62,15 @@ const EditSupplyOrderForm = () => {
                 setSubmitted(false); 
                 setIsEdit(false);
                 setShowAlert(true);
+                toast.success('Order Successfully Created', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .catch(error => {
                 console.error("Axios Error : ", error);
@@ -87,6 +98,15 @@ const EditSupplyOrderForm = () => {
               setSubmitted(false);
               setIsEdit(false);
               setShowAlert(true);
+              toast.success('Order Successfully Updated', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
           })
           .catch(error => {
               console.error("Axios Error : ", error);

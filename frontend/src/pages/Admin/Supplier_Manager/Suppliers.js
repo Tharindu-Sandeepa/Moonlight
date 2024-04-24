@@ -17,6 +17,9 @@ import SupplierForm from './SupplierForm';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import Dashboard from '../Dashboard';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SupplierBox = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -72,9 +75,14 @@ function SupplierPage() {
   }, []);
 
   useEffect(() => {
-    const filtered = suppliers.filter((supplier) =>
-      supplier.Items.some((item) => item.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+    const filtered = suppliers.filter((supplier) => {
+      // Check if supplier name matches the search query
+      const nameMatches = supplier.supName.toLowerCase().includes(searchQuery.toLowerCase());
+      // Check if any item matches the search query
+      const itemsMatch = supplier.Items.some((item) => item.toLowerCase().includes(searchQuery.toLowerCase()));
+      // Return true if either name or items match the search query
+      return nameMatches || itemsMatch;
+    });
     setFilteredSuppliers(filtered);
   }, [searchQuery, suppliers]);
 
@@ -105,6 +113,15 @@ function SupplierPage() {
         console.log(response.data);
         setSuppliers((prevSuppliers) => prevSuppliers.filter((supplier) => supplier._id !== supplierToRemove));
         setOpenDialog(false);
+        toast.success('Supplier Removed', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch((error) => {
         console.error('Error deleting supplier:', error);
@@ -259,14 +276,15 @@ function SupplierPage() {
         </div>
       </Dialog>
       <div>
-      <Button
-            component={Link}
-            to="/supplyorder"
-            variant="contained"
-            color="primary"
-            style={{ position: 'flex', bottom: '0px', left: '20px' }}
->        Back
-      </Button>
+        <Button
+          component={Link}
+          to="/supplyorder"
+          variant="contained"
+          color="primary"
+          style={{ position: 'flex', bottom: '0px', left: '20px' }}
+        >
+          Back
+        </Button>
       </div>
     </Dashboard>
   );

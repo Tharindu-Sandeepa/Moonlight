@@ -94,6 +94,7 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                                         </Button>
                                         <Button
                                             sx={{
+                                                ml: 2,
                                                 borderRadius: '30px',
                                                 backgroundColor: '#FF0000', // Red color
                                                 color: '#FFF', // White text color
@@ -121,3 +122,4 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
 }
 
 export default SupOrderTable;
+ 
