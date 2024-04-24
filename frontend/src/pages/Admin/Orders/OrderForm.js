@@ -38,12 +38,12 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
         if (!orderID.trim()) {
             errors.orderID = 'Order ID is required';
         }
-        if (!total.trim()) {
+        if (typeof total !== 'string' || !total.trim()) {
             errors.total = 'Total is required';
         } else if (isNaN(total)) {
             errors.total = 'Total must be a number';
         }
-        if (!amount.trim()) {
+        if (typeof amount !== 'string' || !amount.trim()) {
             errors.amount = 'Amount is required';
         } else if (isNaN(amount)) {
             errors.amount = 'Amount must be a number';
@@ -55,11 +55,12 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
             errors.slip = 'Slip is required';
         }
         setErrors(errors);
-
+    
         if (Object.keys(errors).length === 0) {
             isEdit ? updateOrder({ id, userID, orderID, items, total, amount, date, slip, status }) : addOrder({ userID, orderID, items, total, amount, date, slip, status });
         }
     };
+    
 
     useEffect(() => {
         if (!submitted) {

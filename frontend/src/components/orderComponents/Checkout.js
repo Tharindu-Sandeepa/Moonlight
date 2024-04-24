@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Paper,
-  Grid,
-  TextField,
-  Button,
-} from '@mui/material';
+import { Box, Typography, Paper, Grid, TextField, Button, InputLabel } from '@mui/material';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   // Extract checkout data from the state
   const { username, cart, total } = location.state || {};
 
@@ -25,19 +18,34 @@ const Checkout = () => {
   const [paymentDate, setPaymentDate] = useState('');
   const [slip, setSlip] = useState(null);
 
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const base64String = reader.result;
+        setSlip(base64String);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     // Create an order object
     const orderData = {
-      userID: username, // Assuming username is used as the userID
-      orderID: Date.now().toString(), // Generate a unique order ID
+      userID: username,
+      orderID: Date.now().toString(),
       items: cart,
       total,
+      amount,
       date: new Date().toISOString(),
-      slip: '', // If you have slip data, you can add it here
-      status: 'Pending', // Assuming a default status for the order
+      slip: slip || '', // Include the slip data if available, otherwise empty string
     };
 
     try {
@@ -46,13 +54,46 @@ const Checkout = () => {
 
       if (response.status === 200) {
         // If the order is successfully stored, navigate to a confirmation page
-        navigate('/order-confirmation');
+        
+        navigate('/');
+
+      // Reload the page
+      window.location.reload();
+
+      // Show success message
+      toast.success('Order placed successfully!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
       } else {
         // Handle any errors
         console.error('Error storing order:', response.statusText);
+        toast.error('Failed to place order. Please try again later.', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined
+        });
       }
     } catch (error) {
       console.error('Error storing order:', error);
+      toast.error('Failed to place order. Please try again later.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
     }
   };
 
@@ -67,7 +108,7 @@ const Checkout = () => {
       </Typography>
 
       <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={4}>
           <Paper elevation={2} sx={{ padding: '20px', borderRadius: '8px' }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
               Review Your Order
@@ -90,54 +131,69 @@ const Checkout = () => {
 
         <Grid item xs={12} md={4}>
           <Paper elevation={2} sx={{ padding: '20px', borderRadius: '8px' }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+            <Typography variant="h6" margin="20px" sx={{ fontWeight: 'bold' }}>
               Payment Details
+            </Typography>
+
+            <Box>
+              <Typography variant="body1" gutterBottom>
+                Name: U.K.Sunandha
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Account Number: 1050 5226 2750
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Bank Name: SAMPATH BANK PLC
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Branch Name: KALUTARA BRANCH
+              </Typography>
+              <Typography variant="body2">
+                Transfer the deposit amount to the provided bank account details.
+              </Typography>
+            </Box>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Paper elevation={2} sx={{ padding: '20px', borderRadius: '8px' }}>
+            <Typography variant="h6" margin="20px" sx={{ fontWeight: 'bold' }}>
+              Payment Form
             </Typography>
 
             <form onSubmit={handleSubmit}>
               {/* Card Number Input */}
+              <InputLabel>Advanced Payment</InputLabel>
               <TextField
                 fullWidth
+                margin="normal"
                 label="Amount"
                 variant="outlined"
-                margin="normal"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 required
               />
 
-              {/* Expiration Date Input */}
+              {/* Payment Date Input */}
+              <InputLabel>Payment Date</InputLabel>
               <TextField
                 fullWidth
-                label="Expiration Date (MM/YY)"
-                variant="outlined"
                 margin="normal"
+                type="date"
+                variant="outlined"
                 value={paymentDate}
                 onChange={(e) => setPaymentDate(e.target.value)}
                 required
               />
 
-              {/* CVV Input */}
+              <InputLabel>Upload Slip</InputLabel>
               <TextField
-                fullWidth
-                label="CVV"
-                variant="outlined"
                 margin="normal"
-                value={cvv}
-                onChange={(e) => setCvv(e.target.value)}
-                required
-                type="password"
-              />
-
-              {/* Billing Address Input */}
-              <TextField
+                type="file"
+                accept="slip/*"
+                onChange={handleChange}
                 fullWidth
-                label="Billing Address"
                 variant="outlined"
-                margin="normal"
-                value={billingAddress}
-                onChange={(e) => setBillingAddress(e.target.value)}
-                required
               />
 
               {/* Submit Button */}
