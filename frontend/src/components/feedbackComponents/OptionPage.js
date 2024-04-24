@@ -22,7 +22,7 @@ const OptionPage = () => {
     }, []);
 
     const getFeedback = () => {
-        Axios.get('http://localhost:5002/api/feedbacks')
+        Axios.get('http://localhost:3001/api/feedbacks')
             .then(response => {
                 setFeedback(response.data?.response || []);
             })
@@ -34,7 +34,7 @@ const OptionPage = () => {
     const createFeedback = (data) => {
         setSubmitted(true);
         const payload = { id: data.id, User_ID: data.User_ID, name: data.name, email: data.email, Jewelry_ID: data.Jewelry_ID, Jewelry_Name: data.Jewelry_Name, rating: data.rating, feedback: data.feedback };
-        Axios.post('http://localhost:5002/api/createfeedback', payload)
+        Axios.post('http://localhost:3001/api/createfeedback', payload)
             .then(() => {
                 getFeedback();
                 setSubmitted(false);
@@ -49,7 +49,7 @@ const OptionPage = () => {
     const updateFeedback = (data) => {
         setSubmitted(true);
         const payload = { ...data };
-        Axios.post('http://localhost:5002/api/updateFeedback', payload)
+        Axios.post('http://localhost:3001/api/updateFeedback', payload)
             .then(() => {
                 getFeedback();
                 setSubmitted(false);
@@ -62,7 +62,7 @@ const OptionPage = () => {
     }
 
     const deleteFeedback = (data) => {
-        Axios.post('http://localhost:5002/api/deleteFeedback', data)
+        Axios.post('http://localhost:3001/api/deleteFeedback', data)
             .then(() => {
                 getFeedback();
             })

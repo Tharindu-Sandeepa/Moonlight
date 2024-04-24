@@ -35,7 +35,7 @@ import Itemlist from "./pages/Admin/Jewellry/jewellryManage";
 import ItemPage from "./components/jewellryComponents/ItemPage"
 import Footer from './components/Footer';
 import UpdateImageForm from './pages/Admin/Jewellry/UpdateImageForm';
-import Checkout  from './components/orderComponents/Checkout';
+import Checkout from './components/orderComponents/Checkout';
 
 import Forgotpw from './components//userComponents/ForgotPassword';
 
@@ -57,7 +57,7 @@ const App = () => {
   useEffect(() => {
     // Check if user is already logged in (e.g., by having a token in localStorage)
     const storedToken = Cookies.get('token');
-    
+
     if (storedToken) {
       setToken(storedToken);
       setLoggedIn(true);
@@ -69,16 +69,16 @@ const App = () => {
   }, []);
 
   const handleLogin = (userData) => {
-   
+
     setToken(userData.token);
     setLoggedIn(true);
     // Store token and username in cookie for persistent login
     Cookies.set('token', userData.token);
-   
+
   };
 
   const handleLogout = () => {
-  
+
     setToken('');
     setLoggedIn(false);
     // Clear token and username from cookie
@@ -104,50 +104,50 @@ const App = () => {
         <>
           {renderNavbar()}
           <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login onLogin={handleLogin} setUsername={setUsername} />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/myaccount" element={<MyAccount />} />
-            <Route path="/userinfotest" element={<Userinfotest />} />
-            <Route path='/forgotpw' element={<Forgotpw />} />
-            <Route path="/checkout" element={<Checkout />} />
-            
-            
-            <Route path="/jewllery-grid" element={<ImageGridPage />} />
-          <Route path="/add-jewllery" element={<AddItem />} />
-          <Route path="/itemlist" element={<Itemlist />} />
-          <Route path="/item/:itemId" element={<ItemPage/>} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login onLogin={handleLogin} setUsername={setUsername} />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/myaccount" element={<MyAccount />} />
+              <Route path="/userinfotest" element={<Userinfotest />} />
+              <Route path='/forgotpw' element={<Forgotpw />} />
+              <Route path="/checkout" element={<Checkout />} />
 
-          <Route path='cart' element={<CustomerCart />} />
-            
-          
-            <Route path="/admin" element={<Dashboard />} />
-            <Route path="/admin/users" element={<Usermanage />} />
-            <Route path="/admin/Orders" element={<Ordermanage />} />
-            <Route path="/Newum" element={<Newum />} />
-            <Route path="/update-image/:id" element={<UpdateImageForm />} />
-            
-            <Route path="/admin/Orders" element={<Ordermanage />} />
 
-            <Route path='/supplyorder' element={<SupplyOrder />} />
-            <Route path='/orderform' element={<OrderForm/>} />
-            <Route path='/edit-supply-order' element={<EditSupplyOrderForm/>} />
-            <Route path='/suppliers' element={<Suppliers/>} />
-            <Route path='/add-supplier' element={<AddSupplier/>}/>
-            <Route path='/update-supplier' element={<SupplierForm/>}/>
+              <Route path="/jewllery-grid" element={<ImageGridPage />} />
+              <Route path="/add-jewllery" element={<AddItem />} />
+              <Route path="/itemlist" element={<Itemlist />} />
+              <Route path="/item/:itemId" element={<ItemPage />} />
 
-            <Route path='/feedback' element={<OptionPage/>}/>
-      <Route path='/AdminFeedbackView' element={<AdminFeedbackView/>}/>
-      <Route path='/ViewFeedback' element={<ViewFeedback/>}/>
-      
-    
+              <Route path='cart' element={<CustomerCart />} />
 
-          </Routes>
-         </AuthProvider><Footer/>
+
+              <Route path="/admin" element={<Dashboard />} />
+              <Route path="/admin/users" element={<Usermanage />} />
+              <Route path="/admin/Orders" element={<Ordermanage />} />
+              <Route path="/Newum" element={<Newum />} />
+              <Route path="/update-image/:id" element={<UpdateImageForm />} />
+
+              <Route path="/admin/Orders" element={<Ordermanage />} />
+
+              <Route path='/supplyorder' element={<SupplyOrder />} />
+              <Route path='/orderform' element={<OrderForm />} />
+              <Route path='/edit-supply-order' element={<EditSupplyOrderForm />} />
+              <Route path='/suppliers' element={<Suppliers />} />
+              <Route path='/add-supplier' element={<AddSupplier />} />
+              <Route path='/update-supplier' element={<SupplierForm />} />
+
+              <Route path='/feedback' element={<OptionPage />} />
+              <Route path='/AdminFeedbackView' element={<AdminFeedbackView />} />
+              <Route path='/ViewFeedback' element={<ViewFeedback />} />
+
+
+
+            </Routes>
+          </AuthProvider><Footer />
         </>
       )}
-       
+
     </div>
   );
 };
