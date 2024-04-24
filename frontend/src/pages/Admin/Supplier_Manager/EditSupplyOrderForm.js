@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Box, Grid, Input, Typography, Radio, RadioGroup, FormControlLabel } from "@mui/material";
 import Axios from "axios";
 import { useLocation, useNavigate } from 'react-router-dom';
-import Sidenav from '../../component/Sidenav';
 import Alert from '@mui/material/Alert';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from '../Dashboard';
 
 const EditSupplyOrderForm = () => {
     // eslint-disable-next-line
@@ -54,12 +56,21 @@ const EditSupplyOrderForm = () => {
             description: data.description,
             status: data.status,
         }
-        Axios.post('http://localhost:3001/api/createsupOrder', payload)
+        Axios.post('http://localhost:5002/api/createsupOrder', payload)
             .then(() => {
                 getOrders();
                 setSubmitted(false); 
                 setIsEdit(false);
                 setShowAlert(true);
+                toast.success('Order Successfully Created', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             })
             .catch(error => {
                 console.error("Axios Error : ", error);
@@ -81,12 +92,21 @@ const EditSupplyOrderForm = () => {
           status: data.status,
       }
   
-      Axios.post('http://localhost:3001/api/updatesupOrder', payload)
+      Axios.post('http://localhost:5002/api/updatesupOrder', payload)
           .then(() => {
               navigate('/edit-supply-order', { state: { selectedsupOrder: data } });
               setSubmitted(false);
               setIsEdit(false);
               setShowAlert(true);
+              toast.success('Order Successfully Updated', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
           })
           .catch(error => {
               console.error("Axios Error : ", error);
@@ -108,9 +128,9 @@ const EditSupplyOrderForm = () => {
     }
 
     return(
-      
+      <Dashboard>
         <div>
-            <Sidenav>
+            
                 <Box sx={{ 
                     border: '2px solid #000', 
                     borderRadius: '5px', 
@@ -288,8 +308,10 @@ const EditSupplyOrderForm = () => {
                 <Button variant="contained" onClick={() => navigate('/supplyorder')}>
                     Back
                 </Button>
-            </Sidenav>
+            
         </div>
+
+        </Dashboard>
     )
 }
 

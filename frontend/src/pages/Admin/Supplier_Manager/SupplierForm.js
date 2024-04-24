@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function SupplierForm({ supplier, onCancel, onUpdate }) {
   const [formData, setFormData] = useState({
     supName: supplier.supName,
@@ -23,14 +24,14 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
       description: formData.description,
     };
   
-    axios.post('http://localhost:3001/api/updatesupplier', updatedSupplierData)
+    axios.post('http://localhost:5002/api/updatesupplier', updatedSupplierData)
       .then(response => {
         // Handle successful update
         console.log(response.data);
         onUpdate(updatedSupplierData); // Notify the parent component about the update with the updated data
         // Display toast notification
         toast.success('Supplier updated successfully', {
-          position: "top",
+          position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -88,6 +89,8 @@ function SupplierForm({ supplier, onCancel, onUpdate }) {
         </div>
       </form>
     </div>
+
+    
   );
 }
 

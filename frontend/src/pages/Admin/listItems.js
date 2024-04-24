@@ -75,13 +75,15 @@ export const mainListItems = (
       <ListItemText primary="Inventory" />
     </ListItemButton>
 
+    <Link to="/supplyorder">
     <ListItemButton>
       <ListItemIcon >
         <Groups2Icon />
       </ListItemIcon>
       <ListItemText primary="Suppliers" />
     </ListItemButton>
-
+    </Link>
+  
     <ListItemButton >
       <ListItemIcon >
         <EngineeringIcon />
@@ -89,12 +91,13 @@ export const mainListItems = (
       <ListItemText primary="Employees" />
     </ListItemButton>
 
+<Link to="/AdminFeedbackView">
     <ListItemButton >
       <ListItemIcon >
         <SupportAgentIcon />
       </ListItemIcon>
-      <ListItemText primary="Customer Service" />
-    </ListItemButton>
+      <ListItemText primary="Manage Feedback" />
+    </ListItemButton></Link>
   </React.Fragment>
 );
 

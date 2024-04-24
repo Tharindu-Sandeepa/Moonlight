@@ -5,9 +5,11 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Sidenav from '../../component/Sidenav';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from '../Dashboard';
 
 
 const AddSupplier = () => {
@@ -28,12 +30,21 @@ const AddSupplier = () => {
   };
 
   const handleAddSupplier = () => {
-    axios.post('http://localhost:3001/api/createsupplier', newSupplier)
+    axios.post('http://localhost:5002/api/createsupplier', newSupplier)
       .then(response => {
         console.log(response.data);
         setTimeout(() => {
           setShowAlert(true); // Set showAlert to true after a delay
         }, 1000); // Adjust the delay time as needed
+        toast.success('New Supplier Added Successfully', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
       })
       .catch(error => {
         console.error("Error adding supplier:", error);
@@ -41,7 +52,7 @@ const AddSupplier = () => {
   };
 
   return (
-    <Sidenav>
+    <Dashboard>
       <Container maxWidth="lg">
 
       {showAlert &&
@@ -88,7 +99,7 @@ const AddSupplier = () => {
       <Button variant="contained" onClick={() => navigate('/suppliers')}>
         Back
       </Button>
-    </Sidenav>
+    </Dashboard>
   );
 };
 
