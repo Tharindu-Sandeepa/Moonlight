@@ -78,7 +78,11 @@ const ImageGridPage = () => {
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += "Name,Type,Description,Price\n";
     filteredImages.forEach(data => {
-      csvContent += `${data.name},${data.type},${data.description},${data.price}\n`;
+        const name = `"${data.name}"`;
+        const type = `"${data.type}"`;
+        const description = `"${data.description}"`;
+        const price = `"${data.price}"`;
+        csvContent += `${name},${type},${description},${price}\n`;
     });
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -87,7 +91,8 @@ const ImageGridPage = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
+};
+
 
   return (
     <div>

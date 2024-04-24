@@ -1,7 +1,7 @@
 import { Box, Button, Paper } from "@mui/material";
 import FeedbackForm from "./FeedbackForm";
 import { useNavigate } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -14,6 +14,10 @@ const OptionPage = () => {
     const [selectedFeedback, setSelectedFeedback] = useState({});
     const [isEdit, setIsEdit] = useState(false);
     const [showForm, setShowForm] = useState(true);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const userId = queryParams.get('userId');
+    const itemId = queryParams.get('itemId');
 
     const navigate = useNavigate();
 
@@ -135,11 +139,13 @@ const OptionPage = () => {
             )}
             {showForm && (
                 <FeedbackForm
-                    createFeedback={createFeedback}
-                    updateFeedback={updateFeedback}
-                    submitted={submitted}
-                    data={selectedFeedback}
-                    isEdit={isEdit}
+                createFeedback={createFeedback}
+                updateFeedback={updateFeedback}
+                submitted={submitted}
+                data={selectedFeedback}
+                isEdit={isEdit}
+                userId={userId}
+                itemId={itemId}
                 />
             )}
         </Box>

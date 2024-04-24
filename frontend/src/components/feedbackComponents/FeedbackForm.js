@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Button, Grid, Typography, TextField, Paper } from "@mui/material";
 import { Rating } from "@mui/material";
 
-const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data }) => {
+const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data ,userId, itemId}) => {
     const [id, setId] = useState(0);
-    const [User_ID, setUser_ID] = useState(0);
+    const [User_ID, setUser_ID] = useState(userId);
+    const [Jewelry_ID, setJewelry_ID] = useState(itemId);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [Jewelry_ID, setJewelry_ID] = useState(0);
+    
     const [Jewelry_Name, setJewelry_Name] = useState('');
     const [rating, setRating] = useState(null);
     const [feedback, setFeedback] = useState('');
@@ -25,7 +26,7 @@ const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data 
             setFeedback('');
             setErrors({});
         }
-    }, [submitted]);
+    }, [submitted,userId, itemId]);
 
     useEffect(() => {
         if (data?.id && data.id !== 0) {
@@ -105,6 +106,10 @@ const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data 
 
     return (
         <Paper elevation={3} sx={{ padding: '20px', margin: 'auto', width: '70%' }}>
+
+            <Typography>{userId}</Typography>
+            <Typography>{Jewelry_ID}</Typography>
+
             <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Feedback Form</Typography>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
@@ -120,15 +125,14 @@ const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data 
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                <TextField
                         label="User ID"
                         value={User_ID}
-                        onChange={(e) => setUser_ID(e.target.value)}
+                        InputProps={{
+                            readOnly: true, // Make the field read-only
+                        }}
                         fullWidth
                         variant="outlined"
-                        error={Boolean(errors.User_ID)}
-                        helperText={errors.User_ID}
-                        required
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -156,15 +160,14 @@ const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data 
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                <TextField
                         label="Jewelry ID"
                         value={Jewelry_ID}
-                        onChange={(e) => setJewelry_ID(e.target.value)}
-                        fullWidth
+                        InputProps={{
+                            readonly: true, // Make the field read-only
+                        }}
+                        full-width
                         variant="outlined"
-                        error={Boolean(errors.Jewelry_ID)}
-                        helperText={errors.Jewelry_ID}
-                        required
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>

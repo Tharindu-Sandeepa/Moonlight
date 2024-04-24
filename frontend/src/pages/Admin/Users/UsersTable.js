@@ -29,7 +29,7 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
     };
     const userCounts = countUsersByType();
 
-    // Filtered rows based on search query and user type filter
+    // Filter rows by type
     const filteredRows = rows.filter(row =>
         [row.name, row.email, row.tp, row.username, row.type].some(field =>
             field ? field.toString().toLowerCase().includes(searchQuery.toLowerCase()) : false
@@ -42,9 +42,9 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
         }
     });
 
-    // CSV report using filtered rows instead of all rows
+    // CSV report 
     const csvReport = {
-        data: filteredRows, // Use filteredRows instead of all rows
+        data: filteredRows, 
         headers: headers,
         filename: "user_report.csv"
     };
@@ -54,7 +54,7 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
     return (
         <ThemeProvider theme={theme}>
             <div>
-                {/* Paper displaying user counts */}
+                
                 <Paper elevation={3} sx={{
                     display: 'flex',
                     flexDirection: 'column',
