@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const Checkout = () => {
   const location = useLocation();
@@ -19,10 +21,9 @@ const Checkout = () => {
   const { username, cart, total } = location.state || {};
 
   // State variables to store payment details
-  const [cardNumber, setCardNumber] = useState('');
-  const [expirationDate, setExpirationDate] = useState('');
-  const [cvv, setCvv] = useState('');
-  const [billingAddress, setBillingAddress] = useState('');
+  const [amount, setAmount] = useState('');
+  const [paymentDate, setPaymentDate] = useState('');
+  const [slip, setSlip] = useState(null);
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -97,11 +98,11 @@ const Checkout = () => {
               {/* Card Number Input */}
               <TextField
                 fullWidth
-                label="Card Number"
+                label="Amount"
                 variant="outlined"
                 margin="normal"
-                value={cardNumber}
-                onChange={(e) => setCardNumber(e.target.value)}
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
                 required
               />
 
@@ -111,8 +112,8 @@ const Checkout = () => {
                 label="Expiration Date (MM/YY)"
                 variant="outlined"
                 margin="normal"
-                value={expirationDate}
-                onChange={(e) => setExpirationDate(e.target.value)}
+                value={paymentDate}
+                onChange={(e) => setPaymentDate(e.target.value)}
                 required
               />
 

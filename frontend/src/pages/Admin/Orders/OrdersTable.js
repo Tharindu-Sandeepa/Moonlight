@@ -172,7 +172,7 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
                     <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Date</TableCell>
                     <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Slip</TableCell>
                     <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Status</TableCell>
-                    <TableCell sx={{ color: '#fff', fontWeight: 'bold' }}>Actions</TableCell>
+                    <TableCell sx={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Actions</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
@@ -195,7 +195,7 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder, orderData }) => {
                                 />
                             </TableCell>
                             <TableCell>{row.status}</TableCell>
-                            <TableCell>
+                            <TableCell sx={{ textAlign: 'center' }}>
                             <Button 
                                 onClick={() => selectOrder({ id: row._id, userID: row.userID, orderID: row.orderID, items: row.items, total: row.total, amount: row.amount, date: row.date, slip: row.slip, status: row.status })}
                                 sx={{
