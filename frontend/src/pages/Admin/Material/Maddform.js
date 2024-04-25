@@ -37,6 +37,10 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
         return Object.keys(errors).length === 0;
     };
 
+
+
+    
+
     useEffect(() => {
         if (!submitted) {
             setId(0);
@@ -223,7 +227,7 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
                             </form>
                             </CardContent>
 
-                            
+
                 </Card>
             </div>
         </Box>
