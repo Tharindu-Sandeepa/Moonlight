@@ -6,6 +6,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DownloadIcon from '@mui/icons-material/Download';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 
 
 
@@ -47,6 +50,35 @@ const useMaterialtable = ({rows , selecteduseMaterial , deleteUseMaterial}) =>{
             headers: headers,
             filename: "material_use_report.csv"
           };
+
+
+          const generatePDFReport = () => {
+            const doc = new jsPDF();
+    
+            // Add a title
+            doc.setFontSize(16);
+            doc.text("Use Material Details Report", 14, 20);
+    
+            // Create table data
+            const tableData = filteredRows.map(row => [
+                row.useId,
+                row.useName,
+                row.useWeight,
+                row.useDate,
+                row.useReason
+    
+            ]);
+    
+            // Add the table to the document
+            doc.autoTable({
+                startY: 30,
+                head: [headers.map(header => header.label)],
+                body: tableData
+            });
+    
+            // Save the PDF
+            doc.save("USe_material_report.pdf");
+        };
         
 
 return(
@@ -109,17 +141,7 @@ return(
                                     )
                                 }}
                                 />
-                                {/* <Paper elevation={3} sx={{
-                
-             
-                display: 'flex', 
-                alignItems: 'center',
-                justifyContent: 'center',            
-                borderRadius: '10px',
-                width: 250,
-                height: 20,
-                padding: '20px'
-            }}> */}
+                               
                 
                 <Button
                         startIcon={<DownloadIcon/>}
@@ -131,6 +153,7 @@ return(
                         fontWeight: 'bold',
                         fontSize: 14,
                         borderRadius: '5px',
+                        mr:-40,
                         
                         backgroundColor: '#1565c0',
                         '&:hover': {
@@ -148,6 +171,28 @@ return(
                         Download CSV Report  
                     </CSVLink>
                 </Button>
+
+                <Button
+                         startIcon={<DownloadIcon/>}
+                         sx={{
+                             
+                             justifySelf: 'center',
+                             alignSelf: 'center',
+                             color: "white",
+                             fontWeight: 'bold',
+                             fontSize: 14,
+                             borderRadius: '5px',
+                             
+                             backgroundColor: '#1565c0',
+                             '&:hover': {
+                                 backgroundColor: '#0d47a1',
+                             },
+                        }}
+                        onClick={generatePDFReport}
+                    >
+                        Use Material Report (PDF)
+                    </Button>
+          
         
 
                         

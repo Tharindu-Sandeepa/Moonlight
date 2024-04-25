@@ -27,7 +27,10 @@ const useMaterialform = ({ addUseMaterials, updateUSeMaterial, submitted, data, 
     
 
     useEffect(() => {
+
         if (!submitted) {
+
+
             setUseId(0);
             setUseName('');
             setUseWeight('');
@@ -38,6 +41,7 @@ const useMaterialform = ({ addUseMaterials, updateUSeMaterial, submitted, data, 
 
     useEffect(() => {
         if (data?.useId && data.useId !== 0) {
+            
             setUseId(data.useId);
             setUseName(data.useName);
             setUseWeight(data.useWeight);
@@ -131,10 +135,16 @@ const useMaterialform = ({ addUseMaterials, updateUSeMaterial, submitted, data, 
 
                                         {isEdit ? 'Update' : 'Add'}
                                     </Button>
-                                </Grid>
+                              
+                              
+                              
+                                  </Grid>
                             </Grid>
                         </form>
-                    </CardContent>
+                        </CardContent>
+               
+               
+               
                 </Card>
             </div>
         </Box>

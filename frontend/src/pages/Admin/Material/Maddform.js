@@ -68,8 +68,11 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
     return (
         <Box sx={{ width: 'calc(100% - 100px)' }}>
             <div className="mainform">
+
+
                 <Card style={{ maxWidth: 1000, margin: "0 auto", padding: "20px 5px" }}>
                     <CardContent>
+
                     <form onSubmit={(e) => {
                             e.preventDefault();
                             if (validateForm()) {
@@ -77,6 +80,8 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
                                     addMaterials({ id, name, weight, order, supplierID, cost, voucher, date, special });
                             }
                         }}>
+
+
                             <Grid container spacing={1}>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
@@ -101,14 +106,14 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
                                         helperText={errors.name}
                                         
                                     >
-                                        <MenuItem value="">Select Material</MenuItem>
-                                        <MenuItem value="Silver">Silver</MenuItem>
-                                        <MenuItem value="Gold">Gold</MenuItem>
-                                        <MenuItem value="Platinum">Palladium</MenuItem>
-                                        <MenuItem value="Palladium">Platinum</MenuItem>
-                                        <MenuItem value="Copper">Copper</MenuItem>
-                                        <MenuItem value="Alloy-silver">Alloy(for Silver)</MenuItem>
-                                        <MenuItem value="Alloy-Gold">Alloy(for Gold)</MenuItem>
+                                                    <MenuItem value="">Select Material</MenuItem>
+                                                    <MenuItem value="Silver">Silver</MenuItem>
+                                                    <MenuItem value="Gold">Gold</MenuItem>
+                                                    <MenuItem value="Platinum">Palladium</MenuItem>
+                                                    <MenuItem value="Palladium">Platinum</MenuItem>
+                                                    <MenuItem value="Copper">Copper</MenuItem>
+                                                    <MenuItem value="Alloy-silver">Alloy(for Silver)</MenuItem>
+                                                    <MenuItem value="Alloy-Gold">Alloy(for Gold)</MenuItem>
                                     </Select>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -154,6 +159,7 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
                                         onChange={e => setCost(e.target.value)}
                                         fullWidth
                                         variant="outlined"
+
                                         error={!!errors.cost}
                                         helperText={errors.cost}
                                         
@@ -206,12 +212,18 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
                                             
                                         }}
                                     >
+
                                         {isEdit ? 'Update' : 'Add'}
                                     </Button>
-                                </Grid>
+                                
+                                
+                                
+                                 </Grid>
                             </Grid>
-                        </form>
-                    </CardContent>
+                            </form>
+                            </CardContent>
+
+                            
                 </Card>
             </div>
         </Box>
