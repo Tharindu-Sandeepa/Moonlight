@@ -12,7 +12,7 @@ const ViewEmployee = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/employees/${id}`)
+    axios.get(`http://localhost:5002/api/employees/${id}`)
       .then(res => setEmployee(res.data))
       .catch(err => console.error(err));
   }, [id]);
@@ -46,7 +46,7 @@ const ViewEmployee = () => {
     const ottotal = calculateOtTotal();
     const tsalary = calculateTsalary();
 
-    axios.put(`http://localhost:5000/api/employees/update/${id}`, { salary: parseFloat(newSalary), otrate: parseFloat(newOtrate), ottotal, tsalary })
+    axios.put(`http://localhost:5002/api/employees/update/${id}`, { salary: parseFloat(newSalary), otrate: parseFloat(newOtrate), ottotal, tsalary })
       .then(res => {
         setEmployee(prevEmployee => ({ ...prevEmployee, salary: parseFloat(newSalary), otrate: parseFloat(newOtrate), ottotal, tsalary }));
         setNewSalary('');

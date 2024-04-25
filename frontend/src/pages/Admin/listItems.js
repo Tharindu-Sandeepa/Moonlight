@@ -88,12 +88,14 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
   
+    <Link to="/emplyee">
     <ListItemButton >
       <ListItemIcon >
         <EngineeringIcon />
       </ListItemIcon>
       <ListItemText primary="Employees" />
     </ListItemButton>
+    </Link>
 
 <Link to="/AdminFeedbackView">
     <ListItemButton >

@@ -61,6 +61,12 @@ import GemItem from './components/gemComponents/GemItemPage';
 import Materials from './pages/Admin/Material/Materials';
 import UseMaterial from './pages/Admin/Material/useMaterial';
 import MManager from './pages/Admin/Material/MManager';
+import EmpHome from './pages/Admin/EmployeeComponent/EmpHome';
+import AddEmployee from './pages/Admin/EmployeeComponent/addEmployee';
+import ViewEmployee from './pages/Admin/EmployeeComponent/viewEmployee';
+import UpdateEmployee from './pages/Admin/EmployeeComponent/updateEmployee';
+import ViewAllEmployees from './pages/Admin/EmployeeComponent/viewAllEmployees';
+import ReportEmployee from './pages/Admin/EmployeeComponent/reportEmployee';
 
 
 
@@ -165,7 +171,7 @@ const App = () => {
       <Route path='/ViewFeedback' element={<ViewFeedback/>}/>
 
 
-<<<<<<< Updated upstream
+
      
             <Route path="/GDashboard" element={< GemDashboard/>} /> 
             <Route path="/gemtable" element={< Gemtable/>} />
@@ -191,14 +197,13 @@ const App = () => {
 
               <Route path='/useMaterial' element={<UseMaterial />}>
               </Route>
-=======
-         <Route path="/" element={<EmpHome />} />
+
+         <Route path="/emplyee" element={<EmpHome />} />
         <Route path="/add" element={<AddEmployee />} />
         <Route path="/view/:id" element={<ViewEmployee />} />
         <Route path="/update/:id" element={<UpdateEmployee />} />
         <Route path="/view-all" element={<ViewAllEmployees />} />
         <Route path="/report" element={<ReportEmployee />} />
->>>>>>> Stashed changes
       
 
           </Routes>

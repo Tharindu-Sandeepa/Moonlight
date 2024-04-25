@@ -38,11 +38,11 @@ const AddEmployee = () => {
       return;
     }
 
-    axios.post('http://localhost:5000/api/employees/add', employee)
+    axios.post('http://localhost:5002/api/employees/add', employee)
       .then(res => {
         console.log(res.data);
         setSuccessMessage('Employee added successfully.');
-        navigate('/'); // Navigate to home page after successful addition
+        navigate('/view-all'); // Navigate to home page after successful addition
       })
       .catch(err => {
         console.error(err);

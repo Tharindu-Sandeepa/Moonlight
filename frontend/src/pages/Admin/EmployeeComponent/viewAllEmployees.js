@@ -8,14 +8,14 @@ const ViewAllEmployees = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/employees/')
+    axios.get('http://localhost:5002/api/employees/')
       .then(res => setEmployees(res.data))
       .catch(err => console.error(err));
   }, []);
 
   const handleDelete = id => {
     if (window.confirm('Are you sure you want to delete this employee?')) {
-      axios.delete(`http://localhost:5000/api/employees/${id}`)
+      axios.delete(`http://localhost:5002/api/employees/${id}`)
         .then(res => {
           console.log(res.data);
           setEmployees(employees.filter(emp => emp._id !== id));

@@ -5,7 +5,7 @@ import logo from '../../../img/logo.jpeg';
 import employeeImage from '../../../img/employee.jpg';
 import reportImage from '../../../img/report.jpeg';
 
-const Home = () => {
+const EmpHome = () => {
   return (
     <div className="container mt-5">
       <h1 className="mb-4">Welcome to Employee Management.!</h1>
@@ -24,6 +24,18 @@ const Home = () => {
                 Click below to add a new employee.
               </Card.Text>
               <Link to="/add" className="btn btn-primary">Add Employee</Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={6}>
+          <Card>
+            <Card.Img variant="top" src={employeeImage} alt="Add Employee" />
+            <Card.Body>
+              <Card.Title>View All Employees</Card.Title>
+              <Card.Text>
+                Click below to viewall employee.
+              </Card.Text>
+              <Link to="/view-all" className="btn btn-primary">View all Employees</Link>
             </Card.Body>
           </Card>
         </Col>

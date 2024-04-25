@@ -54,6 +54,9 @@ app.use("/get-item/:id", jewlleryRoutes);
 app.use('/api',suproute);
 app.use('/api',supListRoute);
 
+const employeeRoutes = require('./routes/employee.route');
+app.use('/api/employees', employeeRoutes);
+
 app.use('/api/orders', router3);
 
 
