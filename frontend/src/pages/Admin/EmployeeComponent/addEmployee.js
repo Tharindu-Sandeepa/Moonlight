@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Alert, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Dashboard from '../Dashboard';
 
 const AddEmployee = () => {
   const navigate = useNavigate();
@@ -51,6 +52,7 @@ const AddEmployee = () => {
   };
 
   return (
+    <Dashboard title="Employee Management">
     <div className="container mt-5" style={{marginBottom: "25px"}}>
       <h2 className="mb-4">Add Employee</h2>
       <Card className="p-4">
@@ -82,7 +84,7 @@ const AddEmployee = () => {
           </Button>
         </Form>
       </Card>
-    </div>
+    </div></Dashboard>
   );
 };
 

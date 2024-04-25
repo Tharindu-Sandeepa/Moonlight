@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
@@ -6,7 +7,6 @@ import IconButton from '@mui/joy/IconButton';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Divider from '@mui/joy/Divider';
-import Input from '@mui/joy/Input';
 import List from '@mui/joy/List';
 import ListSubheader from '@mui/joy/ListSubheader';
 import ListItem from '@mui/joy/ListItem';
@@ -17,7 +17,6 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import SendIcon from '@mui/icons-material/Send';
 
 import logo from '../img/logo.png';
 
@@ -30,18 +29,17 @@ export default function ColorInversionFooter() {
     <Sheet
       variant="solid"
       sx={{
-        mt:10,
+        mt: 20,
         backgroundColor: backgroundColor,
         color: textColor,
         padding: 2,
         borderRadius: { xs: 0, sm: 'sm' },
         boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-        mt:20
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Typography level="h5" sx={{ flexGrow: 1 }}>
-          MoonLight
+          Moonlight
         </Typography>
         <Divider orientation="vertical" sx={{ height: 24 }} />
         <IconButton color="primary">
@@ -56,7 +54,6 @@ export default function ColorInversionFooter() {
         <IconButton color="primary">
           <GitHubIcon />
         </IconButton>
-       
       </Box>
       <Divider sx={{ my: 2 }} />
       <Box
@@ -88,61 +85,60 @@ export default function ColorInversionFooter() {
               flexBasis: { xs: 200, md: 'initial' },
               borderRadius: '8px',
               overflow: 'hidden',
-              alignContent:'center'
+              alignContent: 'center',
             }}
           >
-            <img src={logo} alt="MoonLight logo" style={{ width: '80%' }} />
+            <img src={logo} alt="Moonlight logo" style={{ width: '80%' }} />
           </AspectRatio>
           <CardContent>
             <Typography level="body-sm" sx={{ fontWeight: 'bold', color: primaryColor }}>
-              MoonLight
+              Moonlight
             </Typography>
             <Typography level="body-xs" sx={{ color: textColor }}>
               Gems & Jewelry
             </Typography>
           </CardContent>
         </Card>
-        <List
-          size="sm"
-          orientation="horizontal"
-          wrap
-          sx={{
-            flexGrow: 0,
-            '--ListItem-radius': '8px',
-            '--ListItem-gap': '8px',
-            gap: '10px',
-          }}
-        >
+
+        <Box sx={{ flexBasis: { xs: '100%', md: '50%' }, textAlign: 'left' }}>
+          <Typography sx={{ color: textColor }}>
+            Welcome to Moonlight, your trusted source for exquisite gems and stunning jewelry. We take pride in curating a collection that captures the essence of beauty and craftsmanship. Discover the perfect piece to celebrate your special moments or to simply treat yourself. Let Moonlight illuminate your world with the brilliance of our unique offerings.
+          </Typography>
+        </Box>
+
+        <List size="sm" orientation="horizontal" wrap sx={{ flexGrow: 0, '--ListItem-radius': '8px', '--ListItem-gap': '8px', gap: '10px' }}>
           <ListItem nested sx={{ width: { xs: '50%', md: 140 } }}>
             <ListSubheader sx={{ fontWeight: 'xl' }}>Sitemap</ListSubheader>
             <List>
               <ListItem>
-                <ListItemButton sx={{ color: primaryColor }}>Services</ListItemButton>
+                <Link to="/">
+                  <ListItemButton sx={{ color: primaryColor }}>Home</ListItemButton>
+                </Link>
               </ListItem>
               <ListItem>
-                <ListItemButton sx={{ color: primaryColor }}>Blog</ListItemButton>
+                <Link to="/GemHome">
+                  <ListItemButton sx={{ color: primaryColor }}>Gems</ListItemButton>
+                </Link>
               </ListItem>
               <ListItem>
-                <ListItemButton sx={{ color: primaryColor }}>About</ListItemButton>
-              </ListItem>
-            </List>
-          </ListItem>
-          <ListItem nested sx={{ width: { xs: '50%', md: 180 } }}>
-            <ListSubheader sx={{ fontWeight: 'xl' }}>Products</ListSubheader>
-            <List sx={{ '--ListItemDecorator-size': '32px' }}>
-              <ListItem>
-                <ListItemButton sx={{ color: primaryColor }}>Joy UI</ListItemButton>
+                <Link to="/jewllery-grid">
+                  <ListItemButton sx={{ color: primaryColor }}>Jewelry</ListItemButton>
+                </Link>
               </ListItem>
               <ListItem>
-                <ListItemButton sx={{ color: primaryColor }}>Base UI</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton sx={{ color: primaryColor }}>Material UI</ListItemButton>
+                <Link to="/feedback">
+                  <ListItemButton sx={{ color: primaryColor }}>Feedbacks</ListItemButton>
+                </Link>
               </ListItem>
             </List>
           </ListItem>
         </List>
       </Box>
+
+      {/* Add the copyright notice */}
+      <Typography variant="body2" sx={{ textAlign: 'center', mt: 2 }}>
+        &copy; Moonlight.lk 2024
+      </Typography>
     </Sheet>
   );
 }

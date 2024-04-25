@@ -49,13 +49,17 @@ const Navbar = ({ loggedIn, username, onLogout, token }) => {
                 <Button color="inherit" sx={{ color: 'black', fontWeight: 'bold' }}>Home</Button>
               </Link>
 
-              
+              <Link to="/GemHome">
               <Button color="inherit" href="/GemHome" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Gems</Button>
+              </Link>
 
               <Link to="/jewllery-grid">
               <Button color="inherit" href="#" sx={{ color: 'black', fontWeight: 'bold', marginLeft: "17px" }}>Jewelry</Button>
               </Link>
-              <Button color="inherit" href="/feedback" sx={{ color: 'black', fontWeight: 'bold' }}>Feedbacks</Button>
+
+              <Link to="/feedback">
+              <Button color="inherit"  sx={{ color: 'black', fontWeight: 'bold' }}>Feedbacks</Button>
+              </Link>
             </div>
           </Hidden>
         </div>

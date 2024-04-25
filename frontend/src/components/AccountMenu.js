@@ -75,16 +75,12 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
 
-<Link to='/myaccount'>
-        <MenuItem onClick={handleClose}>
-          <Avatar />  My Account
-        </MenuItem>
+<Link to="/myaccount" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <MenuItem onClick={handleClose}>
+        <Avatar /> My Account
+      </MenuItem>
     </Link>
-        <Link to='/admin'>
-        <MenuItem onClick={handleClose}>
-          <Avatar />  Admin
-        </MenuItem>
-    </Link>
+    
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>

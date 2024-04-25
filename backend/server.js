@@ -22,6 +22,10 @@ const gemrouter = require('./routes/gemRoutes');
 const router6 = require('./routes/materialRouter');
 const useRouter7 = require('./routes/useMaterialRouter')
 
+//emp routes
+const employeeRoutes = require('./routes/employee.route');
+
+
 
 dotenv.config();
 
@@ -54,8 +58,7 @@ app.use("/get-item/:id", jewlleryRoutes);
 app.use('/api',suproute);
 app.use('/api',supListRoute);
 
-const employeeRoutes = require('./routes/employee.route');
-app.use('/api/employees', employeeRoutes);
+
 
 app.use('/api/orders', router3);
 
@@ -74,6 +77,8 @@ app.use('/api', inquiryRoute);
 
 app.use('/api', router6);
 app.use('/api', useRouter7);
+
+ app.use('/api/employees', employeeRoutes);
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

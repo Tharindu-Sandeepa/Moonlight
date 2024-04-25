@@ -115,7 +115,7 @@ const App = () => {
 
   
   const renderNavbar = () => {
-    const adminRoutes = ['/admin', '/newum', '/admin/Orders','/itemlist','/GDashboard','/AdminFeedbackView','/supplyorder','/mManager','/Materials','/useMaterial']; //  admin routes
+    const adminRoutes = ['/admin', '/newum', '/admin/Orders','/itemlist','/GDashboard','/AdminFeedbackView','/supplyorder','/mManager','/Materials','/useMaterial','/emplyee']; //  admin routes
     if (!adminRoutes.includes(location.pathname)) {
       return <Navbar loggedIn={loggedIn} username={username} onLogout={handleLogout} token={token} />;
     }
@@ -204,6 +204,9 @@ const App = () => {
         <Route path="/update/:id" element={<UpdateEmployee />} />
         <Route path="/view-all" element={<ViewAllEmployees />} />
         <Route path="/report" element={<ReportEmployee />} />
+
+
+
       
 
           </Routes>

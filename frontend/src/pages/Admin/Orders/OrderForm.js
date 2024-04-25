@@ -1,6 +1,5 @@
-import { Button, Grid, Typography, InputLabel,Paper, TextField, InputAdornment, Select, MenuItem } from "@mui/material";
+import { Button, Grid, Typography, InputLabel, Paper, TextField, Select, MenuItem } from "@mui/material";
 import { useEffect, useState } from "react";
-//import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
     const [id, setId] = useState(0);
@@ -12,32 +11,69 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
     const [date, setDate] = useState('');
     const [slip, setSlip] = useState(null);
     const [status, setStatus] = useState('');
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const file = e.target.files[0];
-
+    
         if (file) {
             const reader = new FileReader();
-
-        reader.onload = () => {
-            const base64String = reader.result;
-            setSlip(base64String);
-        };
-
+    
+            reader.onload = () => {
+                const base64String = reader.result;
+                setSlip(base64String);
+            };
+    
             reader.readAsDataURL(file);
         }
     };
 
+    const validateForm = () => {
+        const errors = {};
+
+        if (!userID.trim()) {
+            errors.userID = 'User ID is required';
+        }
+        if (!orderID.trim()) {
+            errors.orderID = 'Order ID is required';
+        }
+        if (isNaN(total)) {
+            errors.total = 'Total must be a number';
+        }
+        if (isNaN(amount)) {
+            errors.amount = 'Amount must be a number';
+        }
+
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    const handleSubmit = () => {
+        const isValid = validateForm();
+    
+        if (isValid) {
+            if (isEdit) {
+                updateOrder({ id, userID, orderID, items, total, amount, date, slip, status });
+            } else {
+                // Ensure you're passing the correct data to addOrder function
+                addOrder({ userID, orderID, items, total, amount, date, slip, status });
+            }
+        }
+    };
+    
+
     useEffect(() => {
         if (!submitted) {
+            setId(0);
             setUserID('');
             setOrderID('');
             setItems('');
             setTotal('');
             setAmount('');
             setDate('');
-            setSlip('');
+            setSlip(null);
             setStatus('');
+            setErrors({});
         }
     }, [submitted]);
 
@@ -50,65 +86,67 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
             setTotal(data.total || '');
             setAmount(data.amount || '');
             setDate(data.date || '');
-            setSlip(data.slip || '');
+            setSlip(data.slip || null);
             setStatus(data.status || '');
         }
     }, [data]);
 
     return (
-        <Paper elevation={3} sx={{ borderRadius: '20px', padding: '20px', backgroundColor: '#ffffff', marginBottom: '30px',mb:30 }}>
-            
+        <Paper elevation={3} sx={{ borderRadius: '20px', padding: '20px', backgroundColor: '#ffffff', marginBottom: '30px', mb: 30 }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        label="userID"
+                        label="User Name"
                         value={userID}
                         onChange={e => setUserID(e.target.value)}
                         fullWidth
                         variant="outlined"
+                        error={errors.userID ? true : false}
+                        helperText={errors.userID}
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        label="orderID"
+                        label="Order ID"
                         value={orderID}
                         onChange={e => setOrderID(e.target.value)}
                         fullWidth
                         variant="outlined"
+                        error={errors.orderID ? true : false}
+                        helperText={errors.orderID}
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        label="items"
+                        label="Items"
                         value={items}
                         onChange={e => setItems(e.target.value)}
                         fullWidth
                         variant="outlined"
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        label="total"
+                        label="Total"
                         value={total}
                         onChange={e => setTotal(e.target.value)}
                         fullWidth
                         variant="outlined"
+                        error={errors.total ? true : false}
+                        helperText={errors.total}
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        label="amount"
+                        label="Amount"
                         value={amount}
                         onChange={e => setAmount(e.target.value)}
                         fullWidth
                         variant="outlined"
+                        error={errors.amount ? true : false}
+                        helperText={errors.amount}
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <TextField
                         type="date"
@@ -116,41 +154,41 @@ const OrderForm = ({ addOrder, updateOrder, submitted, data, isEdit }) => {
                         onChange={e => setDate(e.target.value)}
                         fullWidth
                         variant="outlined"
+                        error={errors.date ? true : false}
+                        helperText={errors.date}
                     />
-                    
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                     <InputLabel>Upload Slip</InputLabel>
                     <TextField
                         type="file"
-                        value={slip}
                         accept="slip/*"
                         onChange={handleChange}
                         fullWidth
                         variant="outlined"
+                        error={errors.slip ? true : false}
+                        helperText={errors.slip}
                     />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
-                    <InputLabel>status</InputLabel>
+                    <InputLabel>Status</InputLabel>
                     <Select
                         value={status}
                         onChange={e => setStatus(e.target.value)}
                         fullWidth
                         variant="outlined"
                     >
+                        <MenuItem value="">Select Status</MenuItem>
                         <MenuItem value="Confirm">Confirm</MenuItem>
                         <MenuItem value="Processing">Processing</MenuItem>
                         <MenuItem value="Completed">Completed</MenuItem>
                     </Select>
                 </Grid>
             </Grid>
-
             <Button
                 variant="contained"
                 sx={{ marginTop: '20px', ml:'42%'}}
-                onClick={() => isEdit ? updateOrder({ id, userID, orderID, items, total, amount, date, slip, status }) : addOrder({ userID, orderID, items, total, amount, date, slip, status })}
+                onClick={handleSubmit}
             >
                 {isEdit ? 'Update' : 'Add'}
             </Button>
