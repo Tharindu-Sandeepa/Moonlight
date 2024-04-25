@@ -18,7 +18,7 @@ const ViewFeedback = () => {
     }, []);
 
     const getFeedback = () => {
-        Axios.get('http://localhost:3001/api/feedbacks')
+        Axios.get('http://localhost:5002/api/feedbacks')
             .then(response => {
                 setFeedback(response.data?.response || []);
             })
@@ -41,7 +41,7 @@ const ViewFeedback = () => {
             feedback: data.feedback,
         }
 
-        Axios.post('http://localhost:3001/api/createfeedback', payload)
+        Axios.post('http://localhost:5002/api/createfeedback', payload)
             .then(() => {
                 getFeedback();
                 setSubmitted(false);
@@ -58,7 +58,7 @@ const ViewFeedback = () => {
 
         const payload = { ...data };
 
-        Axios.post('http://localhost:3001/api/updateFeedback', payload)
+        Axios.post('http://localhost:5002/api/updateFeedback', payload)
             .then(() => {
                 getFeedback();
                 setSubmitted(false);
@@ -71,7 +71,7 @@ const ViewFeedback = () => {
     }
 
     const deleteFeedback = (data) => {
-        Axios.post('http://localhost:3001/api/deleteFeedback', data)
+        Axios.post('http://localhost:5002/api/deleteFeedback', data)
             .then(() => {
                 getFeedback();
             })

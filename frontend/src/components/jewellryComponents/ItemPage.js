@@ -6,6 +6,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { useAuth } from '../../Auth/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import { Link } from 'react-router-dom';
 
 const ItemPage = () => {
   const { itemId } = useParams();
@@ -29,6 +32,11 @@ const ItemPage = () => {
     } finally {
       setIsLoading(false); // Stop loading
     }
+  };
+
+  const navigate = useNavigate();
+  const handleAddFeedback = () => {
+    navigate(`/feedback?userId=${user._id}&itemId=${item.name}`);
   };
 
   return (
@@ -77,7 +85,18 @@ const ItemPage = () => {
                       <FavoriteIcon />
                     </IconButton>
                     <IconButton color="primary">
-                      <ShareIcon />
+                      <Button
+                        onClick={handleAddFeedback}
+                        variant="contained"
+                        color="primary"
+                        startIcon={<FeedbackIcon />}
+                        sx={{
+                          padding: '8px 16px',
+                          borderRadius: '8px',
+                        }}
+                      >
+                        Add Feedback
+                      </Button>
                     </IconButton>
                   </Box>
                 </Box>

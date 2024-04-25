@@ -16,7 +16,7 @@ const AdminFeedbackView = () => {
     }, []);
 
     const getFeedback = () => {
-        Axios.get('http://localhost:3001/api/feedbacks') //request data from backend
+        Axios.get('http://localhost:5002/api/feedbacks') //request data from backend
             .then(response => {
                 setFeedback(response.data?.response || []); //response is the data 
             })
@@ -27,7 +27,7 @@ const AdminFeedbackView = () => {
     }
 
     const deleteFeedback = (data) => {
-        Axios.post('http://localhost:3001/api/deleteFeedback', data) //request data from backend
+        Axios.post('http://localhost:5002/api/deleteFeedback', data) //request data from backend
             .then(() => {
                 getFeedback();
             })
