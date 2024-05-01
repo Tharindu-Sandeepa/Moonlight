@@ -52,15 +52,15 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
         filename: "user_report.csv"
     };
 
-    // Function to generate PDF report
+    // PDF report
     const generatePDFReport = () => {
         const doc = new jsPDF();
 
-        // Add a title
+       
         doc.setFontSize(16);
         doc.text("User Details Report", 14, 20);
 
-        // Create table data
+        
         const tableData = filteredRows.map(row => [
             row.name,
             row.email,
@@ -69,7 +69,7 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
             row.type
         ]);
 
-        // Add the table to the document
+        
         doc.autoTable({
             startY: 30,
             head: [headers.map(header => header.label)],

@@ -28,7 +28,7 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const type = "User";
   const [error, setError] = useState('');
-  const [errors, setErrors] = useState({}); // New state to track validation errors
+  const [errors, setErrors] = useState({}); // for validation errors
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -67,14 +67,14 @@ const Register = () => {
       formErrors.phone = 'Phone number must be 10 digits long';
     }
     setErrors(formErrors);
-    return Object.keys(formErrors).length === 0; // Return true if no errors
+    return Object.keys(formErrors).length === 0; 
   };
 
   const handleRegister = async () => {
-    // Validate the form before proceeding with registration
+    
     const isFormValid = validateForm();
     if (!isFormValid) {
-      return; // Prevent form submission if validation fails
+      return; // dont form submission if validation fails
     }
 
     try {

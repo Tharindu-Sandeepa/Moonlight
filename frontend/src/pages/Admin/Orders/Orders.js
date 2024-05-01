@@ -6,7 +6,7 @@ import Axios from "axios";
 import GroupAddIcon from '@mui/icons-material/ContactEmergency';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Dashboard from "../Dashboard";
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [submitted, setSubmitted] = useState(false);
@@ -153,6 +153,7 @@ const Orders = () => {
     }
 
     return (
+        <Dashboard title="Order Management">
         <Box sx={{
             width: 'calc(100% - 100px)',
             margin: 'auto',
@@ -208,7 +209,7 @@ const Orders = () => {
                 selectOrder={(data) => { setSelectOrder(data); setEdit(true); setShowForm(true); }}
                 deleteOrder={(data) => { window.confirm("Are you sure?") && deleteOrder(data) }}
             />
-        </Box>
+        </Box></Dashboard>
     );
 }
 
