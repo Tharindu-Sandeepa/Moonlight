@@ -68,7 +68,8 @@ import UpdateEmployee from './pages/Admin/EmployeeComponent/updateEmployee';
 import ViewAllEmployees from './pages/Admin/EmployeeComponent/viewAllEmployees';
 import ReportEmployee from './pages/Admin/EmployeeComponent/reportEmployee';
 
-
+import OTPVerificationPage from './components/userComponents/OTPVerificationPage';
+import PasswordUpdatePage from './components/userComponents/PasswordUpdatePage';
 
 
 const App = () => {
@@ -205,7 +206,9 @@ const App = () => {
         <Route path="/view-all" element={<ViewAllEmployees />} />
         <Route path="/report" element={<ReportEmployee />} />
 
-
+        <Route path="/otp-verification" element={<OTPVerificationPage />} />
+                <Route path="/update-password" element={<PasswordUpdatePage />} />
+                
 
       
 

@@ -21,6 +21,7 @@ const ItemPage = () => {
       getItem(itemId);
     }
   }, [itemId]);
+  
 
   const getItem = async (itemId) => {
     try {

@@ -77,6 +77,43 @@ const deleteUser = (req, res, next) => {
         });
 };
 
+
+//changepassword
+
+const changepassword = async (req, res, next) => {
+    try {
+        // Destructure email and password from req.body
+        const { email, password } = req.body;
+
+        // Find the user by email
+        const user = await Users.findOne({ email });
+
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+
+        // Update the user's password
+        await Users.updateOne(
+            { email },
+            { $set: { password: hashedPassword } }
+        );
+
+        // Send success response
+        res.status(200).json({ message: 'Password updated successfully' });
+    } catch (error) {
+        // Handle errors
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+exports.changepassword = changepassword;
+
 exports.getUsers=getUsers;
 exports.addUser =addUser;
 exports.updateUser=updateUser;

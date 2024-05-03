@@ -145,7 +145,14 @@ const Register = () => {
 
               {/* Right Side (Input Fields) */}
               <Grid item xs={8} sx={{ borderTopRightRadius: 20, borderBottomRightRadius: 20, padding: 4 }}>
-                <Typography component="h1" variant="h7">
+              <Typography
+    component="h1"
+    variant="h7"
+    sx={{
+        fontWeight: 'bold', // Use 'bold' for bold text
+        color: 'gray', // Use 'gray' for gray color
+    }}
+>
                   Sign up
                 </Typography>
                 <Box sx={{ mt: 3 }}>

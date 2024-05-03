@@ -25,7 +25,8 @@ const useRouter7 = require('./routes/useMaterialRouter')
 //emp routes
 const employeeRoutes = require('./routes/employee.route');
 
-
+//password recover
+const emailRoutes = require('./routes/emailRoutes');
 
 dotenv.config();
 
@@ -79,6 +80,9 @@ app.use('/api', router6);
 app.use('/api', useRouter7);
 
  app.use('/api/employees', employeeRoutes);
+
+ app.use('/api/email', emailRoutes);
+
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
