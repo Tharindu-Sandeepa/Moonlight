@@ -165,6 +165,13 @@ const App = () => {
                             <Route path="/report" element={<ReportEmployee />} />
                             <Route path="/otp-verification" element={<OTPVerificationPage />} />
                             <Route path="/update-password" element={<PasswordUpdatePage />} />
+
+
+                              
+            <Route path="/jewllery-grid" element={<ImageGridPage />} />
+          <Route path="/add-jewllery" element={<AddItem />} />
+          <Route path="/itemlist" element={<Itemlist />} />
+          <Route path="/item/:itemId" element={<ItemPage/>} />
                         </Routes>
                     </AuthProvider>
                     <Footer />
