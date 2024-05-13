@@ -186,12 +186,12 @@ function sendWelcomeEmail({ recipient_email, username }) {
                     </div>
                     <div class="content">
                         <p>Hi ${username},</p>
-                        <p>Welcome to Moonlight! We're thrilled to have you with us. Explore and enjoy our services. If you have any questions or need assistance, feel free to reach out.</p>
-                        <p>Regards,<br>Moonlight Team</p>
+                        <p>Welcome to Moonlight! Your account has been successfully created. In the event that you do not know your password or have forgotten it, you can establish a new password by utilizing the "Forgot Password" option on the login page. This feature ensures that you maintain secure access to your account. Thank you for choosing Moonlight.</p>
+                        <p>Regards,<br>Moonlight.lk</p>
                     </div>
                     <div class="footer">
                         <p>Moonlight Inc</p>
-                        <p>123 Main Street</p>
+                        <p>Kaluthara</p>
                         <p>Sri Lanka</p>
                     </div>
                 </div>

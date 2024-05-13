@@ -1,5 +1,6 @@
 const Users = require('../models/User');
 const bcrypt = require('bcrypt');
+const { sendWelcomeEmail } = require('./emailController');
 //getUsers
 const getUsers = (req,res,next)=>{
     Users.find()
@@ -25,6 +26,8 @@ const addUser = (req, res, next) => {
         type: type
     });
 
+
+
     user.save()
         .then(response => {
             res.json({ response });
@@ -32,6 +35,9 @@ const addUser = (req, res, next) => {
         .catch(error => {
             res.json({ error: error });
         });
+ // Send a welcome email to the user
+ sendWelcomeEmail({ recipient_email: email, username: username });
+
 };
 
 const updateUser = async (req, res, next) => {
