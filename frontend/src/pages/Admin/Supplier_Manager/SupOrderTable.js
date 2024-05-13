@@ -34,7 +34,7 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                         variant="outlined"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        InputProps={{ // Add InputProps with startAdornment containing the search icon
+                        InputProps={{ 
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <SearchIcon />
@@ -45,6 +45,7 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                     />
                 </Box>
                 <TableContainer component={Paper} elevation={0}>
+                    <Table id="supOrderTable" sx={{ minWidth: 650 }} elevation={0}>
                     <Table sx={{ minWidth: 650 }} elevation={0}>
                         <TableHead sx={{ backgroundColor: '#1565c0', color: '#fff' }}>
                             <TableRow>
@@ -94,7 +95,6 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                                         </Button>
                                         <Button
                                             sx={{
-                                                ml: 2,
                                                 borderRadius: '30px',
                                                 backgroundColor: '#FF0000', // Red color
                                                 color: '#FFF', // White text color
@@ -114,6 +114,7 @@ const SupOrderTable = ({ rows, deletesupOrder }) => {
                                 </TableRow>
                             )}
                         </TableBody>
+                    </Table>
                     </Table>
                 </TableContainer>
             </Paper>

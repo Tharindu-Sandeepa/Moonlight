@@ -194,7 +194,7 @@ const EditSupplyOrderForm = () => {
     };
 
     return(
-      <Dashboard>
+      <Dashboard title="Supplier Management">
         <div>
             
                 <Box sx={{ 

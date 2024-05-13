@@ -103,7 +103,7 @@ const OrderForm = () => {
     }
    
     return(
-    <Dashboard>
+    <Dashboard title="Supplier Management">
        <Box>
         <Box
             sx={{

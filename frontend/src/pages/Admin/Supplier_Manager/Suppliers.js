@@ -138,7 +138,7 @@ function SupplierPage() {
   };
 
   return (
-    <Dashboard>
+    <Dashboard title="Supplier Management">
       <Container maxWidth="lg">
         <Grid container justifyContent="center" alignItems="center" spacing={3}>
           <Grid item xs={12}>

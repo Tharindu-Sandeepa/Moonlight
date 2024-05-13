@@ -82,7 +82,7 @@ const AddSupplier = () => {
   };
 
   return (
-    <Dashboard>
+    <Dashboard title="Supplier Management">
       <Container maxWidth="lg">
         {showAlert && (
           <Alert variant="outlined" severity="success">
