@@ -22,6 +22,10 @@ const gemrouter = require('./routes/gemRoutes');
 const router6 = require('./routes/materialRouter');
 const useRouter7 = require('./routes/useMaterialRouter')
 
+const newMaterialRouter = require('./routes/newMaterialRouter')
+const totalWeightRouter = require('./routes/totalWeightRoutes')
+
+
 
 dotenv.config();
 
@@ -71,6 +75,10 @@ app.use('/api', inquiryRoute);
 
 app.use('/api', router6);
 app.use('/api', useRouter7);
+
+app.use('/api',newMaterialRouter);
+app.use('/api',totalWeightRouter)
+
 
 const PORT = process.env.PORT || 5002;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

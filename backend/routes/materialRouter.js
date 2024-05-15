@@ -6,5 +6,6 @@ router.get('/materials' , controller.getmat);
 router.post('/addmaterial' , controller.addmat);
 router.post('/updatematerial' , controller.updatemat);
 router.post('/deletematerial' , controller.deletemat);
+router.get('/getMaterialNamesWeight' , controller.getMaterialNamesWeight);
 
 module.exports= router;

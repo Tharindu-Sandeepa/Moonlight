@@ -15,9 +15,9 @@ const getusemat = (req,res,next) => {
 
 const addusemat = (req,res,next) => {
     const usematerial = new useMaterial({
+        
         useId: req.body.useId,
         useName: req.body.useName,
-      //  useType: req.body.useType,
         useWeight: req.body.useWeight,
         useDate: req.body.useDate,
         useReason: req.body.useReason,

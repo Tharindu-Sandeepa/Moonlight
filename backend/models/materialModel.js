@@ -21,8 +21,8 @@ const materialSchema = new Schema({
         required: true,
         min: 0 
     },
-    supplierID: {
-         type: Number,
+    supplierName: {
+         type: String,
           required: true, 
           min: 0 
     },
@@ -47,6 +47,3 @@ const materialSchema = new Schema({
 });
 const Material = mongoose.model('matone', materialSchema);
 module.exports = Material;
-
-
-

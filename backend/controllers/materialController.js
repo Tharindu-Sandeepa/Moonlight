@@ -1,4 +1,5 @@
 
+
 const Material = require('../models/materialModel');
 
 
@@ -20,7 +21,7 @@ const addmat = (req,res,next) => {
        // type: req.body.type,
         weight: req.body.weight,
         order: req.body.order,
-        supplierID: req.body.supplierID,
+        supplierName: req.body.supplierName,
         cost: req.body.cost,
         voucher: req.body.voucher,
         date: req.body.date,
@@ -39,7 +40,7 @@ const addmat = (req,res,next) => {
 }
 
 const updatemat = (req,res,next) => {
-    const {id,name,/*type,*/weight,order,supplierID,cost,voucher,date,special} = req.body;
+    const {id,name,/*type,*/weight,order,supplierName,cost,voucher,date,special} = req.body;
     Material.updateOne(
         {id : id}, 
         {
@@ -48,7 +49,7 @@ const updatemat = (req,res,next) => {
               //  type: type,
                 weight: weight,
                 order: order,
-                supplierID: supplierID,
+                supplierName: supplierName,
                 cost: cost,
                 voucher: voucher,
                 date: date,
@@ -77,10 +78,23 @@ const deletemat = (req,res,next) =>{
         });
 }
 
+const getMaterialNamesWeight = (req, res, next) => {
+    Material.find({}, 'name weight')
+        .then(materials => {
+            const materialNamesWeight = materials.map(material => ({
+                name: material.name,
+                weight: material.weight
+            }));
+            res.json({ materialNamesWeight });
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+        });
+};
         
 
 
-
+exports.getMaterialNamesWeight= getMaterialNamesWeight;
 exports.getmat = getmat;
 exports.addmat = addmat;
 exports.updatemat = updatemat;
