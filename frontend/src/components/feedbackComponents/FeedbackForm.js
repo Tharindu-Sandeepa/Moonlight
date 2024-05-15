@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Grid, Typography, TextField, Paper } from "@mui/material";
 import { Rating } from "@mui/material";
 
-const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data }) => {
+const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data ,userId,itemId}) => {
     const [id, setId] = useState(0);
     const [User_ID, setUser_ID] = useState(0);
     const [name, setName] = useState('');
@@ -105,6 +105,12 @@ const FeedbackForm = ({ createFeedback, updateFeedback, submitted, isEdit, data 
 
     return (
         <Paper elevation={3} sx={{ padding: '20px', margin: 'auto', width: '70%' }}>
+            <Typography>
+                {userId}
+            </Typography>
+            <Typography>
+                {itemId}
+            </Typography>
             <Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', marginBottom: '20px' }}>Feedback Form</Typography>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>

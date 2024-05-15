@@ -58,6 +58,7 @@ import ReportEmployee from './pages/Admin/EmployeeComponent/reportEmployee';
 import OTPVerificationPage from './components/userComponents/OTPVerificationPage';
 import PasswordUpdatePage from './components/userComponents/PasswordUpdatePage';
 import LoadingScreen from './components/LoadingScreen';
+import MyOrders from './components/orderComponents/MyOrders';
 
 const App = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -168,7 +169,8 @@ const App = () => {
                             <Route path="/jewllery-grid" element={<ImageGridPage />} />
                             <Route path="/add-jewllery" element={<AddItem />} />
                             <Route path="/itemlist" element={<Itemlist />} />
-                            <Route path="/item/:itemId" element={<ItemPage/>} />
+                            <Route path="/item/:itemId" element={<ItemPage/>}/>
+                            <Route path="/MyOrders" element={<MyOrders/>}/>
                         </Routes>
                     </AuthProvider>
                     <Footer />

@@ -82,12 +82,15 @@ export default function AccountMenu() {
     </Link>
     
         <Divider />
+
+        <Link to="/MyOrders" style={{ textDecoration: 'none', color: 'inherit' }}>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           My Orders
-        </MenuItem>
+        </MenuItem></Link>
+        
         
         <MenuItem onClick={handleClose}>
           <ListItemIcon>

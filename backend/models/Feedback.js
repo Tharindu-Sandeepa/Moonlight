@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const feedbackSchema = new Schema({
-    id: {type: Number},
-    User_ID: {type: Number},
+    id: {type: String},
+    User_ID: {type: String},
     name: {type: String},
     email: {type: String},
     Jewelry_ID: {type: String},
