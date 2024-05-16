@@ -172,7 +172,7 @@ const SupplyOrder = () => {
               <Button variant="contained" sx={{ borderRadius: '20px', marginBottom: '10px' }} fullWidth onClick={handleGenerateReport}>
                 Generate Report
               </Button>
-              {/* Conditionally render the PDFDownloadLink inside the card content */}
+             
               {pdfData && (
                 <PDFDownloadLink document={<SupOrderPDF supOrders={supOrders} />} fileName="supply_orders_report.pdf">
                   {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download PDF')}
