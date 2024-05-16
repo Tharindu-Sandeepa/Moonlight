@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Box, Grid, Input, Typography, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { Button, Box, Grid, Input, Typography, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from "@mui/material";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const SupOrderForm = ({ addsupOrder, updatesupOrder, submitted, data, isEdit }) => {
     const [supOrdId, setsupOrdId] = useState(0);
@@ -15,6 +16,22 @@ const SupOrderForm = ({ addsupOrder, updatesupOrder, submitted, data, isEdit }) 
     const [status, setStatus] = useState('');
     // eslint-disable-next-line
     const [errors, setErrors] = useState({});
+    const [supplierNames, setSupplierNames] = useState([]);
+
+    useEffect(() => {
+        fetchSupID();
+    }, []);
+
+    const fetchSupID = () => {
+        axios.get('http://localhost:5002/api/getSupName')
+            .then(response => {
+                setSupplierNames(response.data.supplierNames);
+            })
+            .catch(error => {
+                console.error("Axios Error: ", error);
+            });
+    };
+
 
     useEffect(() => {
         if (!submitted) {
@@ -148,19 +165,22 @@ const SupOrderForm = ({ addsupOrder, updatesupOrder, submitted, data, isEdit }) 
                     {errors.supOrdId && <Typography sx={{ color: 'red', fontSize: '14px' }}>{errors.supOrdId}</Typography>}
                 </Grid>
 
-                <Grid item xs={12} sx={{ textAlign: 'left' }}>
-                    <Typography component={'label'} htmlFor="supName" sx={{ color: '#000000', fontSize: '16px', display: 'block', }}>
-                        Supplier Name
-                    </Typography>
-                    <Input
-                        type="text"
-                        id='supName'
-                        name="supName"
-                        sx={{ width: '400px', marginBottom: '10px' }}
-                        value={supName}
-                        onChange={e => setsupName(e.target.value)}
-                    />
-                    {errors.supName && <Typography sx={{ color: 'red', fontSize: '14px' }}>{errors.supName}</Typography>}
+                <Grid item xs={12} sm={6}>
+                                    <Select
+                                        label="Supplier ID"
+                                        value={supName}
+                                        onChange={e => setsupName(e.target.value)}
+                                        fullWidth
+                                        variant="outlined"
+                                        error={!!errors.supName}
+                                        helperText={errors.supName}
+                                    >  
+                                        {supplierNames.map((suppid, index) => (
+                                            <MenuItem key={index} value={suppid}>{suppid}</MenuItem>
+                                        ))}
+
+
+                                        </Select>
                 </Grid>
 
 

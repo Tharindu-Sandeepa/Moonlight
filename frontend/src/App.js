@@ -28,12 +28,16 @@ import EditSupplyOrderForm from './pages/Admin/Supplier_Manager/EditSupplyOrderF
 import Suppliers from './pages/Admin/Supplier_Manager/Suppliers';
 import AddSupplier from './pages/Admin/Supplier_Manager/AddSupplier';
 import SupplierForm from './pages/Admin/Supplier_Manager/SupplierForm';
+import SupplierDashboard from './pages/Admin/Supplier/SupplierDashboard';
+import SupItemTable from './pages/Admin/Supplier/SupItemTable';
 
 import AddItem from "./pages/Admin/Jewellry/AddItem";
 import ImageGridPage from "./ImageGridPage";
 import Itemlist from "./pages/Admin/Jewellry/jewellryManage";
 import ItemPage from "./ItemPage"
 import Footer from './components/Footer';
+import AddSupItem from './pages/Admin/Supplier/AddSupItem';
+import UpdateSupItem from './pages/Admin/Supplier/UpdateSupItem';
 
 
 
@@ -127,6 +131,11 @@ const App = () => {
             <Route path='/suppliers' element={<Suppliers/>} />
             <Route path='/add-supplier' element={<AddSupplier/>}/>
             <Route path='/update-supplier' element={<SupplierForm/>}/>
+            <Route path='/supdash' element={<SupplierDashboard/>}/>
+            <Route path='/itemTable' element={<SupItemTable/>}/>
+            <Route path='/addSupItem' element={<AddSupItem/>}/>
+            <Route path='/updateSupItem' element={<UpdateSupItem/>}/>
+            
            
           </Routes>
          </AuthProvider><Footer/>

@@ -11,6 +11,11 @@ const jewlleryRoutes = require("./routes/jewlleryRoutes");
 
 const supListRoute = require('../backend/routes/supListRoute');
 const suproute = require('../backend/routes/suproute');
+const supplierRoute = require('./routes/supplierRoute')
+const supItemRoute = require('./routes/supItemRoute');
+const emailRoutes = require('./routes/emailRoutes');
+
+
 
 
 
@@ -44,7 +49,9 @@ app.use("/update-image/:id", jewlleryRoutes);
 app.use("/get-item/:id", jewlleryRoutes);
 app.use('/api',suproute);
 app.use('/api',supListRoute);
-
+app.use('/api',supplierRoute)
+app.use('/api', supItemRoute);
+app.use('/api', emailRoutes);
 
 
 

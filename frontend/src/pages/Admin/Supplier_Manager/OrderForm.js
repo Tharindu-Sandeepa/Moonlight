@@ -86,7 +86,7 @@ const OrderForm = () => {
                 navigate('/edit-supply-order', { state: { selectedsupOrder: data } }); // Passing selectedsupOrder as state
                 setSubmitted(false);
                 setIsEdit(false);
-                toast.success('Order Successfully Created', {
+                toast.success('Order Successfully Updated', {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,

@@ -85,9 +85,20 @@ const deleteSupplier = (req, res, next) => {
         });
 }*/
 
+const getSupName = (req, res, next) => {
+    supList.find({}, 'supName')
+        .then(suppliers => {
+            const supplierNames = suppliers.map(supplier => supplier.supName);
+            res.json({ supplierNames });
+        })
+        .catch(error => {
+            res.status(500).json({ error: error.message });
+        });
+}
+
 
 exports.getSupplier = getSupplier;
 exports.addSupplier = addSupplier;
 exports.updateSupplier = updateSupplier;
 exports.deleteSupplier = deleteSupplier;
-
+exports.getSupName=getSupName;
