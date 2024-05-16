@@ -13,37 +13,37 @@ const MaterialTable = ({ rows, selectedMaterial, deleteMaterial }) => {
     const [query, setQuery] = useState("");
     const [groupedRows, setGroupedRows] = useState([]);
 
-    useEffect(() => {
-        const grouped = rows.reduce((acc, curr) => {
-            if (!acc[curr.name]) {
-                acc[curr.name] = { name: curr.name, totalWeight: 0, rows: [] };
-            }
-            acc[curr.name].totalWeight += curr.weight;
-            acc[curr.name].rows.push(curr);
-            return acc;
-        }, {});
+    // useEffect(() => {
+    //     const grouped = rows.reduce((acc, curr) => {
+    //         if (!acc[curr.name]) {
+    //             acc[curr.name] = { name: curr.name, totalWeight: 0, rows: [] };
+    //         }
+    //         acc[curr.name].totalWeight += curr.weight;
+    //         acc[curr.name].rows.push(curr);
+    //         return acc;
+    //     }, {});
 
         
-        const groupedData = Object.values(grouped);
-        setGroupedRows(groupedData);
+    //     const groupedData = Object.values(grouped);
+    //     setGroupedRows(groupedData);
 
-        // Send grouped data to backend
-        fetch('YOUR_BACKEND_ENDPOINT', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(groupedData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    //     // Send grouped data to backend
+    //     fetch('YOUR_BACKEND_ENDPOINT', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(groupedData)
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Success:', data);
+    //     })
+    //     .catch(error => {
+    //         console.error('Error:', error);
+    //     });
 
-    }, [rows]);
+    // }, [rows]);
 
 
 

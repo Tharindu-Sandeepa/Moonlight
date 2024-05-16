@@ -100,8 +100,8 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
         e.preventDefault();
         if (validateForm()) {
             if (!isEdit) {
-                const newId = currentId + 1; // Increment the ID only for new entries
-                setCurrentId(newId); // Update the currentId state
+                const newId = currentId + 1; 
+                setCurrentId(newId); 
                 localStorage.setItem('currentId', newId); // Save the new ID to localStorage
                 const material = { id: newId, name, weight, order, supplierName, cost, voucher, date, special };
                 addMaterials(material);
@@ -172,8 +172,8 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
                                         error={!!errors.supplierName}
                                         helperText={errors.supplierName}
                                     >  
-                                        {supplierNames.map((suppid, index) => (
-                                            <MenuItem key={index} value={suppid}>{suppid}</MenuItem>
+                                        {supplierNames.map((suppname, index) => (
+                                            <MenuItem key={index} value={suppname}>{suppname}</MenuItem>
                                         ))}
 
 

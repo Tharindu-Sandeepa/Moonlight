@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 const newMaterialSchema = new Schema({
     id: { 
         type: String, 
-        // required: true, 
+         required: true, 
         // unique: true 
     },
     name: { 
         type: String, 
-        // required: true,  
+         required: true,  
     },
     weight: { 
         type: Number,   
-        // required: true, 
+         required: true, 
         // min: 0 
     }
 
