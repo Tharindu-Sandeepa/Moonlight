@@ -67,9 +67,7 @@ import ViewEmployee from './pages/Admin/EmployeeComponent/viewEmployee';
 import UpdateEmployee from './pages/Admin/EmployeeComponent/updateEmployee';
 import ViewAllEmployees from './pages/Admin/EmployeeComponent/viewAllEmployees';
 import ReportEmployee from './pages/Admin/EmployeeComponent/reportEmployee';
-
-
-
+import MyOrders from './components/orderComponents/MyOrders';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -139,7 +137,7 @@ const App = () => {
             <Route path="/userinfotest" element={<Userinfotest />} />
             <Route path='/forgotpw' element={<Forgotpw />} />
             <Route path="/checkout" element={<Checkout />} />
-            
+            <Route path="/MyOrders" element={<MyOrders/>}/>
             
             <Route path="/jewllery-grid" element={<ImageGridPage />} />
           <Route path="/add-jewllery" element={<AddItem />} />
@@ -147,7 +145,7 @@ const App = () => {
           <Route path="/item/:itemId" element={<ItemPage/>} />
 
           <Route path='cart' element={<CustomerCart />} />
-            
+          
           
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/admin/users" element={<Usermanage />} />

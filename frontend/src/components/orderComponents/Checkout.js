@@ -39,13 +39,15 @@ const Checkout = () => {
     event.preventDefault();
 
     const errors = {};
-    
+
     if (!amount.trim()) {
       errors.amount = 'Amount is required';
     } else if (isNaN(amount)) {
       errors.amount = 'Amount must be a number';
+    } else if (Number(amount) < 1000) {
+      errors.amount = 'Amount must be greater than Rs.1000.00';
     }
-    
+
     if (!paymentDate) {
       errors.paymentDate = 'Payment Date is required';
     }
@@ -168,6 +170,10 @@ const Checkout = () => {
               <Typography variant="body1" gutterBottom>
                 Branch Name: KALUTARA BRANCH
               </Typography>
+              
+              <Typography variant="body2">
+                The amount should be more than Rs.1000 .00 
+              </Typography>
               <Typography variant="body2">
                 Transfer the deposit amount to the provided bank account details.
               </Typography>
@@ -190,8 +196,8 @@ const Checkout = () => {
                 variant="outlined"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                error={errors.amount}
-                helperText={errors.amount && 'Amount is required and must be a number'}
+                error={Boolean(errors.amount)}
+                helperText={errors.amount}
                 required
               />
 
@@ -203,8 +209,8 @@ const Checkout = () => {
                 variant="outlined"
                 value={paymentDate}
                 onChange={(e) => setPaymentDate(e.target.value)}
-                error={errors.paymentDate}
-                helperText={errors.paymentDate && 'Payment Date is required'}
+                error={Boolean(errors.paymentDate)}
+                helperText={errors.paymentDate}
                 required
               />
 
@@ -213,10 +219,10 @@ const Checkout = () => {
               <TextField
                 margin="normal"
                 type="file"
-                accept="slip/*"
+                accept="image/*"
                 onChange={handleChange}
-                error={errors.slip}
-                helperText={errors.slip && 'Slip is required'}
+                error={Boolean(errors.slip)}
+                helperText={errors.slip}
                 fullWidth
                 variant="outlined"
                 required

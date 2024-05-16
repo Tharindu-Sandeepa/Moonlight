@@ -49,6 +49,9 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder }) => {
             return row.status === filterStatus;
         }
     });
+ 
+    // Calculate total number of orders
+    const totalOrders = rows.length;
 
     // CSV report 
     const csvReport = {
@@ -106,6 +109,7 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder }) => {
                 }}>
                     <ShoppingCartIcon sx={{ fontSize: 40, color: '#1565c0' }} />
                     <Typography variant="h6" sx={{ alignSelf: 'center', color: '#1565c0', fontWeight: 'bold' }}>Total Orders</Typography>
+                    <Typography variant="h5" sx={{ alignSelf: 'center', color: '#1565c0', fontWeight: 'bold' }}>{totalOrders}</Typography>
                 </Paper>
 
                 <Paper elevation={3} sx={{
@@ -185,9 +189,9 @@ const OrdersTable = ({ rows, selectOrder, deleteOrder }) => {
                             <MenuItem value="">
                                 <em>None</em>
                             </MenuItem>
+                            <MenuItem value="Confirm">Confirm</MenuItem>
+                            <MenuItem value="Processing">Processing</MenuItem>
                             <MenuItem value="Completed">Completed</MenuItem>
-                            <MenuItem value="Pending">Pending</MenuItem>
-                            <MenuItem value="Cancelled">Cancelled</MenuItem>
                         </Select>
 
                         <TextField
