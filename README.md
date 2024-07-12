@@ -1,6 +1,6 @@
 # Moonlight (Gem and Jewelry Store Management System)
 
-<p><a  href="https://github.com/Vihara-Diwyanjalee"><img  src="https://skillicons.dev/icons?i=mongo,express,react,nodejs,mui,vscode,github"  width=350></a></p>
+<p><a  href="https://github.com/Vihara-Diwyanjalee"><img  src="https://skillicons.dev/icons?i=mysql,express,react,nodejs,mui,vscode,github"  width=350></a></p>
 
 This repository contains the source code for a Gem and Jewelary Management System web application developed using the MERN (MongoDB, Express.js, React, Node.js) stack.
 
