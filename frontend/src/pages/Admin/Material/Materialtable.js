@@ -97,7 +97,7 @@ const MaterialTable = ({ rows, selectedMaterial, deleteMaterial }) => {
             body: tableData
         });
 
-        doc.save("material_report.pdf");
+        doc.save("material_report.pdf");  
     };
 
     return (

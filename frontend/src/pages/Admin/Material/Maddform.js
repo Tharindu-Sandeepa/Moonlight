@@ -21,7 +21,7 @@ const Maddform = ({ addMaterials, updateMaterial, submitted, data, isEdit }) => 
 
     const validateForm = () => {
         const errors = {};
-        if (!name) errors.name = "Material Name is required";
+        if (!name) errors.name = "Materials Name is required";
         if (!weight) errors.weight = "Material Weight is required";
         if (!order) errors.order = "Material Order ID is required";
         if (!supplierName) errors.supplierName = "Supplier ID is required";
