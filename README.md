@@ -5,8 +5,8 @@
 This repository contains the source code for a Gem and Jewelary Management System web application developed using the MERN (MongoDB, Express.js, React, Node.js) stack.
 
 <br>
+<img src="https://github.com/Vihara-Diwyanjalee/Moonlight/blob/main/frontend/public/moonlight.png" alt="home_page" width=1000 >
 
-<img src="[https://github.com/Vihara-Diwyanjalee/Moonlight/blob/main/frontend/public/moonlight.png](https://drive.google.com/file/d/1b153cZfNoJ0YNT1pADe1MG_RjRvX_bNH/view?usp=drive_link)" alt="home_page" width=1000 >
 
 
 ## Project Structure
