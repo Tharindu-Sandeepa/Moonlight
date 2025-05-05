@@ -7,6 +7,8 @@ import Search from '@mui/icons-material/Search';
 import PeopleAltIcon from '@mui/icons-material/AccountBox';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const UsersTable = ({ rows, selectUser, deleteUser }) => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -27,6 +29,7 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
         });
         return counts;
     };
+
     const userCounts = countUsersByType();
 
     // Filter rows by type
@@ -49,12 +52,39 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
         filename: "user_report.csv"
     };
 
+    // PDF report
+    const generatePDFReport = () => {
+        const doc = new jsPDF();
+
+       
+        doc.setFontSize(16);
+        doc.text("User Details Report", 14, 20);
+
+        
+        const tableData = filteredRows.map(row => [
+            row.name,
+            row.email,
+            row.tp,
+            row.username,
+            row.type
+        ]);
+
+        
+        doc.autoTable({
+            startY: 30,
+            head: [headers.map(header => header.label)],
+            body: tableData
+        });
+
+        // Save the PDF
+        doc.save("user_report.pdf");
+    };
+
     const theme = createTheme();
 
     return (
         <ThemeProvider theme={theme}>
             <div>
-                
                 <Paper elevation={3} sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -88,14 +118,16 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
                 }}><AssessmentIcon sx={{ fontSize: 40, color: '#1565c0' }} />
                     <Button
                         sx={{
-                            mt: 3,
+                            mt: -1,
                             justifySelf: 'center',
                             alignSelf: 'center',
                             color: "white",
                             fontWeight: 'bold',
-                            fontSize: 14,
+                            fontSize: 12,
                             borderRadius: '40px',
                             width: '80%',
+                           
+                            height:'35%',
                             backgroundColor: '#1565c0',
                             '&:hover': {
                                 backgroundColor: '#0d47a1',
@@ -109,8 +141,32 @@ const UsersTable = ({ rows, selectUser, deleteUser }) => {
                                 color: 'inherit'
                             }}
                         >
-                            Generate Report
+                            Generate Report (CSV)
                         </CSVLink>
+                    </Button>
+
+                    {/* Button to generate PDF report */}
+                    <Button
+                        sx={{
+                            mt: 0.7,
+                            justifySelf: 'center',
+                            alignSelf: 'center',
+                            color: "white",
+                            padding:-4,
+                            fontWeight: 'bold',
+                            fontSize: 12,
+                            borderRadius: '40px',
+                            width: '80%',
+                            height:'35%',
+               
+                            backgroundColor: '#1565c0',
+                            '&:hover': {
+                                backgroundColor: '#0d47a1',
+                            },
+                        }}
+                        onClick={generatePDFReport}
+                    >
+                        Generate Report (PDF)
                     </Button>
                 </Paper>
 

@@ -57,23 +57,27 @@ export const mainListItems = (
       <ListItemText primary="Jewellery" />
     </ListItemButton>
     </Link>
-    <ListItemButton >
-    <Link >
+
+    <Link to="/GDashboard" >
+ <ListItemButton >
+    
     <ListItemIcon >
         <DiamondIcon />
       </ListItemIcon>
-      </Link>
-      <Link >
+      
       <ListItemText primary="Gems" />
-      </Link>
+     
     </ListItemButton>
+    </Link>
 
+<Link to="/mManager">
     <ListItemButton >
     <ListItemIcon  >
         <WarehouseIcon />
       </ListItemIcon>
-      <ListItemText primary="Inventory" />
+      <ListItemText primary="Materials" />
     </ListItemButton>
+    </Link>
 
     <Link to="/supplyorder">
     <ListItemButton>
@@ -84,12 +88,14 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
   
+    <Link to="/emplyee">
     <ListItemButton >
       <ListItemIcon >
         <EngineeringIcon />
       </ListItemIcon>
       <ListItemText primary="Employees" />
     </ListItemButton>
+    </Link>
 
 <Link to="/AdminFeedbackView">
     <ListItemButton >

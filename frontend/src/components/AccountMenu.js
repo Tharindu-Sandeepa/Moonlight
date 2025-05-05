@@ -75,23 +75,22 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
 
-<Link to='/myaccount'>
-        <MenuItem onClick={handleClose}>
-          <Avatar />  My Account
-        </MenuItem>
+<Link to="/myaccount" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <MenuItem onClick={handleClose}>
+        <Avatar /> My Account
+      </MenuItem>
     </Link>
-        <Link to='/admin'>
-        <MenuItem onClick={handleClose}>
-          <Avatar />  Admin
-        </MenuItem>
-    </Link>
+    
         <Divider />
+
+        <Link to="/MyOrders" style={{ textDecoration: 'none', color: 'inherit' }}>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           My Orders
-        </MenuItem>
+        </MenuItem></Link>
+        
         
         <MenuItem onClick={handleClose}>
           <ListItemIcon>

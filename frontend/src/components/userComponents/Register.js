@@ -28,7 +28,7 @@ const Register = () => {
   const [phone, setPhone] = useState('');
   const type = "User";
   const [error, setError] = useState('');
-  const [errors, setErrors] = useState({}); // New state to track validation errors
+  const [errors, setErrors] = useState({}); // for validation errors
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -67,14 +67,14 @@ const Register = () => {
       formErrors.phone = 'Phone number must be 10 digits long';
     }
     setErrors(formErrors);
-    return Object.keys(formErrors).length === 0; // Return true if no errors
+    return Object.keys(formErrors).length === 0; 
   };
 
   const handleRegister = async () => {
-    // Validate the form before proceeding with registration
+    
     const isFormValid = validateForm();
     if (!isFormValid) {
-      return; // Prevent form submission if validation fails
+      return; // dont form submission if validation fails
     }
 
     try {
@@ -145,7 +145,14 @@ const Register = () => {
 
               {/* Right Side (Input Fields) */}
               <Grid item xs={8} sx={{ borderTopRightRadius: 20, borderBottomRightRadius: 20, padding: 4 }}>
-                <Typography component="h1" variant="h7">
+              <Typography
+    component="h1"
+    variant="h7"
+    sx={{
+        fontWeight: 'bold', // Use 'bold' for bold text
+        color: 'gray', // Use 'gray' for gray color
+    }}
+>
                   Sign up
                 </Typography>
                 <Box sx={{ mt: 3 }}>
